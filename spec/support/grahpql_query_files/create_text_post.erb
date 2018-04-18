@@ -1,0 +1,16 @@
+mutation {
+  createTextPost(input: {title: "<%=title %>", body: "<%=body %>", userId: "<%=user_id %>"<%=geo_meta %>}) {
+    post {
+      author {
+        id
+        displayName
+      }
+      geoMeta {
+        country
+        city
+        longitude
+        latitude
+      }
+    }
+  }
+}

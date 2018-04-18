@@ -1,0 +1,31 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.fields_for field.attribute do |a| %>
+
+    <% (1..ConditionalNotification::CONDITIONS_COUNT).each do |i| %>
+      <%= a.label "Source #{i}" %>
+      <select name="conditional_notification[conditions][source_<%= i %>]" id="conditional_notification_conditions_source_<%= i %>">
+        <option value="" <%= f.object.conditions&.fetch("source_#{i}") { '' } == '' ? "selected='selected'" : '' %>></option>
+        <% ConditionalNotification::VALUES_TYPES.each do |value_type| %>
+          <option value="<%= value_type %>" <%= f.object.conditions&.fetch("source_#{i}") { '' } == value_type ? "selected='selected'" : '' %>><%= value_type %></option>
+        <% end %>
+      </select>
+      <br />
+      <%= a.label "relation #{i}" %>
+      <select name="conditional_notification[conditions][relation_<%= i %>]" id="conditional_notification_conditions_relation_<%= i %>">
+        <option value="" <%= f.object.conditions&.fetch("relation_#{i}") { '' } == '' ? "selected='selected'" : '' %>></option>
+        <option value="more" <%= f.object.conditions&.fetch("relation_#{i}") { '' } == 'more' ? "selected='selected'" : '' %>>more</option>
+        <option value="less" <%= f.object.conditions&.fetch("relation_#{i}") { '' } == 'less' ? "selected='selected'" : '' %>>less</option>
+        <option value="equal" <%= f.object.conditions&.fetch("relation_#{i}") { '' } == 'equal' ? "selected='selected'" : '' %>>equal</option>
+      </select>
+
+      <br />
+      <%= a.label "value #{i}" %>
+      <%= a.text_field "rate_#{i}".to_sym, value: f.object.conditions&.fetch("rate_#{i}") {} %>
+
+    <% end %>
+
+  <% end %>
+</div>

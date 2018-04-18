@@ -1,0 +1,16 @@
+mutation {
+  createUser(input: {subscribedToNewsLetter: false, deviceId: "7894243D-453C-4B7A-9C4D-E1165B9F8DEA", displayName: "jjjjjjj", bio:"", avatarUrl:"http://res.cloudinary.com/mosaic-project/image/upload/v1516294386/i7yaq9gvnd9idwppzzxs.jpg", email:"p@m.co", password:"12345"}) {
+    user {
+      id
+      email
+      displayName
+      bio
+      avatarUrl
+      userChatId
+      usernameChat
+      __typename
+    }
+    jwt
+    __typename
+  }
+}

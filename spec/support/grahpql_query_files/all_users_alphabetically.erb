@@ -1,0 +1,11 @@
+query {
+  allUsers(orderBy: displayName_alph){
+    edges {
+      node {
+        displayName
+        followersCount
+        followingCount
+      }
+    }
+  }
+}

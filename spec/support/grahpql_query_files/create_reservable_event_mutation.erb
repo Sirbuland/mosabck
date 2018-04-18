@@ -1,0 +1,9 @@
+mutation {
+  createReservableEvent(input:{reservable: {beginning: "<%=args[:beginning] %>", ending:"<%=args[:ending] %>", name: "<%=args[:name] %>", description:"<%=args[:description] %>", userId: <%= args[:user_id] %>}}) {
+    event {
+      id
+      name
+      description
+    }
+  }
+}

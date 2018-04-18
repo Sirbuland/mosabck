@@ -1,0 +1,12 @@
+query {
+  viewer{
+    currentUser {
+      id
+      displayName
+    }
+    user(id: <%= user_id %>){
+      id
+      displayName
+    }
+  }
+}

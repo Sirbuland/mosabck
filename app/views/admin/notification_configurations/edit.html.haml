@@ -1,0 +1,41 @@
+%header{class: "main-content__header", role:"banner"}
+  %h1{class:"main-content__page-title"}
+    Edit Notification configuration
+%section{class:"main-content__body"}
+  = form_for(:notification_configuration, url: admin_notification_configurations_update_path, html: {class: 'form'}, method: :patch) do |f|
+    .field-unit.field-unit--conditions-field
+      .field-unit__label
+        %input{type: :hidden, name: "[notification_configuration][conditional_configuration][present]", value: 'true'}
+        %input{type: :hidden, name: "[notification_configuration][triggered_event][present]", value: 'true'}
+        %table.table.table_container
+          %thead
+            %th
+              Info
+            %th
+              Phone
+            %th
+              Email
+            %th
+              Expo
+            %th
+              APNS
+            %th
+              GCM
+          %tbody
+            - data.each do |config|
+              %tr
+                %td
+                  = config[:name]
+                  %input{type: :hidden, name: "[notification_configuration][#{config[:type]}][#{config[:id]}][present]", value: true }
+                %td
+                  %input{type: :checkbox, name: "[notification_configuration][#{config[:type]}][#{config[:id]}][phone]", checked: config[:rules]['phone'], value: 'true'}
+                %td
+                  %input{type: :checkbox, name: "[notification_configuration][#{config[:type]}][#{config[:id]}][email]", checked: config[:rules]['email'], value: 'true'}
+                %td
+                  %input{type: :checkbox, name: "[notification_configuration][#{config[:type]}][#{config[:id]}][expo]", checked: config[:rules]['expo'], value: 'true'}
+                %td
+                  %input{type: :checkbox, name: "[notification_configuration][#{config[:type]}][#{config[:id]}][apns]", checked: config[:rules]['apns'], value: 'true'}
+                %td
+                  %input{type: :checkbox, name: "[notification_configuration][#{config[:type]}][#{config[:id]}][gcm]", checked: config[:rules]['gcm'], value: 'true'}
+    .form-actions
+      %input{type: :submit, value: 'Save'}

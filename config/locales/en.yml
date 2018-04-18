@@ -1,0 +1,73 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  sms:
+    pin_message: "Hi, Your pin is: %{pin}"
+  email:
+    account_confirmation_subject: 'Account confirmation'
+    account_confirmation_status_subject: 'Account status'
+  activity:
+    post:
+      tagged: "Tags %{tags} added to Post {%title}"
+      untagged: "Tags %{tags} removed from Post %{title}"
+  errors:
+    messages:
+      unexpected_type: "Unexpected type"
+      no_types_are_present: "No types are present"
+      not_found: "%{entity} not found"
+      wrong_entity_class: "Wrong entity class"
+      value_should_be_on_list: "%{value} should be one of: %{list}"
+      invalid_jwt: "Invalid JWT"
+      user_not_logged_on_device: "User is not logged in for the current device"
+      no_element_provided: "No %{element} provided"
+      already_registered: "User already registered"
+      wrong_identity_type: "Wrong identity type"
+      taken_profile: "This social network profile is already used"
+      password_does_not_match: "Old password is not correct"
+      payload_exists: "auth_identities.payload User already registered"
+      invalid_symbol: "Invalid Symbol"
+      problems_voiding_pin: 'Problems voiding pin'
+    chat:
+      unauthorized: 'Unauthorized to use chat server, wrong credentials?'
+  auth:
+    successful: "Successful authentication"
+
+  administrate:
+    actions:
+      new: "Create"
+      show: 'Show'
+  subscription:
+    paid: "Your subscription has been paid"
+    cancelled: "Your subscription has been cancelled"
+  order:
+    paid: "Your order has been paid"
+    cancelled: "Your order has been cancelled"

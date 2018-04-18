@@ -1,0 +1,13 @@
+mutation {
+  createSubscription(input:{userId: <%= user_id %>, plan: <%= plan %> }) {
+    subscription {
+      id
+      status
+      end_date
+      prices {
+        currency
+        value
+      }
+    }
+  }
+}

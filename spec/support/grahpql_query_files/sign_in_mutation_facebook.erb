@@ -1,0 +1,9 @@
+mutation {
+  signInOauth(input:{oauthUserId: "<%= oauth_user_id %>", oauthToken:"<%= oauth_token %>", userType:FacebookIdentity, deviceId:"<%= device_id %>"}){
+    user{
+      id
+      bio
+    }
+    jwt
+  }
+}

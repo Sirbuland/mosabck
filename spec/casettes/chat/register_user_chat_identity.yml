@@ -1,0 +1,137 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/login
+    body:
+      encoding: UTF-8
+      string: '{"username":"fake-admin","password":"111222333"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - fpCD4j59CEfrWMEyj
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 01 Nov 2017 18:22:36 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "status": "success",
+          "data": {
+            "authToken": "aRbzucIwFAKOLSlN9rWzLEY5w2H3AvVn-XPbkQRnfod",
+            "userId": "LSBkg4QAkhizPo4TS"
+          }
+        }
+    http_version:
+  recorded_at: Wed, 01 Nov 2017 18:22:37 GMT
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/users.create
+    body:
+      encoding: UTF-8
+      string: '{"username":"setembrino-pereda","email":"setembrinopereda629@mail.com","name":"Setembrino
+        Pereda","password":"micasadechico","active":true,"joinDefaultChannels":true,"requirePasswordChange":false,"sendWelcomeEmail":false,"verified":true}'
+    headers:
+      X-Auth-Token:
+      - aRbzucIwFAKOLSlN9rWzLEY5w2H3AvVn-XPbkQRnfod
+      X-User-Id:
+      - LSBkg4QAkhizPo4TS
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - fpCD4j59CEfrWMEyj
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 01 Nov 2017 18:22:37 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "user": {
+            "createdAt": "2017-11-01T18:22:37.475Z",
+            "_id": "erAnSAvDt5Sp4wjL3",
+            "services": {
+              "password": {
+                "bcrypt": "$2a$10$t1eMXHfOd1dnGxBpbBjgduulwzW7ApcnYc/Xrh4dMy6AAc0BNG9CG"
+              }
+            },
+            "username": "setembrino-pereda",
+            "emails": [
+              {
+                "address": "setembrinopereda629@mail.com",
+                "verified": true
+              }
+            ],
+            "type": "user",
+            "status": "offline",
+            "active": true,
+            "name": "Setembrino Pereda",
+            "_updatedAt": "2017-11-01T18:22:37.581Z",
+            "roles": [
+              "user"
+            ],
+            "requirePasswordChange": false
+          },
+          "success": true
+        }
+    http_version:
+  recorded_at: Wed, 01 Nov 2017 18:22:37 GMT
+recorded_with: VCR 3.0.3

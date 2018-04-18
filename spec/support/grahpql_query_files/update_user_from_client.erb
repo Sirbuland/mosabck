@@ -1,0 +1,14 @@
+
+mutation { 
+  updateUser(input: {id: "<%= params[:id] %>", displayName: "jjjjjjj", email: "m2@co.com", avatarUrl: "http://res.cloudinary.com/mosaic-project/image/upload/v1516294551/uss87gnpwhcasdo6paqj.jpg"})
+    {
+      user {
+        id
+      displayName
+      email
+      avatarUrl
+      __typename
+    }
+    __typename
+  }
+}

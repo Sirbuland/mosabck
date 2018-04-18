@@ -1,0 +1,13 @@
+query {
+  allUsers {
+    edges {
+      node {
+        id
+        followedByViewer
+        posts {
+          totalCount
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+mutation {
+  createClassicUser(input: {deviceId:"<%= device_id %>", displayName: "<%= display_name %>", email: "<%= email %>", password: "<%= password %>"}){
+    user {
+      identities {
+        ... on ChatIdentity{
+          userId
+          password
+        }
+      }
+    }
+  }
+}

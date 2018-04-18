@@ -1,0 +1,14 @@
+mutation {
+  createClassicUser(input: {displayName: "<%= name %>", email: "<%= email %>", password: "<%= password %>",
+    deviceId: "<%= device_id %>", phoneNumberString: "<%= phone_number %>"}) {
+    user {
+      subscribedToNewsLetter
+      identities {
+        ... on ClassicIdentity {
+          email
+        }
+      }
+      avatarUrl
+    }
+  }
+}

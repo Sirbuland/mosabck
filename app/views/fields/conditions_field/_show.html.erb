@@ -1,0 +1,1 @@
+[<%= (1..ConditionalNotification::CONDITIONS_COUNT).map { |i| "#{field.data["source_#{i}"]} #{field.data["relation_#{i}"]} #{field.data["rate_#{i}"]}" }.reject{|s| s.strip.empty?}.join(',') %> ]

@@ -1,0 +1,14 @@
+mutation {
+  createUser(input: {displayName: "<%= name %>", bio: "<%= bio %>", facebook: {oauthUserId: "<%= fb_user_id %>",
+    oauthAccessToken: "<%= fb_access_token %>", expirationDate: "<%= expiration_date %>" }, deviceId: "<%= device_id %>"}) {
+    user {
+      id
+      identities {
+        ... on FacebookIdentity {
+          facebookUserId
+          facebookAccessToken
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query {
+  allUsers(searchTerm:"<%=search_term %>", searchBy: <%= search_by %>) {
+    edges {
+      node {
+        id
+        displayName
+      }
+    }
+  }
+}

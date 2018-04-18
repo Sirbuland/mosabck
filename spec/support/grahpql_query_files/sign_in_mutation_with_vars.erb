@@ -1,0 +1,7 @@
+mutation SignInUserMutation($email: String!, $password: String!, $deviceId: String!) {
+  signInClassic(input: {email: $email, password: $password, deviceId: $deviceId}) {
+    user {
+      id
+    }
+  }
+}

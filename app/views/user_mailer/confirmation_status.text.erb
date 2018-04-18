@@ -1,0 +1,7 @@
+Hi <%= @user.username %>,
+
+<% if @success %>
+  Your account has been confirmed.
+<% else %>
+  There was a problem with confirmation, please contact admin.
+<% end %>

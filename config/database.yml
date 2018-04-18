@@ -1,0 +1,20 @@
+development:
+  adapter:  postgis
+  host:     localhost
+  encoding: unicode
+  database: mosaic_backend_development
+  pool:     5
+  username: postgres
+  password: postgres
+
+test:
+  adapter:  postgis
+  host:     localhost
+  encoding: unicode
+  database: mosaic_backend_test
+  pool:     5
+  username: postgres
+  password: postgres
+
+production:
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>

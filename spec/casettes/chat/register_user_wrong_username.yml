@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/login
+    body:
+      encoding: UTF-8
+      string: '{"username":"fake-admin","password":"111222333"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - fpCD4j59CEfrWMEyj
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 01 Nov 2017 18:23:45 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "status": "success",
+          "data": {
+            "authToken": "DgrOUWo1inrvWCmbOHvRChLKPzROABTujyn_NG_0eox",
+            "userId": "LSBkg4QAkhizPo4TS"
+          }
+        }
+    http_version: 
+  recorded_at: Wed, 01 Nov 2017 18:23:45 GMT
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/users.create
+    body:
+      encoding: UTF-8
+      string: '{"username":"julio lopez gomez","email":"fakeemailforjulio@mail.com","name":"Julio
+        Lopez Gomez","password":"1234567890","active":true,"joinDefaultChannels":true,"requirePasswordChange":false,"sendWelcomeEmail":false,"verified":true}'
+    headers:
+      X-Auth-Token:
+      - DgrOUWo1inrvWCmbOHvRChLKPzROABTujyn_NG_0eox
+      X-User-Id:
+      - LSBkg4QAkhizPo4TS
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - fpCD4j59CEfrWMEyj
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 01 Nov 2017 18:23:46 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "success": false,
+          "error": "julio lopez gomez is not a valid username [error-input-is-not-a-valid-field]",
+          "errorType": "error-input-is-not-a-valid-field"
+        }
+    http_version: 
+  recorded_at: Wed, 01 Nov 2017 18:23:46 GMT
+recorded_with: VCR 3.0.3

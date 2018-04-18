@@ -1,0 +1,2 @@
+class TriggeredEvent < ApplicationRecord
+end

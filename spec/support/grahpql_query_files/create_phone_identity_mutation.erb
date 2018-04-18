@@ -1,0 +1,18 @@
+mutation {
+  createUser(input: {displayName: "<%= name %>", email: "<%= email %>",
+    password: "<%= password %>", bio: "<%= bio %>", phoneNumber: "<%= phone_number %>", deviceId: "<%= device_id %>"<%= geo || '' %>}) {
+    user {
+      id
+      identities {
+        ... on PhoneIdentity {
+          phoneNumber
+        }
+      }
+      geoMeta {
+        latitude
+        longitude
+      }
+    }
+    jwt
+  }
+}

@@ -1,0 +1,5 @@
+mutation {
+  verifyEmail(input:{pinCode:"<%= pin_code %>", email: "<%= email %>", action:activate_email}){
+      result
+    }
+}

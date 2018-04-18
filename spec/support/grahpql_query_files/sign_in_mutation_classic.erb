@@ -1,0 +1,10 @@
+mutation {
+  signInClassic(input:{email: "<%= email %>", password: "<%= password %>", deviceId:"<%= device_id %>"}){
+    user{
+      id
+      bio
+      avatarUrl
+    }
+    jwt
+  }
+}

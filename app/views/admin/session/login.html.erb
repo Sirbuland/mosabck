@@ -1,0 +1,19 @@
+<h1>Admin Dashboard</h1>
+<% if flash[:message] %>
+  <div class="notice"><%= flash[:message] %></div>
+<% end %>
+<form method="post">
+  <fieldset>
+    <div>
+      <label for="email">Email:</label>
+      <input type="text" name="email" id="email"/>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password"/>
+    </div>
+    <div>
+      <button type="submit">Login</button>
+    </div>
+  </fieldset>
+</form>

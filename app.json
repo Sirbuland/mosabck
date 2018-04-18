@@ -1,0 +1,43 @@
+{
+  "name": "mosaic-backend",
+  "description": "Rails backend server",
+  "scripts": {
+    "postdeploy": "bundle exec rake enable_postgis_extension_and_migrate"
+  },
+  "env": {
+    "LANG": {
+      "required": true
+    },
+    "OPTICS_API_KEY": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_LOG_TO_STDOUT": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    }
+  },
+  "formation": {},
+  "addons": [
+    "logentries",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/cyberdelia/heroku-geo-buildpack.git"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}

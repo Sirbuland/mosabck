@@ -1,0 +1,9 @@
+mutation {
+  updateUser(input:{id:<%= id %>, avatarUrl: "<%=avatar_url %>", birthdate: "<%= birthdate %>"}){
+     user{
+      id
+      avatarUrl
+      birthdate
+    }
+  }
+}

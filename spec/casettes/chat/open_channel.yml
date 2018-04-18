@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/login
+    body:
+      encoding: UTF-8
+      string: '{"user":"fake-admin","password":"111222333"}'
+    headers:
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - goWXfQDyZadqoXEoy
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 27 Nov 2017 12:31:53 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "status": "success",
+          "data": {
+            "authToken": "R2Otn3tGygvk0SWPlmJNrsg_qYNVgNAOU_XnPbiToIf",
+            "userId": "LSBkg4QAkhizPo4TS"
+          }
+        }
+    http_version:
+  recorded_at: Mon, 27 Nov 2017 12:31:54 GMT
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/channels.create
+    body:
+      encoding: UTF-8
+      string: '{"name":"rspec-channel","members":["aric","carolyn","devyn"],"readOnly":null}'
+    headers:
+      X-Auth-Token:
+      - R2Otn3tGygvk0SWPlmJNrsg_qYNVgNAOU_XnPbiToIf
+      X-User-Id:
+      - LSBkg4QAkhizPo4TS
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - goWXfQDyZadqoXEoy
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 27 Nov 2017 12:31:54 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "channel": {
+            "name": "rspec-channel",
+            "fname": "rspec-channel",
+            "t": "c",
+            "msgs": 0,
+            "u": {
+              "_id": "LSBkg4QAkhizPo4TS",
+              "username": "ale"
+            },
+            "customFields": {},
+            "ts": "2017-11-27T12:31:54.379Z",
+            "ro": false,
+            "sysMes": true,
+            "_updatedAt": "2017-11-27T12:31:54.381Z",
+            "_id": "u4bk8s9A683p736E6",
+            "usernames": [
+              "aric",
+              "carolyn",
+              "devyn",
+              "ale"
+            ]
+          },
+          "success": true
+        }
+    http_version:
+  recorded_at: Mon, 27 Nov 2017 12:31:54 GMT
+recorded_with: VCR 3.0.3

@@ -1,0 +1,8 @@
+mutation {
+  createClassicUser(input: {displayName: "<%= name %>", email: "<%= email %>", password: "<%= password %>",
+    deviceId: "<%= device_id %>", birthdate: "<%= birthdate %>"}) {
+    user {
+      birthdate
+    }
+  }
+}

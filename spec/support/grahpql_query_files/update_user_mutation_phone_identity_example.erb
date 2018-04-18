@@ -1,0 +1,17 @@
+mutation {
+  updateUser(input:{id:"<%=id %>", displayName:"<%=name %>", email:"<%=email %>", phoneNumber:"<%=phone_number %>"<%= geo_meta %>}){
+    user {
+      displayName
+      email
+      identities {
+        ... on PhoneIdentity {
+          phoneNumber
+        }
+      }
+      geoMeta {
+        latitude
+        longitude
+      }
+    }
+  }
+}

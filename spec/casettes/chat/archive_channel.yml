@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/login
+    body:
+      encoding: UTF-8
+      string: '{"user":"fake-admin","password":"111222333"}'
+    headers:
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - nqCtfWg2XTphCBfHp
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Fri, 24 Nov 2017 13:44:13 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "status": "success",
+          "data": {
+            "authToken": "B_s7BfeRiCqBaXi-wIuvf9OJq4yfJhxgeobrVSdsSSU",
+            "userId": "LSBkg4QAkhizPo4TS"
+          }
+        }
+    http_version:
+  recorded_at: Fri, 24 Nov 2017 13:44:14 GMT
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/channels.archive
+    body:
+      encoding: UTF-8
+      string: '{"roomId":"vG4SiKQqEXaXawPtP"}'
+    headers:
+      X-Auth-Token:
+      - B_s7BfeRiCqBaXi-wIuvf9OJq4yfJhxgeobrVSdsSSU
+      X-User-Id:
+      - LSBkg4QAkhizPo4TS
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - nqCtfWg2XTphCBfHp
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Fri, 24 Nov 2017 13:44:14 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "success": true
+        }
+    http_version:
+  recorded_at: Fri, 24 Nov 2017 13:44:14 GMT
+recorded_with: VCR 3.0.3

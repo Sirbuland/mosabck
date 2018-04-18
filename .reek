@@ -1,0 +1,84 @@
+ControlParameter:
+  exclude:
+  - 'PostComponent::Resolvers::AllPostsResolver#all_posts_ordered'
+  - 'FetchGeoTaggableModels#data'
+  - 'SmsVerifiable#verify_sms'
+  - 'UserComponent::Interactors::PasswordUpdate#update_password'
+DuplicateMethodCall:
+  enable: true
+  exclude:
+  - 'GraphqlController#validate_jwt'
+  - 'ValidateJWT#call'
+  - 'Resolvers::Posts::AllPostsResolver#call'
+  - 'Resolvers::AllActivitiesResolver#call'
+  - 'Resolvers::AllActivitiesResolver#filtered_by_type_and_ordered'
+  - 'GraphqlController#authenticate_from_jwt'
+  - 'AuthenticateUserFromJwt#call'
+  - 'PostComponent::Resolvers::AllPostsResolver#all_posts_ordered'
+  - 'TagPost#call'
+  - 'UntagPost#call'
+  - 'Resolvers::SearchUsersResolver#call'
+  - 'FetchGeoTaggableModels#data'
+  - 'ChatComponent::Interactors::OpenChannel#call'
+  - 'UserComponent::Interactors::PasswordUpdate#update_password'
+  - 'GetUserIdFromPinNumberAndPhone#call'
+  - 'GetUserIdFromPinNumberAndEmail#call'
+  - 'CommentComponent::Resolvers::AddCommentResolver#call'
+FeatureEnvy:
+  enabled: false
+  exclude:
+  - 'GraphqlController#authenticate_with_auth_token'
+  - 'GraphqlController#sign_in_mutation?'
+  - 'MultipleIdentities#particular_entity'
+  - 'MultipleIdentities#facebookIdentity'
+  - 'MultipleIdentities#classicIdentity'
+  - 'MultipleIdentities#phoneIdentity'
+  - 'CanManagePosts#post'
+  - 'UserService#update_identities_attributes'
+InstanceVariableAssumption:
+  enabled: false
+IrresponsibleModule:
+  enabled: false
+LongParameterList:
+  exclude:
+  - 'UserComponent::Interactors::PasswordUpdate#update_password'
+NestedIterators:
+  exclude:
+  - 'UserService#update_identities_attributes'
+  - 'ChatComponent::Interactors::ChannelsList#add_members'
+NilCheck:
+  exclude:
+  - 'GraphqlController#ensure_hash'
+  - 'CheckJwtRequired#call'
+  - 'EmailConfirmable#email_confirmation_enabled'
+RepeatedConditional:
+  exclude:
+  - 'Resolvers::AllActivitiesResolver'
+  - 'User'
+TooManyStatements:
+  max_statements: 15
+  exclude:
+  - 'Resolvers::AllActivitiesResolver#filtered_by_type_and_ordered'
+  - 'CommentComponent::Resolvers::AddCommentResolver#call'
+TooManyConstants:
+  exclude:
+  - 'GraphqlHelper'
+  - 'Resolvers::Comments::AddCommentResolver#call'
+UtilityFunction:
+  enabled: false
+UncommunicativeMethodName:
+  exclude:
+  - 'MultipleIdentities#classicIdentity'
+  - 'MultipleIdentities#facebookIdentity'
+  - 'MultipleIdentities#phoneIdentity'
+  - 'CanManagePosts#imagePost'
+  - 'CanManagePosts#textPost'
+PrimaDonnaMethod:
+  exclude:
+  - Follow
+  - Order
+TooManyMethods:
+  max_methods: 20
+ManualDispatch:
+  exclude:
+  - 'Admin::ApplicationController#destroy'

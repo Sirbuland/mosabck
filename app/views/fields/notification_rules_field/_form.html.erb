@@ -1,0 +1,67 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <table>
+    <thead>
+      <th>Method name</th>
+      <% ConditionalNotification::VALUES_TYPES.each do |value_type| %>
+        <th><%= value_type %></th>
+      <% end %>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Phone - All</td>
+        <% ConditionalNotification::VALUES_TYPES.each do |value_type| %>
+          <td>
+            <% value = value_type.gsub(/\W+/, '_').downcase %>
+            <% all = f.object.notification_rules&.dig('phone', 'all') %>
+            <% checked = all.present? && (all == true || all[value] == true) %>
+            <input type="checkbox" name="user[notification_rules][phone][all][<%= value %>]" <%= checked ? "checked='checked'" : '' %>/>
+          </td>
+        <% end %>
+      </tr>
+      <% f.object.auth_identities.phone.each do |phone_identity| %>
+        <tr>
+          <td>Phone - <%= phone_identity.payload['phone'] %></td>
+          <% ConditionalNotification::VALUES_TYPES.each do |value_type| %>
+            <td>
+              <% id = phone_identity.id.to_s %>
+              <% value = value_type.gsub(/\W+/, '_').downcase %>
+              <% all = f.object.notification_rules&.dig('phone', id) %>
+              <% checked = all.present? && (all == true || all[value] == true) %>
+              <input type="checkbox" name="user[notification_rules][phone][<%= id %>][<%= value %>]" <%= checked ? "checked='checked'" : '' %>/>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+
+      <tr>
+        <td>Email - All</td>
+        <% ConditionalNotification::VALUES_TYPES.each do |value_type| %>
+          <td>
+            <% value = value_type.gsub(/\W+/, '_').downcase %>
+            <% all = f.object.notification_rules&.dig('email', 'all') %>
+            <% checked = all.present? && (all == true || all[value] == true) %>
+            <input type="checkbox" name="user[notification_rules][email][all][<%= value %>]" <%= checked ? "checked='checked'" : '' %>/>
+          </td>
+        <% end %>
+      </tr>
+
+      <% f.object.auth_identities.classic.each do |classic_identity| %>
+        <tr>
+          <td>Email - <%= classic_identity.payload['email'] %></td>
+          <% ConditionalNotification::VALUES_TYPES.each do |value_type| %>
+            <td>
+              <% id = classic_identity.id.to_s %>
+              <% value = value_type.gsub(/\W+/, '_').downcase %>
+              <% all = f.object.notification_rules&.dig('email', id) %>
+              <% checked = all.present? && (all == true || all[value] == true) %>
+              <input type="checkbox" name="user[notification_rules][email][<%= id %>][<%= value %>]" <%= checked ? "checked='checked'" : '' %>/>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

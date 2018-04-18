@@ -1,0 +1,124 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/login
+    body:
+      encoding: UTF-8
+      string: '{"username":"fake-admin","password":"111222333"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - fpCD4j59CEfrWMEyj
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 01 Nov 2017 18:14:06 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "status": "success",
+          "data": {
+            "authToken": "XUSzUgileALIHbn1JuqilzZaeOnkmayn72DEQ3GGt0e",
+            "userId": "LSBkg4QAkhizPo4TS"
+          }
+        }
+    http_version:
+  recorded_at: Wed, 01 Nov 2017 18:14:07 GMT
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/chat.postMessage
+    body:
+      encoding: UTF-8
+      string: '{"channel":"@bart","text":"Hi there Bart!"}'
+    headers:
+      X-Auth-Token:
+      - XUSzUgileALIHbn1JuqilzZaeOnkmayn72DEQ3GGt0e
+      X-User-Id:
+      - LSBkg4QAkhizPo4TS
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - fpCD4j59CEfrWMEyj
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 01 Nov 2017 18:14:07 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "ts": 1509560047361,
+          "channel": "@bart",
+          "message": {
+            "alias": "",
+            "msg": "Hi there Bart!",
+            "parseUrls": true,
+            "groupable": false,
+            "ts": "2017-11-01T18:14:07.338Z",
+            "u": {
+              "_id": "LSBkg4QAkhizPo4TS",
+              "username": "ale",
+              "name": "ale"
+            },
+            "rid": "LSBkg4QAkhizPo4TSa2H9WwBYWWhmBjJHn",
+            "mentions": [],
+            "channels": [],
+            "_updatedAt": "2017-11-01T18:14:07.345Z",
+            "_id": "k5qAun3ujFAvaeFWP"
+          },
+          "success": true
+        }
+    http_version:
+  recorded_at: Wed, 01 Nov 2017 18:14:07 GMT
+recorded_with: VCR 3.0.3

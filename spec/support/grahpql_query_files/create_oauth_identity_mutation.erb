@@ -1,0 +1,8 @@
+mutation {
+  createOauthUser(input:{deviceId:"<%= device_id %>", displayName:"<%= display_name %>",bio:"<%= bio %>", userType:<%= user_type %>, oauthUserId:"<%= oauth_user_id %>", oauthAccessToken:"<%= oauth_access_token %>"}) {
+    user {
+      id
+      displayName
+    }
+  }
+}

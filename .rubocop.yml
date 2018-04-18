@@ -1,0 +1,169 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Include:
+    - '**/*.gemspec'
+    - '**/Rakefile'
+  Exclude:
+    - 'db/*'
+    - 'app/models/concerns/multiple_identities.rb'
+    - 'app/models/concerns/can_manage_posts.rb'
+    - 'app/models/comment.rb' #it came with the gem
+    - 'lib/tasks/elasticsearch.rake'
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
+  # a Float.
+  Max: 26
+  Exclude:
+    - 'app/components/activity_component/resolvers/all_activities_resolver.rb'
+Metrics/PerceivedComplexity:
+  Max: 8
+  Exclude:
+    - 'app/components/activity_component/resolvers/all_activities_resolver.rb'
+Metrics/CyclomaticComplexity:
+  Max: 7
+  Exclude:
+    - 'app/components/activity_component/resolvers/all_activities_resolver.rb'
+LineLength:
+  Description: 'Limit lines to 79 characters.'
+  Max: 79
+  Exclude:
+Documentation:
+  Enabled: false
+
+Encoding:
+  Enabled: false
+
+MethodLength:
+  Description: 'Avoid methods longer than `Max` lines of code.'
+  CountComments: false  # count full line comments?
+  Max: 25
+  Exclude:
+    - 'app/components/activity_component/resolvers/all_activities_resolver.rb'
+    - 'app/components/comment_component/resolvers/add_comment_resolver.rb'
+ClassLength:
+  Max: 151
+  Exclude:
+    - 'app/policies/application_policy.rb'
+AlignParameters:
+  Enabled: false
+
+ParameterLists:
+  Description: 'Avoid parameter lists longer than six parameters.'
+  Max: 6
+  CountKeywordArgs: true
+
+Semicolon:
+  Description: "Don't use semicolons to terminate expressions."
+  AllowAsExpressionSeparator: false
+
+SingleLineMethods:
+  Description: 'Avoid single-line methods.'
+  AllowIfMethodIsEmpty: true
+
+SpaceInsideHashLiteralBraces:
+  Description: "Use spaces inside hash literal braces - or don't."
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: no_space
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/EmptyElse:
+  Exclude:
+    - 'app/models/auth_identity.rb'
+
+BlockNesting:
+  Description: 'Avoid more than `Max` levels of nesting.'
+  Max: 4
+
+RegexpLiteral:
+  Description: >
+                 Use %r for regular expressions matching more than
+                 `MaxSlashes` '/' characters.
+                 Use %r only for regular expressions matching more than
+                 `MaxSlashes` '/' character.
+  MaxSlashes: 1
+
+# Align with the style guide.
+CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    detect: 'find'
+    find_all: 'select'
+
+# Multi-line method chaining should be done with leading dots.
+DotPosition:
+  EnforcedStyle: leading
+
+# TrivialAccessors doesn't require exact name matches and doesn't allow
+# predicated methods by default.
+TrivialAccessors:
+  ExactNameMatch: false
+  AllowPredicates: false
+  Whitelist:
+    - to_ary
+    - to_a
+    - to_c
+    - to_enum
+    - to_h
+    - to_hash
+    - to_i
+    - to_int
+    - to_io
+    - to_open
+    - to_path
+    - to_proc
+    - to_r
+    - to_regexp
+    - to_str
+    - to_s
+    - to_sym
+
+# Allow safe assignment in conditions.
+AssignmentInCondition:
+  AllowSafeAssignment: true
+  Exclude:
+
+# Allow safe assignment in conditions.
+ParenthesesAroundCondition:
+  AllowSafeAssignment: true
+
+# Checks formatting of special comments
+CommentAnnotation:
+  Keywords:
+    - TODO
+    - FIXME
+    - OPTIMIZE
+    - HACK
+    - REVIEW
+Style/Lambda:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Security/JSONLoad:
+  Enabled: false
+Naming/VariableName:
+  EnforcedStyle: snake_case
+  SupportedStyles:
+    - snake_case
+    - camelCase
+Naming/MethodName:
+  SupportedStyles:
+    - snake_case
+    - camelCase
+Metrics/BlockLength:
+  CountComments: false  # count full line comments?
+  Max: 31
+  Exclude:
+     - 'app/graphql/types/*.rb'
+     - 'app/graphql/query_type.rb'
+     - 'app/graphql/mutation_type.rb'
+     - 'config/environments/*.rb'
+     - 'config/routes.rb'
+     - 'app/components/chat_component/types/channel_type.rb'
+     - 'app/components/user_component/types/user_type.rb'
+     - 'app/components/misc_component/types/offer_service_item_type.rb'
+Style/OptionalArguments:
+  Enabled: false

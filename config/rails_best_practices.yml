@@ -1,0 +1,17 @@
+RemoveUnusedMethodsInModelsCheck: {
+  except_methods: [
+    'User#owned_device',
+    'User#own_device',
+    'User#fb_user_id',
+    'User#fb_token',
+    'User#as_indexed_json',
+    'AuthIdentity#payload_value_for',
+    'ContactMethod#main',
+    'PinCode#unused_pin_code',
+    'PinCode#random_dec',
+    'PinCode#random_hex',
+    'PinCode#random',
+    'AuthIdentities::ClassicIdentity#by_email',
+    'ApplicationRecord#resolvable_type'
+  ]
+}

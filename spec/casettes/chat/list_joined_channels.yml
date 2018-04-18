@@ -1,0 +1,448 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://testing-chat.com/api/v1/login
+    body:
+      encoding: UTF-8
+      string: '{"username":"fake-admin","password":"111222333"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - zSJX5oME9egRi5KHW
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 20 Nov 2017 17:59:44 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "status": "success",
+          "data": {
+            "authToken": "R0EGwk9XhYZo73tqUEKo8Qe0PrejaCgy2PfFTpRjrp2",
+            "userId": "LSBkg4QAkhizPo4TS"
+          }
+        }
+    http_version:
+  recorded_at: Mon, 20 Nov 2017 17:59:44 GMT
+- request:
+    method: get
+    uri: http://testing-chat.com/api/v1/channels.list.joined
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Auth-Token:
+      - R0EGwk9XhYZo73tqUEKo8Qe0PrejaCgy2PfFTpRjrp2
+      X-User-Id:
+      - LSBkg4QAkhizPo4TS
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Instance-Id:
+      - zSJX5oME9egRi5KHW
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 20 Nov 2017 17:59:44 GMT
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "channels": [
+            {
+              "name": "fortesting",
+              "fname": "fortesting",
+              "t": "c",
+              "msgs": 0,
+              "u": {
+                "_id": "LSBkg4QAkhizPo4TS",
+                "username": "ale"
+              },
+              "customFields": {},
+              "ts": "2017-11-20T17:53:18.070Z",
+              "ro": false,
+              "sysMes": true,
+              "_updatedAt": "2017-11-20T17:53:18.071Z",
+              "_id": "yrxuZP4xDrgvdp47H",
+              "usernames": [
+                "ale"
+              ],
+              "username": "ale"
+            },
+            {
+              "_id": "GENERAL",
+              "ts": "2017-10-26T16:14:45.920Z",
+              "t": "c",
+              "name": "general",
+              "msgs": 391,
+              "default": true,
+              "_updatedAt": "2017-11-20T15:53:21.082Z",
+              "lm": "2017-11-20T15:53:21.051Z",
+              "username": "ale",
+              "usernames": [
+                "rick",
+                "morty",
+                "mrpickle",
+                "petergriffin",
+                "loisgriffin",
+                "stewiegriffin",
+                "quagmire",
+                "cleveland",
+                "bart",
+                "homer",
+                "marge",
+                "lisa",
+                "moe",
+                "lenny",
+                "carl",
+                "mrburns",
+                "smithers",
+                "milhouse",
+                "nelson",
+                "patty",
+                "selma",
+                "grandpa",
+                "skinner",
+                "crabapple",
+                "martin",
+                "hibbert",
+                "joe_chatkinson",
+                "mike_chatkinson",
+                "new-ale22223",
+                "hjjh",
+                "anton",
+                "ggfuf",
+                "erika",
+                "burlingameuser",
+                "nancy",
+                "stephanie",
+                "carolyn",
+                "hala",
+                "anyon",
+                "gandi",
+                "jjkjkjjk",
+                "dsfdsfdsf",
+                "feliberto",
+                "kevin-luduenia",
+                "avatario2",
+                "ceasar",
+                "earl",
+                "francis",
+                "jody",
+                "camryn",
+                "mina",
+                "stacey",
+                "lamont",
+                "neal",
+                "devyn",
+                "darrin",
+                "juliet",
+                "sasha",
+                "hilario",
+                "aric",
+                "chyna",
+                "marlee",
+                "vito",
+                "lauryn",
+                "ruth",
+                "keenan",
+                "nella",
+                "judah",
+                "fae",
+                "daryl",
+                "audra",
+                "frederick",
+                "aaliyah",
+                "arnoldo",
+                "new-ale",
+                "new-ale2",
+                "new-ale23",
+                "elsa-lopez",
+                "susiasd-lopez",
+                "lolaaasdasdosaswerdasweda-lwopez",
+                "lolaaasdasdosaswerdasweasda-lwopez",
+                "juana-lopez",
+                "gime-lopez",
+                "susi-lopez",
+                "lorna-lopez",
+                "lolo-lopez",
+                "loloa-lopez",
+                "lolosa-lopez",
+                "lolaosa-lopez",
+                "ember",
+                "lolaaosa-lopez",
+                "lolaaosasa-lopez",
+                "lolaaosasda-lopez",
+                "lolaaasdosaswerda-lopez",
+                "lolaaasdasdosaswerda-lopez",
+                "lolaaasdasdosaswerdasda-lopez",
+                "lolaaasdasdosaswerdasweda-lopez",
+                "proberbio",
+                "proberbio123",
+                "qwerty",
+                "jhgff",
+                "asdasd",
+                "yay",
+                "asdffff",
+                "yayo",
+                "elceluleta",
+                "carlaineleung",
+                "julio-github",
+                "juan-google",
+                "chatrocks",
+                "ale-fb",
+                "test-user",
+                "yesterday-was-cool",
+                "makar-stetsfenko",
+                "evanrosenfeld",
+                "somename",
+                "fdsf",
+                "newcoolname",
+                "harryalbbiciiihiiesmithsky",
+                "newcoolnnnnn9478",
+                "name127",
+                "tsvetkov-peter62",
+                "randon-test-name32",
+                "randon-test-name39",
+                "randon-test-name40",
+                "randon-test-name41",
+                "randon-test-name42",
+                "randon-test-name44",
+                "randon-test-name45",
+                "randon-test-name46",
+                "jamesalbbikaebdaezuckerstein",
+                "mariaalbbfcjgdjeicsadanstein",
+                "newcoolnam",
+                "newcoolnnnnn",
+                "peter-test",
+                "testpeter-t",
+                "carlaine-leung",
+                "rick-t",
+                "elizabeth-t",
+                "makar-stetsenko124",
+                "mel-lozano-alcaraz-svi",
+                "makar-stetsenko125",
+                "tsvetkov-peter90",
+                "tsvetkov-peter96",
+                "tsvetkov-peter98",
+                "maria-albbcbjdffaca-sidhusky",
+                "dick-albbdckgdaad-sidhustein",
+                "charlie-albbbibjfbeif-romanstein",
+                "tom-albbdedeebdbd-ricesky",
+                "maria-albbchfdjaabg-fergiesky",
+                "newcooln",
+                "linda-albbdcehdadfc-schrockescu",
+                "johnalbbeacbijfhidingleson",
+                "newcoolnnnnn94",
+                "foreign",
+                "oleksii162",
+                "dispname",
+                "makarstetsenko",
+                "rlkgel",
+                "nancyalbbdbfhdiedfzuckerson",
+                "bettyalbbdgbdddjejbushakescu",
+                "makazone",
+                "mjjjjjh",
+                "name",
+                "thejog",
+                "knute",
+                "fdsjfkdj",
+                "teste",
+                "sharonalbbefbebijhdgreenestein",
+                "ohgreglg",
+                "jorge",
+                "jbjk",
+                "hager",
+                "kdjgk",
+                "eelgrass",
+                "richardalbbdidbcjggafergieman",
+                "randon-test-name160",
+                "randon-test-name171",
+                "kate",
+                "gurl",
+                "dsfdsfsd",
+                "fdfsdfsdfs",
+                "porkgo",
+                "ohyou",
+                "roger",
+                "test",
+                "e",
+                "nancyalbcjaiaeikfcarrieroberg",
+                "carlaine-leung-b-b-bandbox",
+                "joseles",
+                "jkfdsjfk",
+                "android-test-account",
+                "owing",
+                "mikealbbgcdeajhfjmoiduson",
+                "eee",
+                "gbcgd",
+                "ljg",
+                "trhh",
+                "hgrei",
+                "ullrichalbbgjggediahshepardberg",
+                "gggg",
+                "jdjdz",
+                "friedkahlo",
+                "nick",
+                "saddada",
+                "og",
+                "hdhdhdhd",
+                "hgr",
+                "batman",
+                "cmkdxj-hvf",
+                "neurologyguy",
+                "asasasasas",
+                "name128",
+                "makar-stetsenko138",
+                "makar-stetsenko10",
+                "petertest29",
+                "petertest30",
+                "petertest8",
+                "petertest116",
+                "petertest117",
+                "petertest118",
+                "name134",
+                "tsvetkov-peter63",
+                "tsvetkov-peter64",
+                "tsvetkov-peter65",
+                "tsvetkov-peter68",
+                "tsvetkov-peter69",
+                "tsvetkov-peter70",
+                "tsvetkov-peter80",
+                "tsvetkov-peter99",
+                "tsvetkov-peter101",
+                "tsvetkov-peter102",
+                "tsvetkov-peter104",
+                "tsvetkov-peter105",
+                "tsvetkov-peter107",
+                "tsvetkov-peter110",
+                "tsvetkov-peter111",
+                "tsvetkov-peter118",
+                "erika258",
+                "oleksii255",
+                "erika257",
+                "randon-test-name47",
+                "randon-test-name48",
+                "randon-test-name66",
+                "randon-test-name67",
+                "randon-test-name71",
+                "randon-test-name72",
+                "randon-test-name81",
+                "randon-test-name91",
+                "randon-test-name106",
+                "randon-test-name112",
+                "randon-test-name113",
+                "randon-test-name114",
+                "randon-test-name116",
+                "randon-test-name117",
+                "randon-test-name121",
+                "randon-test-name122",
+                "randon-test-name123",
+                "randon-test-name126",
+                "randon-test-name127",
+                "randon-test-name128",
+                "randon-test-name132",
+                "randon-test-name135",
+                "randon-test-name137",
+                "randon-test-name140",
+                "randon-test-name143",
+                "randon-test-name146",
+                "randon-test-name155",
+                "randon-test-name172",
+                "randon-test-name186",
+                "randon-test-name188",
+                "randon-test-name189",
+                "randon-test-name190",
+                "randon-test-name191",
+                "randon-test-name192",
+                "randon-test-name193",
+                "randon-test-name194",
+                "randon-test-name195",
+                "randon-test-name196",
+                "randon-test-name198",
+                "randon-test-name205",
+                "randon-test-name206",
+                "testing",
+                "carolalbcjcfcgdggethurnman",
+                "newcoolnnn",
+                "nnnnn9478",
+                "nnnnn97430",
+                "nnnnn974",
+                "robert-tree",
+                "elbiolopez",
+                "name1",
+                "fdsfsd",
+                "fdsfsdfdsf",
+                "adafasdf",
+                "fsdfdsfsd",
+                "fdsfdsfsd",
+                "fdsfdsfs",
+                "george",
+                "el-chivo3-nuevo",
+                "el-chico-nuevo",
+                "el-chico-nuevo-2",
+                "chats",
+                "faker-name-first_name1",
+                "anton-1",
+                "ale"
+              ]
+            }
+          ],
+          "offset": 0,
+          "count": 2,
+          "total": 2,
+          "success": true
+        }
+    http_version:
+  recorded_at: Mon, 20 Nov 2017 17:59:44 GMT
+recorded_with: VCR 3.0.3
