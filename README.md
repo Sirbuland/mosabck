@@ -1,32 +1,62 @@
 # Mosaic Backend
----
 
+---
 ### Running in Docker:
 
-###### Prerequisites:
+##### Prerequisites:
     - docker
     - docker-compose
-###### Run:
-```bash
-./bin/start.sh
-```
----
 
+##### Run:
+```
+# The first way(simplest)
+bash ./bin/docker_start
+
+# The second way
+# 1. Update configurations
+cp config/database.yml.docker_sample config/database.yml
+cp config/sunspot.yml.docker_sample config/sunspot.yml
+
+# `docker-compose run --rm app command` - will run `command` inside app container
+# 2. Create databases
+docker-compose run --rm app rails db:create
+
+# 2.1 Migrate
+docker-compose run --rm app rails db:migrate
+
+# 2.2 Initialize
+docker-compose run --rm app rails app_initialize
+
+# 3. Start server on localhost:3000
+docker-compose up
+# or
+docker-compose run --rm -p 3000:3000 app rails server
+
+
+# Other important commands for Rails
+docker-compose run --rm app rails console
+docker-compose run --rm app rails rspec
+docker-compose run --rm app rails code_analysis
+
+# Other important commands for docker containers
+docker-compose up --build  # force rebuild of containers (use it to update local env if you've changed Gemfile)
+
+# Guides
+Docker-compose and Rails - https://docs.docker.com/compose/rails/
+Rails Solr Docker - https://blog.koley.in/2018/searching-in-rails-with-solr-sunspot-and-docker
+```
+
+---
 ### Security:
+
 This server is secured using JWT for each requests.
 JWT is not required for accessing Graphiql or signIn mutation.
 
 #### Generating valid JWT:
- ##### Signature key production:
-```
-b3f205e3bc519b21efc8e9e76c8aa612cde2141046fdd2b8af09313de7fd4774e8d272dafaa40ee9238f07a2b5a44bc977fca556b8a4761be47a98afb769a0e1
-```
 
- ##### Signature key staging:
-```
-83aec869dc40e0afbafbb4fb039576182558fb98d317bfc578886e743367cfd8596cc9a9c3a04ad1f68c97d480ed8bb40a44fc06e692d15056246cac255fde67
-```
- ##### Expected payload:
+- Signature key should be specified in environment variable `SECRET_KEY_BASE`
+
+##### Expected payload:
  ```
 { user_id: user id, device_id: device id, aud: 'client' }
 ```
@@ -41,38 +71,29 @@ b3f205e3bc519b21efc8e9e76c8aa612cde2141046fdd2b8af09313de7fd4774e8d272dafaa40ee9
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoidGVzdCJ9.ZxW8go9hz3ETCSfxFxpwSkYg_602gOPKearsf6DsxgY
 ```
 ---
+#### CRON
+
+Command to send feedback in CSV format to users with `feedback_receiver` role:
+`rails send_feedback`
 
 
 ### ADMIN Panel:
 
-This application has an embed admin panel, in order to access it just add '/admin' to the URL. For now the credentials are:
-email: `superadmin@mail.ru` and password: `123456`
+This application has an embed admin panel, in order to access it just add '/admin' to the URL.
+
+Command to create Admin:
+`rails user:create_admin[email@mail.com,password]`
 
 ---
-### Search Engines
+### Email notifications
 
-This project is able to work with ElasticSearch or Solr.
-Check code to see which one is enabled.
-
-#### Solr:
-
-Since we are using a gem called sunspot_solr the only requirement for being abel to run the server
-is to excute a bundle install, and then run the following command:
-
-```
-bundle exec sunspot-solr start -p 8982
-```
-
-that will start a solr server in the background for you.
-In case you want to stop it just execute:
-
-```
-bundle exec sunspot-solr stop
-```
-
-more info here: https://github.com/sunspot
+To enable email notifications you need:
+1. Go to `/admin/app_settings`
+2. Create the setting where name is `EmailConfirmationEnabled`, value is `true` and active checkbox.
+3. [For email confirmation] Create the setting where name is `RedirectAfterConfirmation`, value is `your url to redirect` and active checkbox.
 
 
+---
 ### For devs:
 
 ##### Code quality:

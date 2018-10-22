@@ -1,0 +1,10 @@
+mutation {
+  postFeedback(input: {
+    message: "<%= message %>"
+    <% if page %>
+    page: "<%= page %>"
+    <% end %>
+  }) {
+    result
+  }
+}

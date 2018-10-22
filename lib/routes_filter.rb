@@ -1,6 +1,6 @@
 class RoutesFilter
   #  set pages which you wanna remove from sidebar
-  HIDDEN_PAGES = %w[session sessions
+  HIDDEN_PAGES = %w[session sessions feedbacks
                     notification_configurations
                     notification_configuration
                     auth_identities/classic_identities

@@ -15,7 +15,7 @@ RSpec.describe GraphqlController, type: :controller do
       it 'should return all users order by their names alphabetically' do
         request.headers['authorization'] = "Bearer #{signed_in_user_token}"
         post :execute, params: { query: all_users_alphabetically }
-
+        
         retrieved_usernames = response_body['data']['allUsers']['edges'].map { |node| node['node']['displayName'] }
         expect(retrieved_usernames).to eq User.all.order(:username).map(&:username)
         expect(retrieved_usernames.index('Robert')).to be > retrieved_usernames.index('Phil')

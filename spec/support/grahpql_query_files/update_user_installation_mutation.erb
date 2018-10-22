@@ -1,15 +1,11 @@
 mutation {
-  updateUserInstallation(input: {updateUserInstallation: {userId: <%= user_id %>, token: "<%= token %>", tokenType: <%= token_type %>, deviceType: <%= device_type %>, appVersion:"<%= app_version %>"}}){
+  updateUserInstallation(input: {updateUserInstallation: {userId: <%= user_id %>, token: "<%= token %>", deviceType: <%= device_type %>, appVersion:"<%= app_version %>"}}){
     user {
       installations {
         edges {
           node{
             appVersion
             deviceType
-            token{
-              token
-              tokenType
-            }
             id
           }
         }

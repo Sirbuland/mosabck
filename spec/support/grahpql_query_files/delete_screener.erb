@@ -1,0 +1,17 @@
+mutation {
+  deleteScreener(input: {
+    id: <%= id %>
+  }) {
+    screener {
+      id
+      name
+      text
+      filters {
+        name
+        operator
+        category
+        value
+      }
+    }
+  }
+}

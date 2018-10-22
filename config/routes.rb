@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resources :locations
     resources :users
     resources :user_devices
+    resources :approved_users
+
+    get 'feedbacks/download', to: 'feedbacks#download'
+    resources :feedbacks, path: 'feedback', only: %i[index show destroy]
 
     root to: 'app_settings#index'
     get 'session/login'

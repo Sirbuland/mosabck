@@ -11,9 +11,17 @@ QueryType = GraphQL::ObjectType.define do
     resolve UserComponent::Resolvers::SearchUsersResolver.new
   end
 
+  connection :getScreeners,
+    ScreenerComponent::Types::ScreenerType.connection_type do
+      description 'returns User Screeners'
+      argument :ids, types[!types.ID]
+
+      resolve ScreenerComponent::Resolvers::GetScreenersResolver.new
+    end
+
   field :userEmailExist do
     type types.Boolean
-    description 'Email existance'
+    description 'Email existence'
     argument :email, types.String
 
     resolve ->(_obj, args, _ctx) do
@@ -21,7 +29,7 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
 
-  field :userNameExistanceAndSuggestions do
+  field :userNameExistenceAndSuggestions do
     type UserComponent::Types::UsernameType
     description 'Username availability and suggestions'
     argument :username, types.String
@@ -65,5 +73,11 @@ QueryType = GraphQL::ObjectType.define do
     argument :pinNumber, !types.String
 
     resolve UserComponent::Resolvers::ValidatePinResolver.new
+  end
+
+  field :ErrorStatusEnum do
+    type MiscComponent::Types::ErrorStatusEnumType
+    description 'Available error statuses in response'
+    resolve ->(_root, _args, _ctx) { nil }
   end
 end

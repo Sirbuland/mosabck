@@ -7,19 +7,13 @@ module UserComponent
         include Dry::Transaction::Operation
 
         def call(input)
-          result = {
-            user_name: input[:displayName], first_name: input[:firstName],
-            last_name: input[:lastName],
-            bio: input[:bio], avatar_url: input[:avatarUrl],
-            subscribed_to_newsletter: input[:subscribed_to_newsletter],
-            birthdate: input[:birthdate], phoneNumber: input[:phoneNumber],
-            email: input[:email], password: input[:password],
-            emailConfirmed: input[:emailConfirmed],
-            backgroundImageUrl: input[:backgroundImageUrl],
-            refCode: input[:refCode], sex: input[:sex],
-            geoMeta: input[:geoMeta]
-          }
+          email = input[:email]
+          if email.present? && CheckEmailApproval.call(email: email).failure?
+            msg = I18n.t('signup.errors.email_not_approved', email: email)
+            return Left(msg: msg, status: :unauthorized, attr: :email)
+          end
 
+          result = update_input_params(input)
           [:facebook, :google, :github, :twitter].each do |provider|
             oauth_data = input[provider]
             next unless oauth_data.present?
@@ -30,6 +24,28 @@ module UserComponent
             }
           end
           Right(result)
+        end
+
+        private
+
+        def update_input_params(input)
+          {
+            username: input[:displayName],
+            first_name: input[:firstName],
+            last_name: input[:lastName],
+            bio: input[:bio],
+            avatar_url: input[:avatarUrl],
+            subscribed_to_newsletter: input[:subscribed_to_newsletter],
+            birthdate: input[:birthdate],
+            phoneNumber: input[:phoneNumber],
+            email: input[:email],
+            password: input[:password],
+            emailConfirmed: input[:emailConfirmed],
+            backgroundImageUrl: input[:backgroundImageUrl],
+            refCode: input[:refCode],
+            sex: input[:sex],
+            geoMeta: input[:geoMeta]
+          }
         end
       end
     end

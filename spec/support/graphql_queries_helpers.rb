@@ -81,10 +81,6 @@ module GraphqlQueriesHelper
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
 
-  def all_geo_taggable_query(types, coords)
-    ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
-  end
-
   def search_users(search_term)
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
@@ -113,15 +109,7 @@ module GraphqlQueriesHelper
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
 
-  def update_password_mutation(id, old_password, new_password)
-    ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
-  end
-
-  def update_password_mutation_pin(pin_number, phone_number, old_password, new_password)
-    ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
-  end
-
-  def update_password_mutation_email(pin_number, email, old_password, new_password)
+  def update_password_mutation(email, pin_number, new_password)
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
 
@@ -133,7 +121,7 @@ module GraphqlQueriesHelper
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
 
-  def update_user_installation_mutation(user_id, token, token_type, device_type, app_version)
+  def update_user_installation_mutation(user_id, token, device_type, app_version)
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
 
@@ -145,7 +133,7 @@ module GraphqlQueriesHelper
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
 
-  def create_user_with_avatar_url
+  def create_user_with_avatar_url(email = approve_email('p@m.co'))
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
 
@@ -186,6 +174,26 @@ module GraphqlQueriesHelper
   end
 
   def verify_email(pin_code, email)
+    ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
+  end
+
+  def create_screener(name, text, filters = [])
+    ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
+  end
+
+  def update_screener(id, name = nil, text = nil, filters = nil)
+    ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
+  end
+
+  def delete_screener(id)
+    ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
+  end
+
+  def get_screeners(ids = [])
+    ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
+  end
+
+  def post_feedback(message, page = nil)
     ERB.new(template_query_or_mutation(__method__.to_s)).result(binding)
   end
 

@@ -35,6 +35,10 @@ en:
   email:
     account_confirmation_subject: 'Account confirmation'
     account_confirmation_status_subject: 'Account status'
+    reset_password: 'Reset password'
+    admin:
+      feedback: '%{date} New Mosaic Web App Feedback'
+      feedback_body: "See attached for today's feedback on the Mosaic web app."
   activity:
     post:
       tagged: "Tags %{tags} added to Post {%title}"
@@ -60,6 +64,12 @@ en:
       unauthorized: 'Unauthorized to use chat server, wrong credentials?'
   auth:
     successful: "Successful authentication"
+  signup:
+    errors:
+      email_not_approved: 'Email %{email} is not approved. Please contact Mosaic admin.'
+  signin:
+    errors:
+      invalid_credentials: 'Invalid credentials'
 
   administrate:
     actions:
@@ -71,3 +81,8 @@ en:
   order:
     paid: "Your order has been paid"
     cancelled: "Your order has been cancelled"
+
+  activerecord:
+    errors:
+      messages:
+        invalid_email_address: 'invalid email'

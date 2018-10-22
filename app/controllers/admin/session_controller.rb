@@ -14,7 +14,7 @@ module Admin
         session[:token] = token
         authorize :admin_access, :access?
         flash_message(t('auth.successful'))
-        redirect_to admin_posts_path
+        redirect_to admin_root_path
       else
         flash_message(result.message)
         render status: 404

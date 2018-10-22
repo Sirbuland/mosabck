@@ -17,14 +17,14 @@ class PinCode < ApplicationRecord
   }.freeze
 
   def send_notification
-    data = {
-      user: user,
-      message: I18n.t('sms.pin_message', pin: value),
-      date: Time.zone.now + 2.second
-    }
     # TODO: Add notifications component
-    #Notification.create(data.merge(channel: :email)) if email?
-    #Notification.create(data.merge(channel: :phone)) if phone?
+    # data = {
+    #   user: user,
+    #   message: I18n.t('sms.pin_message', pin: value),
+    #   date: Time.zone.now + 2.second
+    # }
+    # Notification.create(data.merge(channel: :email)) if email?
+    # Notification.create(data.merge(channel: :phone)) if phone?
   end
 
   private

@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe MiscComponent::Interactors::OrderModels, type: :interactor do
   describe '.call' do
     before do
-      create_list(:post, 5, :text)
-      @models = [Post.all]
+      create_list(:user, 5)
+      @models = [User.all]
       @order = ['created_at DESC']
     end
 

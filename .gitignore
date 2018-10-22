@@ -42,3 +42,6 @@ sunspot-solr.pid
 
 # REDIS dumps
 dump.rdb
+
+# Configurations
+config/sunspot.yml

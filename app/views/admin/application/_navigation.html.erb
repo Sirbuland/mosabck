@@ -15,7 +15,12 @@ as defined by the routes in the `admin/` namespace
       class: "navigation__link navigation__link--#{nav_link_state(resource)}"
     ) %>
   <% end %>
-  <%= link_to('Notification Configuration', admin_notification_configurations_edit_path, class: 'navifation__link') %>
+  <%= link_to(
+        'Feedback',
+         admin_feedbacks_path,
+         class: "navigation__link navigation__link--#{nav_link_state('feedbacks')}"
+      )
+  %>
   <%= link_to('Log out', admin_session_logout_path, class: "navigation__link") %>
 
 </nav>

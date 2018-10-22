@@ -2,9 +2,9 @@ module AuthenticationComponent
   module Resolvers
     class SignOutResolver
       def call(_obj, args = ApplicationHelper.h_and_sym(args), ctx)
-        user = User.find_by(id: ctx[:current_user_id])
+        user = ctx[:current_user]
         if user.present?
-          device = ctx[:current_device_id]
+          device = ctx[:current_device]
           if device.present?
             UserService.new(user: user).logout_user_on_device(device)
             { user: user }

@@ -24,6 +24,7 @@ DuplicateMethodCall:
   - 'GetUserIdFromPinNumberAndPhone#call'
   - 'GetUserIdFromPinNumberAndEmail#call'
   - 'CommentComponent::Resolvers::AddCommentResolver#call'
+  - 'UserComponent::Interactors::GetUserByPinNumberAndEmail#call'
 FeatureEnvy:
   enabled: false
   exclude:
@@ -46,7 +47,9 @@ NestedIterators:
   exclude:
   - 'UserService#update_identities_attributes'
   - 'ChatComponent::Interactors::ChannelsList#add_members'
+  - 'UserComponent::Interactors::SendFeedback::CreateFeedbackFile#call'
 NilCheck:
+  enabled: false
   exclude:
   - 'GraphqlController#ensure_hash'
   - 'CheckJwtRequired#call'

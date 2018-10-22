@@ -3,9 +3,7 @@ module UserComponent
     class UpdatePasswordOrganizer
       include Interactor::Organizer
 
-      organize UserComponent::Interactors::GetUserIdFromPinNumberAndPhone,
-               UserComponent::Interactors::GetUserIdFromPinNumberAndEmail,
-               UserComponent::Interactors::GetUserFromQuery,
+      organize UserComponent::Interactors::GetUserByPinNumberAndEmail,
                UserComponent::Interactors::PasswordUpdate
     end
   end

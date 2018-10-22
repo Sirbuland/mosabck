@@ -10,7 +10,7 @@ RSpec.describe GraphqlController, type: :controller do
     context 'valid data' do
       let(:classic_user_params) do
         attributes_for(:user).merge(user_name: 'Emilio Validator',
-                                    email: 'i_will_validate@mail.com',
+                                    email: approve_email('i_will_validate@mail.com'),
                                     password: '1234567890',
                                     device_id: 'deviceId')
       end
@@ -30,7 +30,7 @@ RSpec.describe GraphqlController, type: :controller do
       it 'should return an error if the pincode is expired' do
         Timecop.freeze(Date.today + 30) do
           post :execute, params: { query: verify_email(@pin_code.value, 'i_will_validate@mail.com') }
-          expect(response_body_errors[0]['message']).to eq "Failure(\"Pincode not found\")"
+          expect(response_body_errors[0]['message']).to eq 'Pincode not found'
         end
       end
 

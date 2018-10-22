@@ -5,7 +5,7 @@ module UserComponent
 
       def call
         args = context.args
-        channel = args[:channel].downcase
+        channel = args[:channel].to_s.downcase
         user = context.user
         identity = find_identity(user, channel)
         pin = PinCode.create(
@@ -15,8 +15,11 @@ module UserComponent
           value: PinCode.unused_pin_code,
           expiration_date: Time.zone.now + 1.day
         )
-        context.message_body = pin.value
+        context.message_body = 'Success'
+        UserMailer.reset_password(user, pin.value).deliver
       end
+
+      private
 
       def find_identity(user, channel)
         identity = AuthIdentity.find_by_channel(user, channel)

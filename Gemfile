@@ -34,10 +34,6 @@ gem 'administrate', github: 'thoughtbot/administrate'
 gem 'administrate-field-json', github: 'eddietejeda/administrate-field-json'
 gem 'hamlit'
 
-# Solr
-gem 'sunspot_rails'
-gem 'sunspot_solr'
-
 # Miscellaneous
 gem 'faker'
 gem 'montrose'

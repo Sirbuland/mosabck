@@ -2,7 +2,7 @@ module UserComponent
   module Resolvers
     class ViewerResolver
       def call(_obj, args = ApplicationHelper.h_and_sym(args), ctx)
-        user = User.find_by(id: ctx[:current_user_id])
+        user = ctx[:current_user]
         if user.present?
           user
         else

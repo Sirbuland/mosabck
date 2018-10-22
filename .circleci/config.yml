@@ -1,0 +1,81 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    working_directory: ~/circlec-mosaic-backend
+    shell: /bin/bash --login
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      CIRCLE_ENV: test
+      SECRET_KEY_BASE: 97ecc1c822a70094ac38c9e67ed760844ebded54fc9fa27653e26293fcdc65e7b22db89b235e11e5d15f82ae10bea58d107216b999603dcf49b827e4096e3963
+      DATABASE_URL: postgis://circlec-mosaic-backend:@127.0.0.1:5432/circlec_mosaic_backend_test
+    docker:
+    - image: circleci/ruby:2.4.3-node
+      environment:
+        BUNDLE_JOBS: 3
+        BUNDLE_RETRY: 3
+        BUNDLE_PATH: vendor/bundle
+        PGHOST: 127.0.0.1
+        PGUSER: circlec-mosaic-backend
+        RAILS_ENV: test
+    - image: circleci/postgres:10.3-postgis-ram
+      environment:
+        POSTGRES_USER: circlec-mosaic-backend
+        POSTGRES_DB: circlec_mosaic_backend_test
+    - image: 'solr:7'
+    steps:
+    - checkout
+
+    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+
+    - run:
+        name: Which bundler?
+        command: bundle -v
+
+    # Restore bundle cache
+    - restore_cache:
+        keys:
+          - mosaic-backend-bundle-v2-{{ checksum "Gemfile.lock" }}
+          - mosaic-backend-bundle-v2-
+
+    - run:
+        name: Bundle Install
+        command: bundle check || bundle install
+
+    # Store bundle cache
+    - save_cache:
+        key: mosaic-backend-bundle-v2-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+    - run:
+        name: Wait for DB
+        command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+    - run:
+        name: Database setup
+        command: bin/rails db:schema:load --trace
+
+    - run:
+        name: Code Analysis
+        command: bundle exec rake code_analysis
+
+    - run:
+        name: Rspec
+        command: bundle exec rspec --require spec_helper --format progress spec
+        environment:
+          SECRET_KEY_BASE: 97ecc1c822a70094ac38c9e67ed760844ebded54fc9fa27653e26293fcdc65e7b22db89b235e11e5d15f82ae10bea58d107216b999603dcf49b827e4096e3963
+          RAILS_ENV: test
+          RACK_ENV: test
+          SKIP_SOLR: true
+    # Teardown
+    #   If you break your build into multiple jobs with workflows, you will probably want to do the parts of this that are relevant in each
+    # Save test results
+    - store_test_results:
+        path: /tmp/circleci-test-results
+    # Save artifacts
+    - store_artifacts:
+        path: /tmp/circleci-artifacts
+    - store_artifacts:
+        path: /tmp/circleci-test-results

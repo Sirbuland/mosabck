@@ -51,11 +51,26 @@ module GraphqlHelper
     apns: 'APNS',
     expo: 'EXPO'
   }.freeze
+  ERROR_STATUSES = {
+    invalid_credentials: 'INVALID_CREDENTIALS',
+    unprocessable_entity: 'UNPROCESSABLE_ENTITY',
+    not_found: 'NOT_FOUND',
+    unauthorized: 'UNAUTHORIZED'
+  }.freeze
 
-  def self.execution_error(msg, status = :unprocessable_entity)
-    GraphQL::ExecutionError.new(msg, options: {
-                                  status: status,
-                                  result: msg
-                                })
+  def self.add_error(ctx, msg, status)
+    ctx.add_error(execution_error(msg, status))
+  end
+
+  def self.execution_error(args = {})
+    args = { msg: args } if args.is_a? String
+
+    GraphQL::ExecutionError.new(
+      args[:msg],
+      options: {
+        status: GraphqlHelper::ERROR_STATUSES[args[:status]],
+        attr: args[:attr]
+      }
+    )
   end
 end

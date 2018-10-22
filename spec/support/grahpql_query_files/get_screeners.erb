@@ -1,0 +1,11 @@
+query {
+  getScreeners(
+    <% if ids.present? %> ids: <%= ids %> <% end %>
+  ) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}

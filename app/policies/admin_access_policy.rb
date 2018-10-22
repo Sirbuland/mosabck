@@ -1,5 +1,5 @@
 class AdminAccessPolicy < ApplicationPolicy
   def access?
-    user.rules['admin_panel']
+    user.role? :admin
   end
 end

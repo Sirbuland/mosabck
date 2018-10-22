@@ -1,8 +1,30 @@
 mutation {
-  createUser(input: {deviceId:"<%= params[:device_id] %>", displayName: "<%= params[:user_name] %>", email: "<%= params[:email] %>", password: "<%= params[:password] %>", phoneNumber: "<%= params[:phoneNumber] %>", facebook: {oauthUserId: "<%= params.dig(:facebook, :oauthUserId) %>", oauthAccessToken: "<%= params.dig(:facebook, :oauthAccessToken)%>", expirationDate: "<%= params.dig(:facebook, :expirationDate) %>"}, google: {oauthUserId: "<%= params.dig(:google, :oauthUserId) %>", oauthAccessToken: "<%= params.dig(:google, :oauthAccessToken)%>", expirationDate: "<%= params.dig(:google, :expirationDate) %>"}, refCode: "<%= params.fetch(:ref_code) { '' }%>", sex: <%= params.fetch(:sex) { 'NotDecided' } %>}){
+  createUser(input: {
+    deviceId:"<%= params[:device_id] %>",
+    displayName: "<%= params[:user_name] %>",
+    email: "<%= params[:email] %>",
+    password: "<%= params[:password] %>",
+    phoneNumber: "<%= params[:phoneNumber] %>",
+    firstName: "<%= params[:first_name] %>",
+    lastName: "<%= params[:last_name] %>",
+    facebook: {
+      oauthUserId: "<%= params.dig(:facebook, :oauthUserId) %>",
+      oauthAccessToken: "<%= params.dig(:facebook, :oauthAccessToken)%>",
+      expirationDate: "<%= params.dig(:facebook, :expirationDate) %>"
+    },
+    google: {
+      oauthUserId: "<%= params.dig(:google, :oauthUserId) %>",
+      oauthAccessToken: "<%= params.dig(:google, :oauthAccessToken)%>",
+      expirationDate: "<%= params.dig(:google, :expirationDate) %>"
+    },
+    refCode: "<%= params.fetch(:ref_code) { '' }%>",
+    sex: <%= params.fetch(:sex) { 'NotDecided' } %>}
+  ){
     user {
       id
       sex
+      firstName
+      lastName
     }
     jwt
   }

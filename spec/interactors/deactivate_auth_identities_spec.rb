@@ -50,7 +50,7 @@ RSpec.describe IdentitiesComponent::Interactors::DeactivateAuthIdentities, type:
 
       it 'should check for number of auth identities if asked' do
         # chat identity will always be active
-        expect { subject }.to(change { AuthIdentity.active.count })
+        expect { subject }.not_to(change { AuthIdentity.active.count })
       end
 
       it 'should remove auth identity if it`s not last identity' do

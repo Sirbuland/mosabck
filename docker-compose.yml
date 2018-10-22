@@ -1,15 +1,25 @@
 version: "3"
 services:
   postgres:
-    image: postgres:9.6.1
+    image: mdillon/postgis
+    environment:
+      POSTGRES_PASSWORD: postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - "./data/postgres:/var/lib/postgresql/"
   app:
-    build: .
+    build:
+      context: ./
+      dockerfile: .docker/app/Dockerfile
+    environment:
+      SECRET_KEY_BASE: 97ecc1c822a70094ac38c9e67ed760844ebded54fc9fa27653e26293fcdc65e7b22db89b235e11e5d15f82ae10bea58d107216b999603dcf49b827e4096e3963
+    command: bundle exec rails s -b 0.0.0.0 -p 3000
     ports:
       - "3000:3000"
-    command: bundle exec rails s -b 0.0.0.0 -p 3000
+    volumes:
+      - ".:/app"
     depends_on:
       - postgres
+volumes:
+  data: {}

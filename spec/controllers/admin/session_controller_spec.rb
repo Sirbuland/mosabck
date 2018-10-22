@@ -10,11 +10,8 @@ RSpec.describe Admin::SessionController, type: :controller do
 
   describe 'POST #login' do
     before do
-      @user = create(:user)
+      @user = create(:user, :admin)
       @auth_identity = create :auth_identity, :classic_identity, user: @user
-      rules = @user.rules
-      rules['admin_panel'] = true
-      @user.update(rules: rules)
       @password = Faker::Internet.password
       @user.auth_identities.classic.first.update_attribute_inside_payload('password', BCrypt::Password.create(@password))
     end
@@ -27,11 +24,8 @@ RSpec.describe Admin::SessionController, type: :controller do
 
   describe 'GET #logout' do
     before do
-      @user = create(:user)
+      @user = create(:user, :admin)
       @auth_identity = create :auth_identity, :classic_identity, user: @user
-      rules = @user.rules
-      rules['admin_panel'] = true
-      @user.update(rules: rules)
       @password = Faker::Internet.password
       @user.auth_identities.classic.first.update_attribute_inside_payload('password', BCrypt::Password.create(@password))
       post :login, params: { email: @user.classicIdentity['email'], password: @password }

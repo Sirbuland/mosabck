@@ -12,6 +12,15 @@ RemoveUnusedMethodsInModelsCheck: {
     'PinCode#random_hex',
     'PinCode#random',
     'AuthIdentities::ClassicIdentity#by_email',
-    'ApplicationRecord#resolvable_type'
+    'ApplicationRecord#resolvable_type',
+    'PinCode#phone?',
+    'PinCode#email?',
+    'User#find_by_email',
+    'User#liked_entities',
+    'User#admin?',
+    'User#blocked?',
+    'Feedback#user_last_name',
+    'Feedback#user_first_name',
+    'Feedback#user_email'
   ]
 }

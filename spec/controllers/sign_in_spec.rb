@@ -56,9 +56,9 @@ RSpec.describe GraphqlController, type: :controller do
           @email, 'thisisnotthepasswordforsure1234', @classic_user_device.device_id
         ) }
 
-        error = response_body_errors[0]['message']
-
-        expect(error).to eq 'Wrong password'
+        error = response_body_errors[0]
+        expect(error['status']).to eq 'INVALID_CREDENTIALS'
+        expect(error['message']).to eq I18n.t('signin.errors.invalid_credentials')
       end
     end
   end

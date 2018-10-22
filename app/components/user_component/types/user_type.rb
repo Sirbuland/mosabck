@@ -4,18 +4,10 @@ UserComponent::Types::UserType = GraphQL::ObjectType.define do
   interfaces [GeoComponent::Types::GeoTaggableType]
 
   field :id, !types.ID
-  field :userChatId do
-    type types.String
-    resolve ->(user, _args, _ctx) { user.chat_user_id }
-  end
   field :bio, types.String
   field :displayName, types.String, property: :username
   field :firstName, types.String, property: :first_name
   field :lastName, types.String, property: :last_name
-  field :usernameChat do
-    type types.String
-    resolve ->(user, _args, _ctx) { user.chat_username }
-  end
   field :email, types.String
   field :password, types.String
   field :avatarUrl, types.String, property: :avatar_url
@@ -49,4 +41,7 @@ UserComponent::Types::UserType = GraphQL::ObjectType.define do
   field :sex, MiscComponent::Types::SexEnumType do
     resolve ->(user, _args, _ctx) { user.sex.titleize.gsub(/\W+/, '') }
   end
+
+  field :screeners, types[!ScreenerComponent::Types::ScreenerType],
+    property: :screeners
 end

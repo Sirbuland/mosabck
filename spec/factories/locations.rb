@@ -8,7 +8,7 @@ FactoryBot.define do
     streetNumber { Faker::Address.street_address }
     zip { Faker::Address.zip_code }
     timeZone { Faker::Address.time_zone }
-    locateable_type 'Post'
-    locateable_id { create(:post, :text, user: create(:user)).id }
+    locateable_type { User.name }
+    locateable_id { create(:user).id }
   end
 end

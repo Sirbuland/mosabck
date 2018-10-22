@@ -9,7 +9,7 @@ class CheckJwtRequired
                              signInOauth
                              resetPassword].freeze
   JWT_NOT_REQUIRED_QUERIES = %w[userEmailExist
-                                userNameExistanceAndSuggestions
+                                userNameExistenceAndSuggestions
                                 userResetPassword
                                 validatePin
                                 updateUserPassword].freeze

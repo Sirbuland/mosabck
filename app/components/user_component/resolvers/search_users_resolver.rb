@@ -3,35 +3,21 @@ module UserComponent
     class SearchUsersResolver
       def call(_obj, args, _ctx)
         search_term = args[:searchTerm]
+        search_by = args[:searchBy].presence || ['displayName']
         order_by = args[:orderBy]
 
-        if search_term.present?
-          search_by = []
-          fields = args[:searchBy]
-          if fields.present?
-            fields.each do |current|
-              search_field =
-                GraphqlHelper::USER_SEARCH_BY_TRANSLATIONS[current.to_sym]
-              search_by.push(search_field)
-            end
-          else
-            search_by = [:username, :email]
+        users_query = User.all
+        if search_term.present? && search_by.present?
+          fields_hash = GraphqlHelper::USER_SEARCH_BY.invert
+          search_by.each do |searh_by_field|
+            field = fields_hash[searh_by_field]
+            users_query =
+              users_query.where("#{field} ilike ?", "%#{search_term}%")
           end
-          term_search(search_term, search_by)
-        else
-          order_by.present? ? User.all.order(:username) : User.all
         end
-      end
 
-      private
-
-      def term_search(search_term, search_by)
-        if ENV.fetch('SEARCH_ENGINE') { 'solr' } == 'solr'
-          User.solr_search(search_term, search_by)
-        else
-          User.search(search_term,
-            fields: search_by, match: :word_middle).results
-        end
+        users_query = users_query.order(:username) if order_by.present?
+        users_query
       end
     end
   end

@@ -1,0 +1,36 @@
+mutation {
+  updateScreener(input: {
+    id: <%= id %>
+    <% if name.present? %>
+      name: "<%= name %>"
+    <% end %>
+
+    <% if text.present? %>
+      text: "<%= text %>"
+    <% end %>
+
+    <% unless filters.nil? %>
+      filters: [
+        <% filters.each do |filter| %>
+        {
+          <% filter.each do |key, value| %>
+            <%= key %>: <%= value %>
+          <% end %>
+        }
+        <% end %>
+      ]
+    <% end %>
+  }) {
+    screener {
+      id
+      name
+      text
+      filters {
+        name
+        operator
+        category
+        value
+      }
+    }
+  }
+}

@@ -9,7 +9,6 @@ class UserDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     # auth_identities: Field::HasMany,
-    posts: Field::HasMany,
     user_devices: Field::HasMany,
     id: Field::Number,
     encrypted_password: Field::String,
@@ -29,12 +28,10 @@ class UserDashboard < Administrate::BaseDashboard
     username: Field::String,
     first_name: Field::String,
     last_name: Field::String,
-    post_id: Field::Number,
     avatar_url: AvatarField,
     rules: Field::JSON,
     notification_rules: NotificationRulesField,
     ref_code: Field::String,
-    referrals: Field::HasMany.with_options(class_name: 'Referral'),
     referrer: Field::BelongsTo.with_options(class_name: 'User')
   }.freeze
 
@@ -52,7 +49,6 @@ class UserDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    posts
     user_devices
     id
     encrypted_password
@@ -72,16 +68,13 @@ class UserDashboard < Administrate::BaseDashboard
     username
     first_name
     last_name
-    post_id
     avatar_url
-    referrals
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    posts
     user_devices
     notification_rules
     provider
@@ -90,10 +83,8 @@ class UserDashboard < Administrate::BaseDashboard
     username
     first_name
     last_name
-    post_id
     avatar_url
     rules
-    referrals
   ].freeze
 
   # Overwrite this method to customize how users are displayed

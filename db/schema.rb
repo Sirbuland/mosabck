@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226164018) do
+ActiveRecord::Schema.define(version: 20181010091053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20180226164018) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "approved_users", force: :cascade do |t|
+    t.string "email", limit: 255, null: false
+    t.index ["email"], name: "index_approved_users_on_email"
   end
 
   create_table "auth_identities", force: :cascade do |t|
@@ -45,6 +50,15 @@ ActiveRecord::Schema.define(version: 20180226164018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contact_methods_on_user_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.text "message"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "additional_info", default: "{}"
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
   create_table "installations", force: :cascade do |t|
@@ -73,6 +87,16 @@ ActiveRecord::Schema.define(version: 20180226164018) do
     t.index ["lonlat"], name: "index_locations_on_lonlat", using: :gist
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "message"
+    t.string "status"
+    t.string "date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "pin_codes", force: :cascade do |t|
     t.bigint "user_id"
     t.date "expiration_date"
@@ -92,6 +116,24 @@ ActiveRecord::Schema.define(version: 20180226164018) do
     t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
+  end
+
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_roles_users_on_role_id"
+    t.index ["user_id"], name: "index_roles_users_on_user_id"
+  end
+
+  create_table "screeners", force: :cascade do |t|
+    t.string "name", limit: 255
+    t.string "text"
+    t.jsonb "filters", default: "[]"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_screeners_on_user_id"
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -141,7 +183,6 @@ ActiveRecord::Schema.define(version: 20180226164018) do
     t.integer "auth_identity_id"
     t.string "password"
     t.string "avatar_url"
-    t.string "role", default: "user"
     t.boolean "subscribed_to_newsletter", default: false
     t.datetime "birthdate"
     t.string "confirm_token"
@@ -155,12 +196,17 @@ ActiveRecord::Schema.define(version: 20180226164018) do
     t.boolean "hidden", default: false
     t.index ["auth_identity_id"], name: "index_users_on_auth_identity_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username"
   end
 
   add_foreign_key "auth_identities", "users"
   add_foreign_key "contact_methods", "users"
   add_foreign_key "installations", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "pin_codes", "users"
+  add_foreign_key "roles_users", "roles"
+  add_foreign_key "roles_users", "users", on_delete: :cascade
+  add_foreign_key "screeners", "users"
   add_foreign_key "tokens", "installations"
   add_foreign_key "user_devices", "users"
 end

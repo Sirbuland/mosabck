@@ -1,0 +1,27 @@
+mutation {
+  createScreener(input: {
+    name: "<%= name %>"
+    text: "<%= text %>"
+    filters: [
+      <% filters.each do |filter| %>
+      {
+        <% filter.each do |key, value| %>
+          <%= key %>: <%= value %>
+        <% end %>
+      }
+      <% end %>
+    ]
+  }) {
+    screener {
+      id
+      name
+      text
+      filters {
+        name
+        operator
+        category
+        value
+      }
+    }
+  }
+}

@@ -52,7 +52,9 @@ module UserComponent
       end
 
       def send_email_to_confirm_account(user)
-        user.send_email_to_confirm_account
+        # TODO: uncomment and implement if needed
+        # user.send_email_to_confirm_account
+        user
       end
     end
   end

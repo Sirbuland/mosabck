@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def formatted_errors(obj)
+  def self.formatted_errors(obj)
     messages = []
     obj.errors.messages.map do |key, value|
       raw_msg = value.first

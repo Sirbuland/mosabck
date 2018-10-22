@@ -4,6 +4,8 @@ module AuthIdentities
       where("payload->>'email' = ?", email)
     end)
 
+    validates_email_format_of :email
+
     def self.exists_similar?(args = {})
       payload = args[:payload]
       identities = AuthIdentity.classic.active
@@ -11,6 +13,10 @@ module AuthIdentities
         "payload->>'email' = ?",
         payload[:email]
       ).exists?
+    end
+
+    def email
+      payload['email']
     end
 
     def confirm

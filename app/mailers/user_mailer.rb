@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     to = user.email
     return unless user.present? && to.present?
     @user = user
-    mail(to: "#{user.username} <#{to}>",
+    mail(to: "#{user.first_name} <#{to}>",
          subject: I18n.t('email.account_confirmation_subject'))
   end
 
@@ -13,8 +13,15 @@ class UserMailer < ActionMailer::Base
     return unless user.present?
     @user = user
     @success = success
-    mail(to: "#{user.username} <#{user.email}>",
+    mail(to: "#{user.first_name} <#{user.email}>",
          subject: I18n.t('email.account_confirmation_subject'))
+  end
+
+  def reset_password(user, pin_code)
+    @user = user
+    @pin_code = pin_code
+    mail(to: "#{user.first_name} <#{user.email}>",
+         subject: I18n.t('email.reset_password'))
   end
 
   def custom_email(username, email, body)

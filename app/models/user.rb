@@ -1,22 +1,15 @@
 class User < ApplicationRecord
-  # include Searchable
-  include Solr::UserSearchable
   include MultipleIdentities
   include GeoTaggable
   #  TODO: Re-enable when Notifications are there
   # include SmsVerifiable
-  # include EmailConfirmable
+  include EmailConfirmable
 
   has_many :auth_identities, dependent: :destroy
-  has_many :posts, dependent: :destroy
   has_many :user_devices, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :contact_methods, dependent: :destroy
-  has_many :payment_identities
   has_many :installations
-  has_many :subscriptions
-  has_many :orders
-  has_many :tracked_events
   has_many :pin_codes
 
   has_many :referrals, foreign_key: :owner_id
@@ -25,13 +18,21 @@ class User < ApplicationRecord
   has_one :referral, foreign_key: :user_id
   has_one :referrer, through: :referral, source: 'owner', class_name: 'User'
 
+  has_and_belongs_to_many :roles
+  has_many :screeners
+
+  scope :role_is, ->(role) { joins(:roles).where('roles.name' => role.to_s) }
+  scope :admins, -> { role_is('admin') }
+
   accepts_nested_attributes_for :auth_identities
 
-  validates :username, presence: true, uniqueness: true
+  validates :username, uniqueness: true, allow_blank: true
   validates :avatar_url, url: { allow_blank: true }
-  validates_email_format_of :email, allow_blank: true
-
   # searchkick word_middle: [:username, :email]
+
+  def self.find_by_email(email)
+    AuthIdentities::ClassicIdentity.by_email(email).first.user
+  end
 
   def email_contact_method
     emails = contact_methods.email
@@ -40,18 +41,15 @@ class User < ApplicationRecord
   end
 
   def email
-    emails = contact_methods.email
-    email = emails.where(main: true).first
-    email.present? ? email.value : emails.first.try(:value)
+    @email ||= (auth_identities.classic&.first&.payload || {})['email']
   end
 
+  # TODO: WE HAVE TWO DIFFERENT EMAIL IN CLASSICIDENTITY AND IN CONTACTMETHODS
   def email=(email)
+    # update_classic_identity_email(email)
     email = Email.create(value: email)
     contact_methods << email
-  end
-
-  def liked_entities
-    ActsAsVotable::Vote.up.for_type('Post').by_type('User').where(voter_id: id)
+    email
   end
 
   def owned_device(device_id)
@@ -74,24 +72,6 @@ class User < ApplicationRecord
     facebook_identity.payload['fbUserId']
   end
 
-  def chat_user_id
-    chat_identity = auth_identities.chat.first
-    return email unless chat_identity.present?
-    chat_identity.payload['user_id'] || email
-  end
-
-  def chat_username
-    chat_identity = auth_identities.chat.first
-    return email unless chat_identity.present?
-    chat_identity.payload['username'] || email
-  end
-
-  def chat_password
-    chat_identity = auth_identities.chat.first
-    return email unless chat_identity.present?
-    chat_identity.payload['password'] || ''
-  end
-
   def oauth_user_id(oauth_type)
     identity_type = GraphqlHelper::OAUTH_USER_TYPES.invert[oauth_type]
     identity = auth_identities.send(identity_type).first
@@ -112,11 +92,8 @@ class User < ApplicationRecord
     device.logged_in
   end
 
-  def admin?
-    role == 'admin'
-  end
-
-  def blocked?
-    role != 'blocked'
+  def role?(role_to_check)
+    role_to_check = role_to_check.to_s
+    roles.any? { |role| role.name == role_to_check }
   end
 end

@@ -8,6 +8,7 @@ UserComponent::Mutations::UserResetPassword =
     input_field :userId, types.ID
     input_field :phoneNumber, types.String
     input_field :email, types.String
+    input_field :channel, !MiscComponent::Types::ChannelEnumType
 
     resolve UserComponent::Resolvers::ResetPasswordResolver.new
   end

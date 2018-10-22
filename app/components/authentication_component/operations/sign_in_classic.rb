@@ -23,9 +23,10 @@ module AuthenticationComponent
           "payload->>'email' = ? ",
           input[:email]
         ).take
-        return Left('User not found') unless identity.present?
+        error = Left(failure)
+        return error unless identity.present?
         password = BCrypt::Password.new(identity.payload['password'])
-        return Left('Wrong password') unless password == input[:password]
+        return error unless password == input[:password]
         input[:user] = identity.user
         Right(input)
       end
@@ -45,6 +46,15 @@ module AuthenticationComponent
         )
         input[:jwt] = jwt_token
         Right(input)
+      end
+
+      private
+
+      def failure
+        @failure ||= {
+          msg: I18n.t('signin.errors.invalid_credentials'),
+          status: :invalid_credentials
+        }
       end
     end
   end

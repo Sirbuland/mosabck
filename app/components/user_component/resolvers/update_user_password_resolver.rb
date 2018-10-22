@@ -7,7 +7,10 @@ module UserComponent
         result =
           UserComponent::Organizers::UpdatePasswordOrganizer.call(args: args)
         if result.failure?
-          ctx.add_error(GraphqlHelper.execution_error(result.message))
+          error = GraphqlHelper.execution_error(
+            msg: result.message, status: :not_found
+          )
+          ctx.add_error error
         else
           { user: result.user }
         end

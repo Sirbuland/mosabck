@@ -72,7 +72,7 @@ module UserComponent
 
       def send_email_to_confirm_account(input)
         # TODO: re-enable when Notifications are added
-        # input[:user].send_email_to_confirm_account
+        input[:user].send_email_to_confirm_account
         Right(input)
       end
     end

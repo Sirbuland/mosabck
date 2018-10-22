@@ -5,7 +5,7 @@ module UserComponent
         hashed_args = ApplicationHelper.h_and_sym(args)
         result = UserComponent::Operations::VerifyEmail.new.call(hashed_args)
         if result.failure?
-          ctx.add_error(GraphqlHelper.execution_error(result))
+          ctx.add_error(GraphqlHelper.execution_error(result.failure))
         else
           { result: 'Success. Email activated' }
         end

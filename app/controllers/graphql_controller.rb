@@ -11,8 +11,8 @@ class GraphqlController < ApplicationController
     query_variables = ensure_hash params[:variables]
     context = { optics_agent: :no_rack }
     if @user_and_device.present?
-      context[:current_user_id] = @user_and_device.current_user
-      context[:current_device_id] = @user_and_device.current_device
+      context[:current_user] = @user_and_device.current_user
+      context[:current_device] = @user_and_device.current_device
     end
     result = GraphqlSchema.execute(query_string,
       variables: query_variables, context: context)

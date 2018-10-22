@@ -6,12 +6,13 @@ module UserComponent
       class ProcessUser
         include Dry::Transaction::Operation
 
+        # TODO: FIX USERNAME
         def call(input)
           input[:user] = User.new(
             email: input[:email],
-            username: input[:user_name],
-            first_name: input[:firstName],
-            last_name: input[:lastName],
+            username: input[:username],
+            first_name: input[:first_name],
+            last_name: input[:last_name],
             bio: input[:bio],
             avatar_url: input[:avatar_url] || '',
             subscribed_to_newsletter: input[:subscribedToNewsLetter],
