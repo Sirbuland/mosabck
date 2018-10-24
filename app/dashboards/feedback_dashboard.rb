@@ -11,10 +11,18 @@ class FeedbackDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime.with_options(
       format: '%m/%d/%Y %H:%M %Z'
     ),
-    user_first_name: Field::String,
-    user_last_name: Field::String,
-    user_email: Field::String,
-    page: Field::String,
+    user_first_name: Field::String.with_options(
+      searchable: false
+    ),
+    user_last_name: Field::String.with_options(
+      searchable: false
+    ),
+    user_email: Field::String.with_options(
+      searchable: false
+    ),
+    page: Field::String.with_options(
+      searchable: false
+    ),
     message: Field::String
   }.freeze
 

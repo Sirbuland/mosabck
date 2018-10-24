@@ -6,21 +6,13 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   namespace :admin do
-    resources :app_settings
-    resources :auth_identities
-    namespace :auth_identities do
-      resources :classic_identities
-      resources :facebook_identities
-    end
-    resources :locations
     resources :users
-    resources :user_devices
     resources :approved_users
 
     get 'feedbacks/download', to: 'feedbacks#download'
     resources :feedbacks, path: 'feedback', only: %i[index show destroy]
 
-    root to: 'app_settings#index'
+    root to: 'users#index'
     get 'session/login'
     post 'session/login'
     get 'session/logout'

@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def self.image_or_default(url)
-    default_img = ActionController::Base.helpers.image_path('logo.jpg')
+    default_img = ''
     uri = URI.parse(url)
     %w[http https].include?(uri.scheme) ? url : default_img
   rescue URI::BadURIError

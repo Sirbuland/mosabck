@@ -21,10 +21,7 @@ module Admin
 
     def update
       data = resource_params.to_h
-      data[:rules] = JSON.parse(data[:rules])
-      params_for_update = data.merge(
-        notification_rules: normalize_notification_rules
-      )
+      params_for_update = data
       if requested_resource.update(params_for_update)
         redirect_to(
           [namespace, requested_resource],
@@ -35,6 +32,20 @@ module Admin
           page: Administrate::Page::Form.new(dashboard, requested_resource)
         }
       end
+    end
+
+    def destroy
+      if requested_resource.role?(:admin)
+        flash[:error] = [
+          'Admin users cannot be destroyed.',
+          'Please remove Admin role from user.'
+        ].join(' ')
+      elsif requested_resource.destroy
+        flash[:notice] = translate_with_resource('destroy.success')
+      else
+        flash[:error] = requested_resource.errors.full_messages.join('<br/>')
+      end
+      redirect_to action: :index
     end
 
     def resource_params

@@ -3,17 +3,8 @@ task app_initialize: :environment do
   if Role.where(name: 'admin').exists?
     p 'Role admin is alredy exists!'
   else
-    Role.create(name: 'admin', description: 'Simple Admin', priority: 100)
+    Role.create(name: 'admin', description: 'admin', priority: 100)
     p 'Role admin is created!'
-  end
-
-  if Role.where(name: 'super_admin').exists?
-    p 'Role super_admin is alredy exists!'
-  else
-    Role.create(
-      name: 'super_admin', description: 'Super Admin', priority: 1000
-    )
-    p 'Role super_admin is created!'
   end
 
   if Role.where(name: 'feedback_receiver').exists?
@@ -21,7 +12,7 @@ task app_initialize: :environment do
   else
     Role.create(
       name: 'feedback_receiver',
-      description: 'User who receive a feedback',
+      description: 'receive feedback emails',
       priority: 1000
     )
     p 'Role feedback_receiver is created!'

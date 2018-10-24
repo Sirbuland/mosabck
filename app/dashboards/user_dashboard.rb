@@ -8,30 +8,28 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    # auth_identities: Field::HasMany,
-    user_devices: Field::HasMany,
+    email: Field::String.with_options(searchable: false),
+    auth_identities: Field::HasMany,
+    roles: Field::HasMany,
     id: Field::Number,
-    encrypted_password: Field::String,
-    reset_password_token: Field::String,
+    encrypted_password: Field::String.with_options(searchable: false),
+    reset_password_token: Field::String.with_options(searchable: false),
     reset_password_sent_at: Field::DateTime,
     remember_created_at: Field::DateTime,
     sign_in_count: Field::Number,
     current_sign_in_at: Field::DateTime,
     last_sign_in_at: Field::DateTime,
-    current_sign_in_ip: Field::String,
-    last_sign_in_ip: Field::String,
+    current_sign_in_ip: Field::String.with_options(searchable: false),
+    last_sign_in_ip: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    provider: Field::String,
-    uid: Field::String,
-    bio: Field::String,
-    username: Field::String,
+    uid: Field::String.with_options(searchable: false),
+    bio: Field::String.with_options(searchable: false),
+    username: Field::String.with_options(searchable: false),
     first_name: Field::String,
     last_name: Field::String,
     avatar_url: AvatarField,
-    rules: Field::JSON,
-    notification_rules: NotificationRulesField,
-    ref_code: Field::String,
+    ref_code: Field::String.with_options(searchable: false),
     referrer: Field::BelongsTo.with_options(class_name: 'User')
   }.freeze
 
@@ -41,17 +39,19 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    username
-    bio
-    avatar_url
+    first_name
+    last_name
+    email
+    roles
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    user_devices
     id
-    encrypted_password
+    first_name
+    last_name
+    email
     reset_password_token
     reset_password_sent_at
     remember_created_at
@@ -62,29 +62,17 @@ class UserDashboard < Administrate::BaseDashboard
     last_sign_in_ip
     created_at
     updated_at
-    provider
-    uid
     bio
-    username
-    first_name
-    last_name
-    avatar_url
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    user_devices
-    notification_rules
-    provider
-    uid
-    bio
-    username
     first_name
     last_name
-    avatar_url
-    rules
+    roles
+    bio
   ].freeze
 
   # Overwrite this method to customize how users are displayed

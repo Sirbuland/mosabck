@@ -7,10 +7,9 @@ class User < ApplicationRecord
 
   has_many :auth_identities, dependent: :destroy
   has_many :user_devices, dependent: :destroy
-  has_many :events, dependent: :destroy
   has_many :contact_methods, dependent: :destroy
-  has_many :installations
-  has_many :pin_codes
+  has_many :installations, dependent: :destroy
+  has_many :pin_codes, dependent: :destroy
 
   has_many :referrals, foreign_key: :owner_id
   has_many :referral_users, through: :referrals, source: 'user',
