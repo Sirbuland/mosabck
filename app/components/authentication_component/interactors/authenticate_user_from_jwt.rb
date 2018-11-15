@@ -7,7 +7,7 @@ module AuthenticationComponent
         payload_info = context.jwt_payload
         msg = I18n.t('errors.messages.not_found', entity: 'Payload')
         context.fail!(message: msg) unless payload_info.present?
-        username = payload_info['name']
+        username = payload_info['email']
         user     = User.find_by(username: username)
         if user.present?
           user = user.first if user.is_a? Array
