@@ -10,7 +10,8 @@ module AuthenticationComponent
         username = payload_info['name']
         user     = User.find_by(username: username)
         if user.present?
-          user_device = user.user_devices.first  
+          user = user.first if user.is_a? Array
+          user_device = user.user_devices.first
         else
           user = User.create(username: username)
           user.user_devices << UserDevice.create(device_id: 123)
