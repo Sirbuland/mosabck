@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181010091053) do
+ActiveRecord::Schema.define(version: 20181122140313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 20181010091053) do
     t.index ["user_id"], name: "index_contact_methods_on_user_id"
   end
 
+  create_table "dashboards", force: :cascade do |t|
+    t.string "uid"
+    t.string "title"
+    t.string "uri"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "feedbacks", force: :cascade do |t|
     t.text "message"
     t.bigint "user_id"
@@ -59,6 +68,15 @@ ActiveRecord::Schema.define(version: 20181010091053) do
     t.datetime "updated_at", null: false
     t.jsonb "additional_info", default: "{}"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.bigint "dashboard_id"
+    t.string "uid"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dashboard_id"], name: "index_folders_on_dashboard_id"
   end
 
   create_table "installations", force: :cascade do |t|
@@ -95,6 +113,26 @@ ActiveRecord::Schema.define(version: 20181010091053) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "panel_vars", force: :cascade do |t|
+    t.bigint "panel_id"
+    t.bigint "var_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["panel_id"], name: "index_panel_vars_on_panel_id"
+    t.index ["var_id"], name: "index_panel_vars_on_var_id"
+  end
+
+  create_table "panels", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "dashboard_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dashboard_id"], name: "index_panels_on_dashboard_id"
   end
 
   create_table "pin_codes", force: :cascade do |t|
@@ -199,10 +237,20 @@ ActiveRecord::Schema.define(version: 20181010091053) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  create_table "vars", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "auth_identities", "users"
   add_foreign_key "contact_methods", "users"
+  add_foreign_key "folders", "dashboards"
   add_foreign_key "installations", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "panel_vars", "panels"
+  add_foreign_key "panel_vars", "vars"
+  add_foreign_key "panels", "dashboards"
   add_foreign_key "pin_codes", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users", on_delete: :cascade
