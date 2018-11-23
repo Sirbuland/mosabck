@@ -28,4 +28,5 @@ MutationType = GraphQL::ObjectType.define do
   field :userResetPassword,
     field: UserComponent::Mutations::UserResetPassword.field
   field :verifyEmail, field: UserComponent::Mutations::VerifyEmail.field
+  field :createDashboard, field: DashboardComponent::Mutations::CreateDashboard.field
 end

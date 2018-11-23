@@ -29,6 +29,13 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
 
+  field :allDashboards do
+    type types[DashboardComponent::Types::DashboardType]
+    resolve -> (_obj, args, _ctx) do
+      Dashboard.all
+    end
+  end
+
   field :userNameExistenceAndSuggestions do
     type UserComponent::Types::UsernameType
     description 'Username availability and suggestions'
@@ -80,4 +87,5 @@ QueryType = GraphQL::ObjectType.define do
     description 'Available error statuses in response'
     resolve ->(_root, _args, _ctx) { nil }
   end
+
 end
