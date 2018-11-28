@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181122140313) do
+ActiveRecord::Schema.define(version: 20181122130146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,10 @@ ActiveRecord::Schema.define(version: 20181122140313) do
     t.string "title"
     t.string "uri"
     t.string "url"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_dashboards_on_user_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -68,15 +70,6 @@ ActiveRecord::Schema.define(version: 20181122140313) do
     t.datetime "updated_at", null: false
     t.jsonb "additional_info", default: "{}"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
-  end
-
-  create_table "folders", force: :cascade do |t|
-    t.bigint "dashboard_id"
-    t.string "uid"
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["dashboard_id"], name: "index_folders_on_dashboard_id"
   end
 
   create_table "installations", force: :cascade do |t|
@@ -245,7 +238,7 @@ ActiveRecord::Schema.define(version: 20181122140313) do
 
   add_foreign_key "auth_identities", "users"
   add_foreign_key "contact_methods", "users"
-  add_foreign_key "folders", "dashboards"
+  add_foreign_key "dashboards", "users"
   add_foreign_key "installations", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "panel_vars", "panels"
