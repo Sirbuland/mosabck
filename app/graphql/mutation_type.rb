@@ -28,5 +28,10 @@ MutationType = GraphQL::ObjectType.define do
   field :userResetPassword,
     field: UserComponent::Mutations::UserResetPassword.field
   field :verifyEmail, field: UserComponent::Mutations::VerifyEmail.field
+
+  # grafana model mutations
   field :createDashboard, field: DashboardComponent::Mutations::CreateDashboard.field
+  field :createPanel,     field: PanelComponent::Mutations::CreatePanel.field
+  # field :createPanelVar,  field: PanelVarComponent::Mutations::CreatePanelVar.field
+  # field :createVar,       field: PanelComponent::Mutations::CreateVar.field
 end

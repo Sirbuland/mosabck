@@ -9,4 +9,5 @@ DashboardComponent::Mutations::CreateDashboard = GraphQL::Relay::Mutation.define
 
 	return_field :dashboard, DashboardComponent::Types::DashboardType
 
+	resolve DashboardComponent::Resolvers::CreateDashboardResolver.new
 end

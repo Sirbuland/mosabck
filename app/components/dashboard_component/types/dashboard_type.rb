@@ -18,10 +18,6 @@ DashboardComponent::Types::DashboardType = GraphQL::ObjectType.define do
   end
 
   field :panels do 
-  	type types[DashboardComponent::Types::PanelType]
-  end
-
-  field :folders do
-  	type types[DashboardComponent::Types::FolderType]
+    type types[PanelComponent::Types::PanelType]
   end
 end
