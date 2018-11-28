@@ -2,12 +2,13 @@ DashboardComponent::Mutations::CreateDashboard = GraphQL::Relay::Mutation.define
 	name 'createDashboard'
 	description 'create a new dashboard'
 
-	input_field :uid, types.String
-	input_field :title, types.String
-	input_field :uri, types.String
-	input_field :url, types.String
-
 	return_field :dashboard, DashboardComponent::Types::DashboardType
+
+	input_field :uid,   types.String
+	input_field :title, types.String
+	input_field :slug,  types.String
+	input_field :panels,
+	  types[!DashboardComponent::Types::Inputs::PanelInputType]
 
 	resolve DashboardComponent::Resolvers::CreateDashboardResolver.new
 end
