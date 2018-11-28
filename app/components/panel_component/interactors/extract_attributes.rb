@@ -17,7 +17,9 @@ module PanelComponent
 
         attributes        = extract_attributes(PANEL_SCHEME, args)
         #attributes[:user] = context.ctx[:current_user]
-        dashboard = Dashboard.find(id: attributes[:id])
+        dashboard_id = attributes.delete(:id)
+        puts dashboard_id
+        dashboard = Dashboard.find(dashboard_id)
         attributes[:dashboard] = dashboard
 
         puts "attributes"
