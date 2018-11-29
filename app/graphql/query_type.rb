@@ -43,12 +43,19 @@ QueryType = GraphQL::ObjectType.define do
   end
 
   field :getDashboard do
-      type DashboardComponent::Types::DashboardType
-      description 'Get dashboard by id'
-      argument :id, !types.ID
-      resolve -> (_obj, args, _ctx) do
-        Dashboard.find(args[:id])
-      end
+    type DashboardComponent::Types::DashboardType
+    description 'Get dashboard by id'
+    argument :id, !types.ID
+    resolve -> (_obj, args, _ctx) do
+      Dashboard.find(args[:id])
+    end
+  end
+  
+  field :allExchanges do
+    type types[ExchangeComponent::Types::ExchangeType]
+    resolve -> (_obj, _args, _ctx) do
+      Exchange.all
+    end
   end
 
   field :userNameExistenceAndSuggestions do
