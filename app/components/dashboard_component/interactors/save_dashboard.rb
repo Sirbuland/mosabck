@@ -11,6 +11,7 @@ module DashboardComponent
         dashboard = context.dashboard || Dashboard.new
         dashboard.update!(context.attributes)
 
+        # create each panel
         panels.each do |panel_i, panel_attributes|
           # get panel_vars attributes
           panel_vars = panel_attributes.delete(:panel_vars)
@@ -22,6 +23,7 @@ module DashboardComponent
           panel = context.panel || Panel.new
           panel.update!(panel_attributes)
 
+          # create each panel var
           panel_vars.each do |panel_var_i, panel_var_attributes|
             # create var
             var = context.var || Var.new
@@ -31,7 +33,6 @@ module DashboardComponent
             panel_var = context.panel_var || PanelVar.new
             panel_var.update!(panel: panel, var: var)
           end
-
         end
 
         context.dashboard = dashboard

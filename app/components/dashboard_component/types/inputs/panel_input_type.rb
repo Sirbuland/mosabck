@@ -7,6 +7,6 @@ DashboardComponent::Types::Inputs::PanelInputType =
     argument :slug,        types.String
     argument :startDate,   types.String
     argument :endDate,     types.String
-    argument :panelVars,  types[DashboardComponent::Types::Inputs::VarInputType]
+    argument :panelVars,   types[DashboardComponent::Types::Inputs::VarInputType]
 
   end
