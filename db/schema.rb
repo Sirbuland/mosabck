@@ -29,6 +29,25 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.index ["email"], name: "index_approved_users_on_email"
   end
 
+  create_table "asset_mappings", force: :cascade do |t|
+    t.bigint "exchange_id"
+    t.bigint "research_id"
+    t.bigint "merchant_id"
+    t.bigint "event_id"
+    t.bigint "wallet_id"
+    t.bigint "video_id"
+    t.bigint "crypto_asset_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crypto_asset_id"], name: "index_asset_mappings_on_crypto_asset_id"
+    t.index ["event_id"], name: "index_asset_mappings_on_event_id"
+    t.index ["exchange_id"], name: "index_asset_mappings_on_exchange_id"
+    t.index ["merchant_id"], name: "index_asset_mappings_on_merchant_id"
+    t.index ["research_id"], name: "index_asset_mappings_on_research_id"
+    t.index ["video_id"], name: "index_asset_mappings_on_video_id"
+    t.index ["wallet_id"], name: "index_asset_mappings_on_wallet_id"
+  end
+
   create_table "auth_identities", force: :cascade do |t|
     t.bigint "user_id"
     t.json "payload"
@@ -37,6 +56,22 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.string "status", default: "active"
     t.string "type"
     t.index ["user_id"], name: "index_auth_identities_on_user_id"
+  end
+
+  create_table "author_researches", force: :cascade do |t|
+    t.bigint "research_id"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_author_researches_on_author_id"
+    t.index ["research_id"], name: "index_author_researches_on_research_id"
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "contact_methods", force: :cascade do |t|
@@ -52,14 +87,40 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.index ["user_id"], name: "index_contact_methods_on_user_id"
   end
 
+  create_table "crypto_assets", force: :cascade do |t|
+    t.string "name"
+    t.string "attribute1"
+    t.string "attribute2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dashboards", force: :cascade do |t|
     t.string "uid"
     t.string "title"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.index ["user_id"], name: "index_dashboards_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "type"
+    t.string "timestamp"
+    t.string "description"
+    t.string "importance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.string "exchange"
+    t.string "vetted"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_exchanges_on_user_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -80,6 +141,24 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.index ["user_id"], name: "index_installations_on_user_id"
   end
 
+  create_table "keyword_research_videos", force: :cascade do |t|
+    t.bigint "keyword_id"
+    t.bigint "research_id"
+    t.bigint "video_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["keyword_id"], name: "index_keyword_research_videos_on_keyword_id"
+    t.index ["research_id"], name: "index_keyword_research_videos_on_research_id"
+    t.index ["video_id"], name: "index_keyword_research_videos_on_video_id"
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "country"
     t.string "countryCode"
@@ -95,6 +174,17 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.datetime "updated_at", null: false
     t.index ["locateable_type", "locateable_id"], name: "index_locations_on_locateable_type_and_locateable_id"
     t.index ["lonlat"], name: "index_locations_on_lonlat", using: :gist
+  end
+
+  create_table "merchants", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "asset_processor"
+    t.string "merchant"
+    t.string "source_url"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_merchants_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -130,6 +220,18 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.index ["dashboard_id"], name: "index_panels_on_dashboard_id"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string "first_name"
+    t.string "second_name"
+    t.string "description"
+    t.string "attribute1"
+    t.string "attribute2"
+    t.bigint "video_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["video_id"], name: "index_people_on_video_id"
+  end
+
   create_table "pin_codes", force: :cascade do |t|
     t.bigint "user_id"
     t.date "expiration_date"
@@ -140,6 +242,31 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.string "status", default: "active"
     t.integer "auth_identity_id"
     t.index ["user_id"], name: "index_pin_codes_on_user_id"
+  end
+
+  create_table "researches", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "type"
+    t.string "source_url"
+    t.string "title"
+    t.string "description"
+    t.datetime "timestamp"
+    t.string "reference"
+    t.string "file_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_researches_on_user_id"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "attribute1"
+    t.string "attribute2"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_resources_on_event_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -239,18 +366,62 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.string "value"
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "type"
+    t.string "title"
+    t.string "timestamp"
+    t.string "description"
+    t.string "source_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_videos_on_user_id"
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.string "number_major_wallets"
+    t.string "number_mobile_wallets"
+    t.string "description"
+    t.string "image_link"
+    t.string "source_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id"
+  end
+
+  add_foreign_key "asset_mappings", "crypto_assets"
+  add_foreign_key "asset_mappings", "events"
+  add_foreign_key "asset_mappings", "exchanges"
+  add_foreign_key "asset_mappings", "merchants"
+  add_foreign_key "asset_mappings", "researches"
+  add_foreign_key "asset_mappings", "videos"
+  add_foreign_key "asset_mappings", "wallets"
   add_foreign_key "auth_identities", "users"
+  add_foreign_key "author_researches", "authors"
+  add_foreign_key "author_researches", "researches"
   add_foreign_key "contact_methods", "users"
-  add_foreign_key "dashboards", "users"
+  add_foreign_key "events", "users"
+  add_foreign_key "exchanges", "users"
   add_foreign_key "installations", "users"
+  add_foreign_key "keyword_research_videos", "keywords"
+  add_foreign_key "keyword_research_videos", "researches"
+  add_foreign_key "keyword_research_videos", "videos"
+  add_foreign_key "merchants", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "panel_vars", "panels"
   add_foreign_key "panel_vars", "vars"
   add_foreign_key "panels", "dashboards"
+  add_foreign_key "people", "videos"
   add_foreign_key "pin_codes", "users"
+  add_foreign_key "researches", "users"
+  add_foreign_key "resources", "events"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users", on_delete: :cascade
   add_foreign_key "screeners", "users"
   add_foreign_key "tokens", "installations"
   add_foreign_key "user_devices", "users"
+  add_foreign_key "videos", "users"
+  add_foreign_key "wallets", "users"
 end
