@@ -1,7 +1,7 @@
 class AssetMapping < ApplicationRecord
   belongs_to :exchange
   belongs_to :research
-  belongs_to :merchange
+  belongs_to :merchant
   belongs_to :event
   belongs_to :wallet
   belongs_to :video
