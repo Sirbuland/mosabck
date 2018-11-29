@@ -17,7 +17,7 @@ DashboardComponent::Types::DashboardType = GraphQL::ObjectType.define do
   end
 
   field :panels do
-    type types[PanelComponent::Types::PanelType]
+    type types[DashboardComponent::Types::PanelType]
     resolve ->(dashboard, _args, _ctx) { dashboard.panels }
   end
 end
