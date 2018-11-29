@@ -3,8 +3,8 @@ CryptoAssetComponent::Types::CryptoAssetType = GraphQL::ObjectType.define do
 
 	field :id,    !types.ID
 	field :name,   types.String
-  field :attribut1, types.String
-  field :attribut2,  types.String
+  field :attribute1, types.String
+  field :attribute2,  types.String
 
 	field :updatedAt do
     type MiscComponent::Types::DateTimeType
