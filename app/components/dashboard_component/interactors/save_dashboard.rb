@@ -29,7 +29,8 @@ module DashboardComponent
               panel_vars.each do |panel_var_i, panel_var_attributes|
 
                 # create var if it doesn't exist
-                var = Var.where(panel_var_attributes).first || Var.new(panel_var_attributes)
+                var = panel.vars[panel_var_i] || Var.new
+                var.update(panel_var_attributes)
 
                 # create panel var relating panel and the created var
                 panel_var = panel.panel_vars.where(panel: panel, var: var).first || PanelVar.new
