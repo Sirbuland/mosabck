@@ -19,18 +19,18 @@ module DashboardComponent
           # set panel dashboard
           panel_attributes[:dashboard] = dashboard
 
-          # create panel
-          panel = context.panel || Panel.new
+          # create panel if it doesn't exist
+          panel = dashboard.panels[panel_i] || Panel.new
           panel.update!(panel_attributes)
 
           # create each panel var
           panel_vars.each do |panel_var_i, panel_var_attributes|
-            # create var
-            var = context.var || Var.new
-            var.update!(panel_var_attributes)
+
+            # create var if it doesn't exist
+            var = Var.where(panel_var_attributes).first || Var.new(panel_var_attributes)
 
             # create panel var relating panel and the created var
-            panel_var = context.panel_var || PanelVar.new
+            panel_var = panel.panel_vars.where(panel: panel, var: var).first || PanelVar.new
             panel_var.update!(panel: panel, var: var)
           end
         end
