@@ -10,12 +10,14 @@ module DashboardComponent
       }.freeze
 
       PANEL_SCHEME = {
-        id:          :id,
-        name:        :name,
-        description: :description,
-        slug:        :slug,
-        start_date:  :start_date,
-        end_date:    :end_date
+        id:            :id,
+        name:          :name,
+        description:   :description,
+        slug:          :slug,
+        graf_dash_uri: :graf_dash_uri,
+        graf_panel_id: :graf_panel_id,
+        start_date:    :start_date,
+        end_date:      :end_date
       }.freeze
 
       VAR_SCHEME = {
