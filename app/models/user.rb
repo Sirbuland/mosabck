@@ -19,6 +19,7 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :roles
   has_many :screeners
+  has_many :dashboards
 
   scope :role_is, ->(role) { joins(:roles).where('roles.name' => role.to_s) }
   scope :admins, -> { role_is('admin') }
