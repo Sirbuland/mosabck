@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181130162838) do
+ActiveRecord::Schema.define(version: 20181130183014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,14 +119,14 @@ ActiveRecord::Schema.define(version: 20181130162838) do
   create_table "panels", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
     t.bigint "dashboard_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.integer "graf_panel_id"
     t.string "graf_dash_uri"
+    t.bigint "start_date"
+    t.bigint "end_date"
     t.index ["dashboard_id"], name: "index_panels_on_dashboard_id"
   end
 

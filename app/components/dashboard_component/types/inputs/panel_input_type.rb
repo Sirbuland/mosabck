@@ -5,8 +5,8 @@ DashboardComponent::Types::Inputs::PanelInputType =
     argument :name,          types.String
     argument :description,   types.String
     argument :slug,          types.String
-    argument :start_date,    types.String
-    argument :end_date,      types.String
+    argument :start_date,    types.Int
+    argument :end_date,      types.Int
     argument :graf_panel_id, types.Int
     argument :graf_dash_uri, types.String
     argument :panelVars,     types[DashboardComponent::Types::Inputs::VarInputType]

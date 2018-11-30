@@ -3,12 +3,12 @@ DashboardComponent::Types::PanelType = GraphQL::ObjectType.define do
 
 	field :id,            !types.ID
 	field :name,          types.String
-    field :description,   types.String
-    field :slug,          types.String
-    field :start_date,    types.String
-	field :end_date,     types.String
+	field :description,   types.String
+	field :slug,          types.String
+	field :start_date,    types.Int
+	field :end_date,      types.Int
 	field :graf_panel_id, types.Int
-    field :graf_dash_uri, types.String
+	field :graf_dash_uri, types.String
 
 	field :updatedAt do
 		type MiscComponent::Types::DateTimeType
