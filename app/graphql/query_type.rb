@@ -11,13 +11,19 @@ QueryType = GraphQL::ObjectType.define do
     resolve UserComponent::Resolvers::SearchUsersResolver.new
   end
 
-  connection :getScreeners,
-    ScreenerComponent::Types::ScreenerType.connection_type do
-      description 'returns User Screeners'
-      argument :ids, types[!types.ID]
+  connection :getScreeners, ScreenerComponent::Types::ScreenerType.connection_type do
+    description 'returns User Screeners'
+    argument :ids, types[!types.ID]
 
-      resolve ScreenerComponent::Resolvers::GetScreenersResolver.new
-    end
+    resolve ScreenerComponent::Resolvers::GetScreenersResolver.new
+  end
+
+  connection :getDashboards, DashboardComponent::Types::DashboardType.connection_type do
+    description 'returns User Dashboards'
+    argument :ids, types[!types.ID]
+
+    resolve DashboardComponent::Resolvers::GetDashboardsResolver.new
+  end
 
   field :userEmailExist do
     type types.Boolean
