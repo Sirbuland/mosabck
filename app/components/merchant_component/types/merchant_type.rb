@@ -1,11 +1,11 @@
 MerchantComponent::Types::MerchantType = GraphQL::ObjectType.define do
 	name 'merchant'
 
-	field :id,    !types.ID
-	field :asset_processor,   types.String
+	field :id, !types.ID
+	field :asset_processor, types.String
   field :merchant, types.String
-  field :source_url,  types.String
-  field :description,  types.String
+  field :source_url, types.String
+  field :description, types.String
 
 	field :updatedAt do
     type MiscComponent::Types::DateTimeType

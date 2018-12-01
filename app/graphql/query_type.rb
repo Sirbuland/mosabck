@@ -58,6 +58,49 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
 
+  connection :getExchanges,
+    ExchangeComponent::Types::ExchangeType.connection_type do
+      description 'returns User Exchanges'
+      argument :ids, types[!types.ID]
+
+      resolve ExchangeComponent::Resolvers::GetExchangesResolver.new
+    end
+
+  field :allCryptoAssets do
+    type types[CryptoAssetComponent::Types::CryptoAssetType]
+    resolve -> (_obj, _args, _ctx) do 
+      CryptoAsset.all
+    end
+  end
+
+  field :allMerchants do
+    type types[MerchantComponent::Types::MerchantType]
+    resolve -> (_obj, _args, _ctx) do 
+      Merchant.all
+    end
+  end
+
+  field :allWallets do
+    type types[WalletComponent::Types::WalletType]
+    resolve -> (_obj, _args, _ctx) do 
+      Wallet.all
+    end
+  end
+
+  field :getVideos do
+    type types[VideoComponent::Types::VideoType]
+    resolve -> (_obj, _args, _ctx) do 
+      Video.all
+    end
+  end
+
+  field :getResources do
+    type types[ResourceComponent::Types::ResourceType]
+    resolve -> (_obj, _args, _ctx) do 
+      Resource.all
+    end
+  end
+
   field :userNameExistenceAndSuggestions do
     type UserComponent::Types::UsernameType
     description 'Username availability and suggestions'

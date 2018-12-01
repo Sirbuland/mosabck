@@ -17,9 +17,9 @@ WalletComponent::Types::WalletType = GraphQL::ObjectType.define do
     resolve ->(wallet, _args, _ctx) { wallet.created_at }
   end
 
-  field :user do
-    type types[UserComponent::Types::UserType]
-    resolve ->(wallet, _args, _ctx) { wallet.user }
+  field :userId do
+    type types.ID
+    resolve ->(wallet, _args, _ctx) { wallet.user_id }
   end
 
   field :numberMajorWallets, types.String, property: :number_major_wallets
