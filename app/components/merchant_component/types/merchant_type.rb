@@ -2,9 +2,9 @@ MerchantComponent::Types::MerchantType = GraphQL::ObjectType.define do
 	name 'merchant'
 
 	field :id, !types.ID
-	field :asset_processor, types.String
+	field :assetProcessor, types.String, property: :asset_processor
   field :merchant, types.String
-  field :source_url, types.String
+  field :sourceUrl, types.String, property: :source_url
   field :description, types.String
 
 	field :updatedAt do
@@ -17,7 +17,7 @@ MerchantComponent::Types::MerchantType = GraphQL::ObjectType.define do
     resolve ->(merchant, _args, _ctx) { merchant.created_at }
   end
 
-  field :crypto_assets do
+  field :cryptoAssets do
     type types[CryptoAssetComponent::Types::CryptoAssetType]
     resolve ->(merchant, _args, _ctx) { merchant.crypto_assets }
   end

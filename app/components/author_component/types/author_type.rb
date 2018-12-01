@@ -1,5 +1,5 @@
-DashboardComponent::Types::DashboardType = GraphQL::ObjectType.define do
-	name 'dashboard'
+AuthorComponent::Types::AuthorType = GraphQL::ObjectType.define do
+	name 'author'
 
 	field :id,    !types.ID
 	field :name,   types.String
@@ -7,11 +7,16 @@ DashboardComponent::Types::DashboardType = GraphQL::ObjectType.define do
 
 	field :updatedAt do
     type MiscComponent::Types::DateTimeType
-    resolve ->(dashboard, _args, _ctx) { dashboard.updated_at }
+    resolve ->(author, _args, _ctx) { author.updated_at }
   end
 
   field :createdAt do
     type MiscComponent::Types::DateTimeType
-    resolve ->(dashboard, _args, _ctx) { dashboard.created_at }
+    resolve ->(author, _args, _ctx) { author.created_at }
+  end
+
+  field :researches do
+    type types[ResearchComponent::Types::ResearchType]
+    resolve -> (author, _args, _ctx) { author.researches }
   end
 end

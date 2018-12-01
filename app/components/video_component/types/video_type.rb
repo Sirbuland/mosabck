@@ -21,7 +21,7 @@ VideoComponent::Types::VideoType = GraphQL::ObjectType.define do
 
   field :persons do
     type types[PersonComponent::Types::PersonType]
-    resolve ->(person, _args, _ctx) { person.panels }
+    resolve ->(video, _args, _ctx) { video.persons }
   end
 
 end

@@ -35,6 +35,21 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
 
+  field :allAuthors do
+    type types[AuthorComponent::Types::AuthorType]
+    resolve -> (_obj, args, _ctx) do
+      Author.all
+    end
+  end
+
+  connection :getAuthors,
+    AuthorComponent::Types::AuthorType.connection_type do
+      description 'returns User Authors'
+      argument :ids, types[!types.ID]
+
+      resolve AuthorComponent::Resolvers::GetAuthorsResolver.new
+    end
+
   field :allDashboards do
     type types[DashboardComponent::Types::DashboardType]
     resolve -> (_obj, args, _ctx) do
@@ -73,12 +88,28 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
 
+  connection :getCryptoAssets,
+    CryptoAssetComponent::Types::CryptoAssetType.connection_type do
+      description 'returns User CryptoAssets'
+      argument :ids, types[!types.ID]
+
+      resolve CryptoAssetComponent::Resolvers::GetCryptoAssetsResolver.new
+    end
+
   field :allMerchants do
     type types[MerchantComponent::Types::MerchantType]
     resolve -> (_obj, _args, _ctx) do 
       Merchant.all
     end
   end
+
+  connection :getMerchants,
+    MerchantComponent::Types::MerchantType.connection_type do
+      description 'returns User Merchant'
+      argument :ids, types[!types.ID]
+
+      resolve MerchantComponent::Resolvers::GetMerchantsResolver.new
+    end
 
   field :allWallets do
     type types[WalletComponent::Types::WalletType]
@@ -87,19 +118,103 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
 
-  field :getVideos do
+  connection :getWallets,
+    WalletComponent::Types::WalletType.connection_type do
+      description 'returns User Wallet'
+      argument :ids, types[!types.ID]
+
+      resolve WalletComponent::Resolvers::GetWalletsResolver.new
+    end
+
+  field :allVideos do
     type types[VideoComponent::Types::VideoType]
     resolve -> (_obj, _args, _ctx) do 
       Video.all
     end
   end
 
-  field :getResources do
+  connection :getVideos,
+    VideoComponent::Types::VideoType.connection_type do
+      description 'returns User Video'
+      argument :ids, types[!types.ID]
+
+      resolve VideoComponent::Resolvers::GetVideosResolver.new
+    end
+
+  field :allResources do
     type types[ResourceComponent::Types::ResourceType]
     resolve -> (_obj, _args, _ctx) do 
       Resource.all
     end
   end
+
+  connection :getResources,
+    ResourceComponent::Types::ResourceType.connection_type do
+      description 'returns User Resource'
+      argument :ids, types[!types.ID]
+      
+      resolve ResourceComponent::Resolvers::GetResourcesResolver.new
+    end
+
+  field :allResearches do
+    type types[ResearchComponent::Types::ResearchType]
+    resolve -> (_obj, _args, _ctx) do 
+      Research.all
+    end
+  end
+
+  connection :getResearches,
+    ResearchComponent::Types::ResearchType.connection_type do
+      description 'returns User Research'
+      argument :ids, types[!types.ID]
+      
+      resolve ResearchComponent::Resolvers::GetResearchesResolver.new
+    end
+
+  field :allKeywords do
+    type types[KeywordComponent::Types::KeywordType]
+    resolve -> (_obj, _args, _ctx) do 
+      Keyword.all
+    end
+  end
+
+  connection :getKeywords,
+    KeywordComponent::Types::KeywordType.connection_type do
+      description 'returns User Keyword'
+      argument :ids, types[!types.ID]
+      
+      resolve KeywordComponent::Resolvers::GetKeywordsResolver.new
+    end
+
+  field :allPersons do
+    type types[PersonComponent::Types::PersonType]
+    resolve -> (_obj, _args, _ctx) do 
+      Person.all
+    end
+  end
+
+  connection :getPersons,
+    PersonComponent::Types::PersonType.connection_type do
+      description 'returns User Person'
+      argument :ids, types[!types.ID]
+      
+      resolve PersonComponent::Resolvers::GetPersonsResolver.new
+    end
+
+  field :allEvents do
+    type types[EventComponent::Types::EventType]
+    resolve -> (_obj, _args, _ctx) do 
+      Event.all
+    end
+  end
+
+  connection :getEvents,
+    EventComponent::Types::EventType.connection_type do
+      description 'returns User Event'
+      argument :ids, types[!types.ID]
+      
+      resolve EventComponent::Resolvers::GetEventsResolver.new
+    end
 
   field :userNameExistenceAndSuggestions do
     type UserComponent::Types::UsernameType

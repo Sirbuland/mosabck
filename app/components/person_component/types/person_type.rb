@@ -1,12 +1,12 @@
 PersonComponent::Types::PersonType = GraphQL::ObjectType.define do
 	name 'Person'
 
-	field :id,    !types.ID
-	field :first_name,   types.String
+	field :id, !types.ID
+	field :first_name, types.String
   field :second_name, types.String
-  field :description,  types.String
-  field :attribute1,  types.String
-  field :attribute2,  types.String
+  field :description, types.String
+  field :attribute1, types.String
+  field :attribute2, types.String
 
 	field :updatedAt do
     type MiscComponent::Types::DateTimeType
