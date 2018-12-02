@@ -4,7 +4,7 @@ module ExchangeComponent
       include Interactor::Organizer
 
       organize ExchangeComponent::Interactors::ExtractAttributes,
-               ExchangeComponent::Interactors::SaveDashboard
+               ExchangeComponent::Interactors::SaveExchange
     end
   end
 end

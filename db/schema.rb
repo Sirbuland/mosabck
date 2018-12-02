@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "type"
+    t.string "event_type"
     t.string "timestamp"
     t.string "description"
     t.string "importance"
@@ -130,6 +130,15 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.datetime "updated_at", null: false
     t.jsonb "additional_info", default: "{}"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.bigint "dashboard_id"
+    t.string "uid"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dashboard_id"], name: "index_folders_on_dashboard_id"
   end
 
   create_table "installations", force: :cascade do |t|
@@ -246,7 +255,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
 
   create_table "researches", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "type"
+    t.string "research_type"
     t.string "source_url"
     t.string "title"
     t.string "description"
@@ -368,7 +377,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
 
   create_table "videos", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "type"
+    t.string "video_type"
     t.string "title"
     t.string "timestamp"
     t.string "description"
@@ -404,6 +413,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
   add_foreign_key "contact_methods", "users"
   add_foreign_key "events", "users"
   add_foreign_key "exchanges", "users"
+  add_foreign_key "folders", "dashboards"
   add_foreign_key "installations", "users"
   add_foreign_key "keyword_research_videos", "keywords"
   add_foreign_key "keyword_research_videos", "researches"

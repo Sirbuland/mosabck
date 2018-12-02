@@ -25,6 +25,7 @@ class GraphqlController < ApplicationController
   def authenticate_from_jwt
     interactors_context = { query: params[:query], headers: request.headers,
                             referrer: request.referrer || '' }
+
     check_jwt = CheckJwtRequired.call(interactors_context)
     return unless check_jwt.jwt_required
     valid_jwt =
