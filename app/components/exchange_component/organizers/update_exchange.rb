@@ -5,7 +5,7 @@ module ExchangeComponent
 
       organize ExchangeComponent::Interactors::LoadExchange,
       				 ExchangeComponent::Interactors::ExtractAttributes,
-               ExchangeComponent::Interactors::SaveExchange,
+               ExchangeComponent::Interactors::SaveExchange
 
     end
   end
