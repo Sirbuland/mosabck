@@ -18,4 +18,9 @@ EventComponent::Types::EventType = GraphQL::ObjectType.define do
     resolve ->(event, _args, _ctx) { event.created_at }
   end
 
+  field :cryptoAssets do
+    type types[CryptoAssetComponent::Types::CryptoAssetType]
+    resolve ->(merchant, _args, _ctx) { merchant.crypto_assets }
+  end
+
 end

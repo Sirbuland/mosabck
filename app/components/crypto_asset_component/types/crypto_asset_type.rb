@@ -17,7 +17,7 @@ CryptoAssetComponent::Types::CryptoAssetType = GraphQL::ObjectType.define do
   end
 
   field :merchants do
-    type types[ResearchComponent::Types::ResearchType]
+    type types[MerchantComponent::Types::MerchantType]
     resolve -> (crypt_asset, _args, _ctx) { crypt_asset.merchants }
   end
 

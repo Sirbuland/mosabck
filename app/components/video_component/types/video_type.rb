@@ -3,7 +3,7 @@ VideoComponent::Types::VideoType = GraphQL::ObjectType.define do
 
   field :id, !types.ID
   field :title, types.String
-  field :video_type, types.String
+  field :videoType, types.String, property: :video_type
   field :timestamp, types.String
   field :description, types.String
   field :sourceUrl, types.String, property: :source_url
@@ -22,6 +22,11 @@ VideoComponent::Types::VideoType = GraphQL::ObjectType.define do
   field :persons do
     type types[PersonComponent::Types::PersonType]
     resolve ->(video, _args, _ctx) { video.persons }
+  end
+
+  field :keywords do
+    type types[KeywordComponent::Types::KeywordType]
+    resolve ->(video, _args, _ctx) { video.keywords }
   end
 
 end
