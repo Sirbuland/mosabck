@@ -33,4 +33,5 @@ MutationType = GraphQL::ObjectType.define do
   field :updateDashboard, field: DashboardComponent::Mutations::UpdateDashboard.field
   field :createExchange, field: ExchangeComponent::Mutations::CreateExchange.field
   field :updateExchange, field: ExchangeComponent::Mutations::UpdateExchange.field
+  field :createResearch, field: ResearchComponent::Mutations::CreateResearch.field
 end
