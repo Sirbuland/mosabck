@@ -5,7 +5,8 @@ module CryptoAssetComponent
 
       def call
         crypto_asset = context.crypto_asset || CryptoAsset.new
-        crypto_asset.update!(context.attributes)
+        crypto_asset.assign_attributes(context.attributes)
+        crypto_asset.save!
         context.crypto_asset = crypto_asset
       end
     end

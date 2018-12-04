@@ -1,5 +1,5 @@
 CryptoAssetComponent::Types::CryptoAssetType = GraphQL::ObjectType.define do
-	name 'cryptAsset'
+	name 'cryptoAsset'
 
 	field :id,    !types.ID
 	field :name,   types.String

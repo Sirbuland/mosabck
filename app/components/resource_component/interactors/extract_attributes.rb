@@ -1,21 +1,19 @@
-module EventComponent
+module ResourceComponent
   module Interactors
     class ExtractAttributes
       include Interactor
 
-      EVENT_SCHEME = {
-        eventType: :event_type,
-        timestamp: :timestamp,
-        description: :description,
-        importance: :importance
+      RESOURCE_SCHEME = {
+        name: :name,
+        attribute1: :attribute1,
+        attribute2: :attribute2,
+        description: :description
       }.freeze
-
 
       def call
         args = context.args
 
-        # extract event attributes
-        attributes        = extract_attributes(EVENT_SCHEME, args)
+        attributes        = extract_attributes(RESOURCE_SCHEME, args)
         attributes[:user] = context.ctx[:current_user]
 
         context.attributes = attributes

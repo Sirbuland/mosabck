@@ -13,7 +13,7 @@ module CryptoAssetComponent
         args = context.args
 
         attributes        = extract_attributes(CRYPTO_ASSET_SCHEME, args)
-        attributes[:user] = context.ctx[:current_user]
+        # attributes[:user] = context.ctx[:current_user]
 
         context.attributes = attributes
       end

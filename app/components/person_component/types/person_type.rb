@@ -2,8 +2,8 @@ PersonComponent::Types::PersonType = GraphQL::ObjectType.define do
 	name 'Person'
 
 	field :id, !types.ID
-	field :first_name, types.String
-  field :second_name, types.String
+	field :firstName, types.String, property: :first_name
+  field :secondName, types.String, property: :second_name
   field :description, types.String
   field :attribute1, types.String
   field :attribute2, types.String

@@ -1,21 +1,20 @@
-module EventComponent
+module AuthorComponent
   module Interactors
     class ExtractAttributes
       include Interactor
 
-      EVENT_SCHEME = {
-        eventType: :event_type,
-        timestamp: :timestamp,
+      AUTHOR_SCHEME = {
+        title: :title,
         description: :description,
-        importance: :importance
+        timestamp: :timestamp,
+        reference: :reference,
+        filePath: :file_path
       }.freeze
-
 
       def call
         args = context.args
 
-        # extract event attributes
-        attributes        = extract_attributes(EVENT_SCHEME, args)
+        attributes        = extract_attributes(AUTHOR_SCHEME, args)
         attributes[:user] = context.ctx[:current_user]
 
         context.attributes = attributes
