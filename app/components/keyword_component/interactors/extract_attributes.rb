@@ -10,10 +10,7 @@ module KeywordComponent
 
       def call
         args = context.args
-
-        attributes        = extract_attributes(KEYWORD_SCHEME, args)
-        attributes[:user] = context.ctx[:current_user]
-
+        attributes = extract_attributes(KEYWORD_SCHEME, args)
         context.attributes = attributes
       end
 
