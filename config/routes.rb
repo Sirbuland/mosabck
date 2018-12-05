@@ -7,7 +7,22 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :authors
     resources :approved_users
+    resources :asset_mappings
+    resources :crypto_assets
+    resources :dashboards
+    resources :events
+    resources :exchanges
+    resources :keywords
+    resources :merchants
+    resources :panels
+    resources :people
+    resources :researches
+    resources :resources
+    resources :vars
+    resources :videos
+    resources :wallets
 
     get 'feedbacks/download', to: 'feedbacks#download'
     resources :feedbacks, path: 'feedback', only: %i[index show destroy]
