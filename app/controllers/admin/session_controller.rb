@@ -47,7 +47,7 @@ module Admin
     def current_user
       token = session[:token]
       if token.present?
-        data = ::JsonWebToken.decode(token).first
+        data = JsonWebToken.secret_key_decode(token).first
         @user = User.find(data['user_id'])
       end
       @user

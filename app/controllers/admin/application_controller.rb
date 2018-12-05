@@ -16,7 +16,7 @@ module Admin
     def authenticate_admin
       token = session[:token]
       if token.present?
-        user_id = JsonWebToken.decode(token).first.fetch('user_id')
+        user_id = JsonWebToken.secret_key_decode(token).first.fetch('user_id')
         user = User.find_by_id(user_id)
         redirect_to_login unless user.present?
       else
