@@ -38,4 +38,7 @@ MutationType = GraphQL::ObjectType.define do
   field :createEvent, field: EventComponent::Mutations::CreateEvent.field
   field :createWallet, field: WalletComponent::Mutations::CreateWallet.field
   field :createCryptoAsset, field: CryptoAssetComponent::Mutations::CreateCryptoAsset.field
+  field :createResource, field: ResourceComponent::Mutations::CreateResource.field
+  field :createAuthor, field: AuthorComponent::Mutations::CreateAuthor.field
+  field :createKeyword, field: KeywordComponent::Mutations::CreateKeyword.field
 end

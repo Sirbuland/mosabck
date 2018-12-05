@@ -13,10 +13,7 @@ module AuthorComponent
 
       def call
         args = context.args
-
-        attributes        = extract_attributes(AUTHOR_SCHEME, args)
-        attributes[:user] = context.ctx[:current_user]
-
+        attributes = extract_attributes(AUTHOR_SCHEME, args)
         context.attributes = attributes
       end
 

@@ -4,12 +4,8 @@ KeywordComponent::Mutations::CreateKeyword = GraphQL::Relay::Mutation.define do
 
 	return_field :keyword, KeywordComponent::Types::KeywordType
 
-  input_field :sourceUrl, types.String
-  input_field :title, types.String
+  input_field :name, types.String
   input_field :description, types.String
-  input_field :timestamp, MiscComponent::Types::DateTimeType
-  input_field :reference, types.String
-  input_field :filePath, types.String
 
 	resolve KeywordComponent::Resolvers::CreateKeywordResolver.new
 end
