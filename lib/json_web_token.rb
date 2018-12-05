@@ -6,6 +6,9 @@ class JsonWebToken
   #   payload.reverse_merge!(meta)
   #   JWT.encode(payload, Rails.application.secrets.secret_key_base)
   # end
+  def self.secret_key_decode(token)
+    JWT.decode(token, Rails.application.secrets.secret_key_base, false)
+  end
 
   def self.decode(token)
     JWT.decode(token, nil,
