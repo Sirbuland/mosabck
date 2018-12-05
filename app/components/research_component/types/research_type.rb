@@ -2,7 +2,7 @@ ResearchComponent::Types::ResearchType = GraphQL::ObjectType.define do
   name 'Research'
 
   field :id, !types.ID
-  field :research_type, types.String
+  field :researchType, types.String, property: :research_type
   field :sourceUrl, types.String, property: :source_url
   field :title, types.String
   field :description, types.String
@@ -18,6 +18,11 @@ ResearchComponent::Types::ResearchType = GraphQL::ObjectType.define do
   field :createdAt do
     type MiscComponent::Types::DateTimeType
     resolve ->(research, _args, _ctx) { research.created_at }
+  end
+
+  field :keywords do
+    type types[KeywordComponent::Types::KeywordType]
+    resolve ->(research, _args, _ctx) { research.keywords }
   end
   
 end
