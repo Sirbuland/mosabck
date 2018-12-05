@@ -1,4 +1,5 @@
 class Wallet < ApplicationRecord
+  include AssetMappingLinkage
+  
   belongs_to :user
-  has_many :asset_mappings
 end
