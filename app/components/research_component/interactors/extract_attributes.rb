@@ -8,7 +8,7 @@ module ResearchComponent
         sourceUrl: :source_url,
         title: :title,
         description: :description,
-        timestamp: :timestamp,
+        dateAuthored: :date_authored,
         reference: :reference,
         filePath: :file_path
       }.freeze
