@@ -12,10 +12,11 @@ class MerchantDashboard < Administrate::BaseDashboard
     asset_processor: Field::String,
     merchant: Field::String,
     source_url: Field::String,
-    description: Field::String,
+    description: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     user: Field::BelongsTo,
+    crypto_assets: Field::HasMany,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -31,6 +32,7 @@ class MerchantDashboard < Administrate::BaseDashboard
     :description,
     :created_at,
     :user,
+    :crypto_assets,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -44,6 +46,7 @@ class MerchantDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :user,
+    :crypto_assets,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -55,6 +58,7 @@ class MerchantDashboard < Administrate::BaseDashboard
     :source_url,
     :description,
     :user,
+    :crypto_assets,
   ].freeze
 
   # Overwrite this method to customize how merchants are displayed

@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :address_trackers
     resources :authors
     resources :approved_users
-    resources :asset_mappings
     resources :crypto_assets
     resources :dashboards
     resources :events

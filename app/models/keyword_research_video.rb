@@ -1,5 +1,5 @@
 class KeywordResearchVideo < ApplicationRecord
-  belongs_to :keyword
-  belongs_to :research
-  belongs_to :video
+  belongs_to :keyword, optional: true
+  belongs_to :research, optional: true
+  belongs_to :video, optional: true
 end

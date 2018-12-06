@@ -12,13 +12,23 @@ class ResearchDashboard < Administrate::BaseDashboard
     research_type: Field::String,
     source_url: Field::String,
     title: Field::String,
-    description: Field::String,
-    timestamp: Field::DateTime,
+    description: Field::Text,
+    date_authored: Field::DateTime,
     reference: Field::String,
     file_path: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     user: Field::BelongsTo,
+    secondary_crypto_assets: Field::HasMany.with_options(
+      source: :crypto_asset,
+      class_name: "CryptoAsset"
+    ),
+    # primary_crypto_asset: Field::BelongsTo.with_options(
+    #   class_name: "CryptoAsset",
+    #   foreign_key: :crypto_asset_id
+    # ),
+    keywords: Field::HasMany,
+    authors: Field::HasMany
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -31,13 +41,16 @@ class ResearchDashboard < Administrate::BaseDashboard
     :research_type,
     :source_url,
     :title,
-    :description,
-    :timestamp,
+    :date_authored,
     :reference,
     :file_path,
+    :description,
     :created_at,
     :updated_at,
     :user,
+    :secondary_crypto_assets,
+    :authors,
+    :keywords
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -47,13 +60,16 @@ class ResearchDashboard < Administrate::BaseDashboard
     :research_type,
     :source_url,
     :title,
-    :description,
-    :timestamp,
+    :date_authored,
     :reference,
     :file_path,
+    :description,
     :created_at,
     :updated_at,
     :user,
+    :secondary_crypto_assets,
+    :authors,
+    :keywords
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -63,11 +79,14 @@ class ResearchDashboard < Administrate::BaseDashboard
     :research_type,
     :source_url,
     :title,
-    :description,
-    :timestamp,
+    :date_authored,
     :reference,
     :file_path,
+    :description,
     :user,
+    :secondary_crypto_assets,
+    :authors,
+    :keywords
   ].freeze
 
   # Overwrite this method to customize how researches are displayed
@@ -76,4 +95,5 @@ class ResearchDashboard < Administrate::BaseDashboard
   # def display_resource(research)
   #   "Research ##{research.id}"
   # end
+
 end

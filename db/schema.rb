@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181130183014) do
+ActiveRecord::Schema.define(version: 20181206110403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "address_trackers", force: :cascade do |t|
+    t.string "address_type"
+    t.string "address"
+    t.string "tags"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_address_trackers_on_user_id"
+  end
 
   create_table "app_settings", force: :cascade do |t|
     t.string "name"
@@ -39,6 +49,8 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.bigint "crypto_asset_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "address_tracker_id"
+    t.index ["address_tracker_id"], name: "index_asset_mappings_on_address_tracker_id"
     t.index ["crypto_asset_id"], name: "index_asset_mappings_on_crypto_asset_id"
     t.index ["event_id"], name: "index_asset_mappings_on_event_id"
     t.index ["exchange_id"], name: "index_asset_mappings_on_exchange_id"
@@ -69,7 +81,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -106,11 +118,12 @@ ActiveRecord::Schema.define(version: 20181130183014) do
   create_table "events", force: :cascade do |t|
     t.bigint "user_id"
     t.string "event_type"
-    t.string "timestamp"
-    t.string "description"
+    t.text "description"
     t.string "importance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "event_date"
+    t.string "event_title"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -163,7 +176,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
 
   create_table "keywords", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -190,7 +203,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.string "asset_processor"
     t.string "merchant"
     t.string "source_url"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_merchants_on_user_id"
@@ -232,7 +245,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
   create_table "people", force: :cascade do |t|
     t.string "first_name"
     t.string "second_name"
-    t.string "description"
+    t.text "description"
     t.string "attribute1"
     t.string "attribute2"
     t.bigint "video_id"
@@ -258,18 +271,20 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.string "research_type"
     t.string "source_url"
     t.string "title"
-    t.string "description"
-    t.datetime "timestamp"
+    t.text "description"
     t.string "reference"
     t.string "file_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "date_authored"
+    t.bigint "crypto_asset_id"
+    t.index ["crypto_asset_id"], name: "index_researches_on_crypto_asset_id"
     t.index ["user_id"], name: "index_researches_on_user_id"
   end
 
   create_table "resources", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "attribute1"
     t.string "attribute2"
     t.bigint "event_id"
@@ -380,7 +395,7 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.string "video_type"
     t.string "title"
     t.string "timestamp"
-    t.string "description"
+    t.text "description"
     t.string "source_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -392,14 +407,16 @@ ActiveRecord::Schema.define(version: 20181130183014) do
     t.string "name"
     t.string "number_major_wallets"
     t.string "number_mobile_wallets"
-    t.string "description"
+    t.text "description"
     t.string "image_link"
     t.string "source_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "entry_date"
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
+  add_foreign_key "address_trackers", "users"
   add_foreign_key "asset_mappings", "crypto_assets"
   add_foreign_key "asset_mappings", "events"
   add_foreign_key "asset_mappings", "exchanges"

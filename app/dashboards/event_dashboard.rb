@@ -9,10 +9,13 @@ class EventDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
+    crypto_assets: Field::HasMany,
+    resources: Field::HasMany,
     id: Field::Number,
     event_type: Field::String,
-    timestamp: Field::String,
-    description: Field::String,
+    event_date: Field::String,
+    event_title: Field::String,
+    description: Field::Text,
     importance: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -26,11 +29,14 @@ class EventDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :event_type,
-    :timestamp,
+    :event_date,
+    :event_title,
     :description,
     :importance,
     :created_at,
     :user,
+    :crypto_assets,
+    :resources
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -38,12 +44,15 @@ class EventDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :id,
     :event_type,
-    :timestamp,
-    :description,
+    :event_date,
+    :event_title,
     :importance,
     :created_at,
     :updated_at,
+    :description,
     :user,
+    :crypto_assets,
+    :resources
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -51,10 +60,13 @@ class EventDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :event_type,
-    :timestamp,
-    :description,
+    :event_date,
+    :event_title,
     :importance,
+    :description,
     :user,
+    :crypto_assets,
+    :resources
   ].freeze
 
   # Overwrite this method to customize how events are displayed
