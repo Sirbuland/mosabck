@@ -10,7 +10,7 @@ class ResourceDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     name: Field::String,
-    description: Field::String,
+    description: Field::Text,
     attribute1: Field::String,
     attribute2: Field::String,
     created_at: Field::DateTime,

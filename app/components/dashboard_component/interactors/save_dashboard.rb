@@ -9,8 +9,6 @@ module DashboardComponent
 
         # create dashboard
         dashboard = context.dashboard || Dashboard.new
-        p "=-=-=-=-=-\n"*4
-        p context.attributes.inspect
         dashboard.update!(context.attributes)
 
         # create each panel

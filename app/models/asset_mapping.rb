@@ -6,4 +6,5 @@ class AssetMapping < ApplicationRecord
   belongs_to :wallet, optional: :true
   belongs_to :video, optional: :true
   belongs_to :crypto_asset, optional: :true
+  belongs_to :address_tracker, optional: :true
 end

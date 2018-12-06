@@ -11,7 +11,7 @@ class PersonDashboard < Administrate::BaseDashboard
     id: Field::Number,
     first_name: Field::String,
     second_name: Field::String,
-    description: Field::String,
+    description: Field::Text,
     attribute1: Field::String,
     attribute2: Field::String,
     created_at: Field::DateTime,

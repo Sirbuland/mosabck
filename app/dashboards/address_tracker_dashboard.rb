@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ExchangeDashboard < Administrate::BaseDashboard
+class AddressTrackerDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,10 +9,10 @@ class ExchangeDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
-    crypto_assets: Field::HasMany,
     id: Field::Number,
-    exchange: Field::String,
-    vetted: Field::String,
+    address_type: Field::String,
+    address: Field::String,
+    tags: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -24,38 +24,38 @@ class ExchangeDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
-    :exchange,
-    :vetted,
+    :address_type,
+    :address,
+    :tags,
     :user,
-    :crypto_assets,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :exchange,
-    :vetted,
+    :address_type,
+    :address,
+    :tags,
+    :user,
     :created_at,
     :updated_at,
-    :user,
-    :crypto_assets,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :exchange,
-    :vetted,
     :user,
-    :crypto_assets,
+    :address_type,
+    :address,
+    :tags,
   ].freeze
 
-  # Overwrite this method to customize how exchanges are displayed
+  # Overwrite this method to customize how address trackers are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(exchange)
-  #   "Exchange ##{exchange.id}"
+  # def display_resource(address_tracker)
+  #   "AddressTracker ##{address_tracker.id}"
   # end
 end
