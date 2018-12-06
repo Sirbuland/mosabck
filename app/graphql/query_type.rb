@@ -156,11 +156,12 @@ QueryType = GraphQL::ObjectType.define do
       resolve ResourceComponent::Resolvers::GetResourcesResolver.new
     end
 
-  field :allResearches do
-    type types[ResearchComponent::Types::ResearchType]
-    resolve -> (_obj, _args, _ctx) do 
-      Research.all
-    end
+  connection :allResearches, ResearchComponent::Types::ResearchType.connection_type do
+    description 'All researches'
+    argument :searchTerm, types.String
+    argument :searchBy, types[ResearchComponent::Types::ResearchSearchByType]
+
+    resolve ResearchComponent::Resolvers::SearchResearchesResolver.new
   end
 
   connection :getResearches,

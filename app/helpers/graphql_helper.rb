@@ -19,10 +19,9 @@ module GraphqlHelper
                      email: 'email',
                      first_name: 'firstName',
                      last_name: 'lastName' }.freeze
-  RESEARCH_SEARCH_BY = { username: 'displayName',
-                     email: 'email',
-                     first_name: 'firstName',
-                     last_name: 'lastName' }.freeze
+  RESEARCH_SEARCH_BY = {
+                     date_authored: 'date_authored',
+                     research_type: 'research_type' }.freeze
   USER_SEARCH_BY_TRANSLATIONS = { displayName: :username,
                                   email: :email }.freeze
   GEO_TAGGED_TYPES_FILTER = {
