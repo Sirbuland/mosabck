@@ -166,6 +166,7 @@ QueryType = GraphQL::ObjectType.define do
   connection :getResearches,
     ResearchComponent::Types::ResearchType.connection_type do
       description 'returns User Research'
+      argument :searchBy, types[ResearchComponent::Types::ResearchSearchByType]
       argument :ids, types[!types.ID]
       
       resolve ResearchComponent::Resolvers::GetResearchesResolver.new
