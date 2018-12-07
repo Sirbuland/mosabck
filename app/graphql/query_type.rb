@@ -160,6 +160,7 @@ QueryType = GraphQL::ObjectType.define do
     description 'All researches'
     argument :searchTerm, types.String
     argument :searchBy, types[ResearchComponent::Types::ResearchSearchByType]
+    argument :orderBy, ResearchComponent::Types::ResearchOrderByType
 
     resolve ResearchComponent::Resolvers::SearchResearchesResolver.new
   end
