@@ -4,6 +4,7 @@ module ResearchComponent
       def call(_obj, args, _ctx)
         search_term = args[:searchTerm]
         search_by = args[:searchBy].presence || ['researchType']
+        order_by = args[:orderBy]
 
         research_query = Research.all
         if search_term.present? && search_by.present?
@@ -14,6 +15,7 @@ module ResearchComponent
               research_query.where("#{field} ilike ?", "%#{search_term}%")
           end
         end
+        research_query = research_query.order('rating DESC') if order_by.present?
 
         research_query
       end
