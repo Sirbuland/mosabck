@@ -9,4 +9,8 @@ class Research < ApplicationRecord
   has_many :author_researches, dependent: :destroy
   has_many :authors, through: :author_researches
 
+  def self.order_researches(field, direction = "DESC")
+  	order("#{field} #{direction}")
+  end
+
 end
