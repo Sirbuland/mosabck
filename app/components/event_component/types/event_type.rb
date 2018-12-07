@@ -3,7 +3,8 @@ EventComponent::Types::EventType = GraphQL::ObjectType.define do
 
   field :id, !types.ID
   field :eventType, types.String, property: :event_type
-  field :timestamp, MiscComponent::Types::DateTimeType
+  field :eventDate, MiscComponent::Types::DateTimeType, property: :event_date
+  field :eventTitle, types.String, property: :event_title
   field :description, types.String
   field :importance, types.String
 
