@@ -6,6 +6,7 @@ WalletComponent::Types::WalletType = GraphQL::ObjectType.define do
   field :description, types.String
   field :imageLink, types.String, property: :image_link
   field :sourceLink, types.String, property: :source_link
+  field :entryDate, types.String, property: :entry_date
 
 	field :updatedAt do
     type MiscComponent::Types::DateTimeType
