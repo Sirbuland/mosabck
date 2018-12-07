@@ -3,6 +3,6 @@ class CryptoAsset < ApplicationRecord
 
   # has_one :research, foreign_key: :crypto_asset_id
 	has_many :merchants, through: :asset_mappings
-	has_many :researches, through: :asset_mappings, class_name: "CryptoAsset"
+	has_many :researches, through: :asset_mappings
 	has_many :exchanges, through: :asset_mappings
 end

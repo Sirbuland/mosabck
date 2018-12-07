@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181206110403) do
+ActiveRecord::Schema.define(version: 20181207100641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,6 +278,7 @@ ActiveRecord::Schema.define(version: 20181206110403) do
     t.datetime "updated_at", null: false
     t.datetime "date_authored"
     t.bigint "crypto_asset_id"
+    t.integer "rating", default: 0
     t.index ["crypto_asset_id"], name: "index_researches_on_crypto_asset_id"
     t.index ["user_id"], name: "index_researches_on_user_id"
   end

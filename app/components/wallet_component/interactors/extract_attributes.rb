@@ -7,7 +7,8 @@ module WalletComponent
         name: :name,
         description: :description,
         imageLink: :image_link,
-        sourceLink: :source_link
+        sourceLink: :source_link,
+        entryDate: :entry_date
       }.freeze
 
       def call

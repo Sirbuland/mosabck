@@ -11,6 +11,13 @@ ResearchComponent::Mutations::CreateResearch = GraphQL::Relay::Mutation.define d
   input_field :dateAuthored, MiscComponent::Types::DateTimeType
   input_field :reference, types.String
   input_field :filePath, types.String
+  input_field :authors,
+    types[ResearchComponent::Types::Inputs::AuthorInputType]
+  input_field :keywords,
+    types[ResearchComponent::Types::Inputs::KeywordInputType]
+
+  input_field :secondaryCryptoAssets,
+    types[ResearchComponent::Types::Inputs::CryptoAssetInputType]
 
 	resolve ResearchComponent::Resolvers::CreateResearchResolver.new
 end
