@@ -10,6 +10,7 @@ ResearchComponent::Mutations::CreateResearch = GraphQL::Relay::Mutation.define d
   input_field :description, types.String
   input_field :dateAuthored, MiscComponent::Types::DateTimeType
   input_field :reference, types.String
+  input_field :rating, types.Int
   input_field :filePath, types.String
   input_field :authors,
     types[ResearchComponent::Types::Inputs::AuthorInputType]
