@@ -92,8 +92,8 @@ class ResearchDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how researches are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(research)
-  #   "Research ##{research.id}"
-  # end
+  def display_resource(research)
+    "##{research.id} #{research.title}"
+  end
 
 end

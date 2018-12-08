@@ -13,7 +13,7 @@ class EventDashboard < Administrate::BaseDashboard
     resources: Field::HasMany,
     id: Field::Number,
     event_type: Field::String,
-    event_date: Field::String,
+    event_date: Field::DateTime,
     event_title: Field::String,
     description: Field::Text,
     importance: Field::String,
