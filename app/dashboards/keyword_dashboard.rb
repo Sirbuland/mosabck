@@ -48,7 +48,7 @@ class KeywordDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how keywords are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(keyword)
-  #   "Keyword ##{keyword.id}"
-  # end
+  def display_resource(keyword)
+    "#{keyword.name}"
+  end
 end

@@ -51,7 +51,7 @@ class AuthorDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how authors are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(author)
-  #   "Author ##{author.id}"
-  # end
+  def display_resource(author)
+    "#{author.name}"
+  end
 end

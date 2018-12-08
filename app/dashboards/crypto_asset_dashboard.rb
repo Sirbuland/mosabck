@@ -51,7 +51,7 @@ class CryptoAssetDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how crypto assets are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(crypto_asset)
-  #   "CryptoAsset ##{crypto_asset.id}"
-  # end
+  def display_resource(crypto_asset)
+    "#{crypto_asset.name}"
+  end
 end
