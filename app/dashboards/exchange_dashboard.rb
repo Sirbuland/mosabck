@@ -12,7 +12,7 @@ class ExchangeDashboard < Administrate::BaseDashboard
     crypto_assets: Field::HasMany,
     id: Field::Number,
     exchange: Field::String,
-    vetted: Field::String,
+    vetted: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
