@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.3'
+gem 'rails', '~> 5.2.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 
@@ -23,7 +23,7 @@ gem 'coffee-rails'
 gem 'sass-rails'
 gem 'uglifier'
 
-gem 'interactor-rails'
+gem 'interactor-rails', '~> 2.2.0'
 gem 'jwt'
 gem 'migration_data'
 
@@ -68,6 +68,9 @@ gem 'sidekiq-scheduler'
 
 # Password
 gem 'bcrypt'
+
+# optimize and cache expensive computations
+gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
