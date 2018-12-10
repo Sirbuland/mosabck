@@ -2,6 +2,7 @@ require 'json_web_token'
 
 module Admin
   class SessionController < ActionController::Base
+    skip_before_action :verify_authenticity_token
     include Pundit
 
     def login

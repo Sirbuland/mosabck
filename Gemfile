@@ -30,7 +30,7 @@ gem 'migration_data'
 gem 'activerecord-postgis-adapter'
 
 # Admin panel
-gem 'administrate', github: 'thoughtbot/administrate'
+gem 'administrate', '~> 0.10.0'
 gem 'administrate-field-json', github: 'eddietejeda/administrate-field-json'
 gem 'hamlit'
 
@@ -85,6 +85,8 @@ group :development, :test do
   gem 'rubocop', '~> 0.49.1', require: false
   gem 'shoulda-matchers', require: false
   gem 'timecop'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do

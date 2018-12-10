@@ -11,6 +11,7 @@ require 'routes_filter'
 
 module Admin
   class ApplicationController < Administrate::ApplicationController
+    skip_before_action :verify_authenticity_token
     before_action :authenticate_admin
 
     def authenticate_admin
