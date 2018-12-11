@@ -30,6 +30,12 @@ module ResearchComponent
         attribute2: :attribute2
       }.freeze
 
+      VOTES_FOR_SCHEME = {
+        voterId: :voter_id,
+        votableId: :votable_id,
+        voterType: :voter_type
+      }.freeze
+
       def call
         args = context.args
 
@@ -42,6 +48,8 @@ module ResearchComponent
         keywords_attributes( args[:keywords], attributes )
         # extract secondary crypto_asset attributes
         crypto_assets_attributes( args[:secondaryCryptoAssets], attributes )
+        # extract voter attributes
+        votes_for_attributes( args[:votesFor], attributes )
 
         context.attributes = attributes
       end
@@ -77,6 +85,17 @@ module ResearchComponent
           # extract each crypto_asset attributes
           crypto_assets.each_with_index do |crypto_asset_args, crypto_asset_i|
             research_attributes[:crypto_assets][crypto_asset_i] = extract_attributes(CRYPTO_ASSET_SCHEME, crypto_asset_args)
+          end
+        end
+      end
+
+      def votes_for_attributes votes, research_attributes
+        if votes
+          research_attributes[:votes_for] = {}
+
+          # extract each crypto_asset attributes
+          votes.each_with_index do |votes_for_args, votes_for_i|
+            research_attributes[:votes_for][votes_for_i] = extract_attributes(VOTES_FOR_SCHEME, votes_for_args)
           end
         end
       end

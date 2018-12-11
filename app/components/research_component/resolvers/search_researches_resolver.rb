@@ -4,7 +4,7 @@ module ResearchComponent
       def call(_obj, args, _ctx)
         search_term = args[:searchTerm]
         search_by = args[:searchBy].presence || ['researchType']
-        order_by = args[:orderBy].gsub('_DESC', '').gsub('_ASC', '')
+        order_by = args[:orderBy].gsub('_DESC', '').gsub('_ASC', '') if args[:orderBy]
 
         research_query = Research.all
         if search_term.present? && search_by.present?

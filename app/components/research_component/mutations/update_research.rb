@@ -21,5 +21,8 @@ ResearchComponent::Mutations::UpdateResearch =
 	  input_field :secondaryCryptoAssets,
 	    types[ResearchComponent::Types::Inputs::CryptoAssetInputType]
 
+	  input_field :votesFor,
+    	types[ResearchComponent::Types::Inputs::VoteForInputType]
+
     resolve ResearchComponent::Resolvers::UpdateResearchResolver.new
 end

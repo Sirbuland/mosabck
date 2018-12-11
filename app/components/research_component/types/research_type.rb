@@ -8,8 +8,8 @@ ResearchComponent::Types::ResearchType = GraphQL::ObjectType.define do
   field :description, types.String
   field :dateAuthored, MiscComponent::Types::DateTimeType, property: :date_authored
   field :reference, types.String
-  field :rating, types.Int
   field :filePath, types.String, property: :file_path
+  field :cachedVotesTotal, types.String, property: :cached_votes_total
 
   field :updatedAt do
     type MiscComponent::Types::DateTimeType
@@ -34,6 +34,11 @@ ResearchComponent::Types::ResearchType = GraphQL::ObjectType.define do
   field :keywords do
     type types[KeywordComponent::Types::KeywordType]
     resolve ->(research, _args, _ctx) { research.keywords }
+  end
+
+  field :votesFor do
+    type types[MiscComponent::Types::VoteType]
+    resolve ->(research, _args, _ctx) { research.votes_for }
   end
 
 end

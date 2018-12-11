@@ -1,5 +1,12 @@
 class Research < ApplicationRecord
   include AssetMappingLinkage
+  # include votable functionality
+  acts_as_votable
+
+  ORDER_FIELD_NAMES = {
+    "rating" => "cached_votes_total",
+    "date_authored" => "date_authored"
+  }
 	
   belongs_to :user
   # belongs_to :primary_crypto_asset, class_name: "CryptoAsset"
@@ -10,7 +17,9 @@ class Research < ApplicationRecord
   has_many :authors, through: :author_researches
 
   def self.order_researches(field, direction = "DESC")
-  	order("#{field} #{direction}")
+  	order("#{ORDER_FIELD_NAMES[field]} #{direction}")
   end
+
+  has_one_attached :attachment
 
 end
