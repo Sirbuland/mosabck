@@ -19,6 +19,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     user: Field::BelongsTo,
+    attachment: Field::ActiveStorage,
     secondary_crypto_assets: Field::HasMany.with_options(
       source: :crypto_asset,
       class_name: "CryptoAsset"
@@ -64,6 +65,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :reference,
     :file_path,
     :description,
+    :attachment,
     :created_at,
     :updated_at,
     :user,
@@ -83,6 +85,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :reference,
     :file_path,
     :description,
+    :attachment,
     :user,
     :secondary_crypto_assets,
     :authors,
