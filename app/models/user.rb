@@ -4,6 +4,8 @@ class User < ApplicationRecord
   #  TODO: Re-enable when Notifications are there
   # include SmsVerifiable
   include EmailConfirmable
+  # user will act as voter for votables
+  acts_as_voter
 
   has_many :auth_identities, dependent: :destroy
   has_many :user_devices, dependent: :destroy

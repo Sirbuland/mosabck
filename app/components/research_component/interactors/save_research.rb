@@ -7,6 +7,7 @@ module ResearchComponent
         authors = context.attributes.delete(:authors)
         keywords = context.attributes.delete(:keywords)
         crypto_assets = context.attributes.delete(:crypto_assets)
+        votes_for = context.attributes.delete(:votes_for)
 
         # find or initialize research
         research = context.research || Research.new
@@ -19,6 +20,8 @@ module ResearchComponent
         create_keywords( keywords, research ) if keywords
         # create associated secndary crypto_assets for research
         create_crypto_assets( crypto_assets, research ) if crypto_assets
+        # cast vote for research
+        cast_votes_on_research( votes_for, research ) if votes_for
 
         context.research = research
       end
@@ -46,6 +49,13 @@ module ResearchComponent
           crypto_asset_attributes[:researches] = [research]
           crypto_asset = CryptoAsset.new(crypto_asset_attributes)
           crypto_asset.save!
+        end
+      end
+
+      def cast_votes_on_research votes_for, research
+        votes_for.each do |votes_for_i, votes_for_attributes|
+          voter = User.find_by id: votes_for_attributes[:voter_id]
+          research.vote_by voter: voter
         end
       end
     end

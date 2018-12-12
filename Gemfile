@@ -32,6 +32,9 @@ gem 'activerecord-postgis-adapter'
 # Admin panel
 gem 'administrate', '~> 0.10.0'
 gem 'administrate-field-json', github: 'eddietejeda/administrate-field-json'
+# Extension of administrate gem to support rails 5.2 active_storage
+gem 'administrate-field-active_storage'
+
 gem 'hamlit'
 
 # Miscellaneous
@@ -71,6 +74,12 @@ gem 'bcrypt'
 
 # optimize and cache expensive computations
 gem 'bootsnap', require: false
+
+# aws sdk specifically for s3 services
+gem "aws-sdk-s3", require: false
+
+# handle ratings and vote casting logic
+gem 'acts_as_votable'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
