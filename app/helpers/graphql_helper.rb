@@ -7,7 +7,7 @@ module GraphqlHelper
                       updated_at_desc: 'updatedAt_DESC',
                       display_name_alph: 'displayName_alph',
                       date_authored: 'dateAuthored_DESC',
-                      rating: 'rating_DESC'
+                      cached_votes_total: 'cachedVotesTotal_DESC'
                     }.freeze
   ORDER_BY_FIELDS_TRANSLATIONS = { createdAt_ASC: 'created_at ASC',
                                    createdAt_DESC: 'created_at DESC',
