@@ -2,8 +2,10 @@ AuthorComponent::Types::AuthorType = GraphQL::ObjectType.define do
 	name 'author'
 
 	field :id,    !types.ID
-	field :name,   types.String
   field :description, types.String
+  field :avatarUrl, types.String, property: :avatar_url
+  field :profession, types.String
+  field :username, types.String
 
 	field :updatedAt do
     type MiscComponent::Types::DateTimeType
