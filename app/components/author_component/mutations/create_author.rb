@@ -6,7 +6,7 @@ AuthorComponent::Mutations::CreateAuthor = GraphQL::Relay::Mutation.define do
 
   input_field :name, types.String
   input_field :description, types.String
-  input_field :avatar, ApolloUploadServer::Upload
+  input_field :avatar, types.String
   input_field :username, types.String
   input_field :profession, types.String
 
