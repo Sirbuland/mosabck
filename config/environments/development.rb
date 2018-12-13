@@ -28,7 +28,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
   
   # Use mailcatcher, basic configuration
   config.action_mailer.delivery_method = :smtp
@@ -63,3 +63,5 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+
+Rails.application.routes.default_url_options[:host] = ENV['DEFAULT_URL_OPTION']

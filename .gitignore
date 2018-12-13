@@ -45,3 +45,8 @@ dump.rdb
 
 # Configurations
 config/sunspot.yml
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+/storage/*
