@@ -4,11 +4,10 @@ module AuthorComponent
       include Interactor
 
       AUTHOR_SCHEME = {
-        title: :title,
         description: :description,
-        timestamp: :timestamp,
-        reference: :reference,
-        filePath: :file_path
+        username: :username,
+        profession: :profession,
+        avatar: :avatar        
       }.freeze
 
       def call

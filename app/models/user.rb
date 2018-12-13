@@ -7,6 +7,9 @@ class User < ApplicationRecord
   # user will act as voter for votables
   acts_as_voter
 
+  has_one_attached :avatar
+  attribute :avatar_url
+
   has_many :auth_identities, dependent: :destroy
   has_many :user_devices, dependent: :destroy
   has_many :contact_methods, dependent: :destroy
@@ -35,7 +38,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :auth_identities
 
   validates :username, uniqueness: true, allow_blank: true
-  validates :avatar_url, url: { allow_blank: true }
+  # validates :avatar_url, url: { allow_blank: true }
   # searchkick word_middle: [:username, :email]
 
   def self.find_by_email(email)
@@ -103,5 +106,9 @@ class User < ApplicationRecord
   def role?(role_to_check)
     role_to_check = role_to_check.to_s
     roles.any? { |role| role.name == role_to_check }
+  end
+
+  def avatar_url
+    avatar.service_url if avatar.attached?
   end
 end

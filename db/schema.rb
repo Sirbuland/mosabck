@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_190756) do
+ActiveRecord::Schema.define(version: 2018_12_13_144931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -388,7 +388,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_190756) do
     t.string "username"
     t.integer "auth_identity_id"
     t.string "password"
-    t.string "avatar_url"
     t.boolean "subscribed_to_newsletter", default: false
     t.datetime "birthdate"
     t.string "confirm_token"
@@ -400,6 +399,8 @@ ActiveRecord::Schema.define(version: 2018_12_11_190756) do
     t.string "last_name"
     t.string "sex", default: "Not decided"
     t.boolean "hidden", default: false
+    t.string "profession"
+    t.string "description"
     t.index ["auth_identity_id"], name: "index_users_on_auth_identity_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"
@@ -462,7 +463,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_190756) do
   add_foreign_key "asset_mappings", "videos"
   add_foreign_key "asset_mappings", "wallets"
   add_foreign_key "auth_identities", "users"
-  add_foreign_key "author_researches", "authors"
   add_foreign_key "author_researches", "researches"
   add_foreign_key "contact_methods", "users"
   add_foreign_key "dashboards", "users"

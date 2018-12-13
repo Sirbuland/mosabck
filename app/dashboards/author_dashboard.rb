@@ -10,7 +10,8 @@ class AuthorDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     researches: Field::HasMany,
     id: Field::Number,
-    name: Field::String,
+    username: Field::String,
+    profession: Field::String,
     description: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -23,8 +24,9 @@ class AuthorDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
-    :name,
+    :username,
     :description,
+    :profession,
     :researches,
   ].freeze
 
@@ -32,8 +34,9 @@ class AuthorDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :name,
+    :username,
     :description,
+    :profession,
     :created_at,
     :updated_at,
     :researches,
@@ -43,7 +46,8 @@ class AuthorDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :name,
+    :username,
+    :profession,
     :description,
     :researches,
   ].freeze
@@ -52,6 +56,6 @@ class AuthorDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(author)
-    "#{author.name}"
+    "#{author.username}"
   end
 end
