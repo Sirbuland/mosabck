@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_13_191341) do
+ActiveRecord::Schema.define(version: 2018_12_14_143653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,7 +114,9 @@ ActiveRecord::Schema.define(version: 2018_12_13_191341) do
     t.bigint "dashboard_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "panel_id"
     t.index ["dashboard_id"], name: "index_coins_on_dashboard_id"
+    t.index ["panel_id"], name: "index_coins_on_panel_id"
   end
 
   create_table "contact_methods", force: :cascade do |t|
@@ -475,6 +477,7 @@ ActiveRecord::Schema.define(version: 2018_12_13_191341) do
   add_foreign_key "auth_identities", "users"
   add_foreign_key "author_researches", "researches"
   add_foreign_key "coins", "dashboards"
+  add_foreign_key "coins", "panels"
   add_foreign_key "contact_methods", "users"
   add_foreign_key "dashboards", "users"
   add_foreign_key "events", "users"

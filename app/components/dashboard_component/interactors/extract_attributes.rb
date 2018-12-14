@@ -56,6 +56,11 @@ module DashboardComponent
                 attributes[:panels][panel_i][:panel_vars][panel_var_i] = extract_attributes(VAR_SCHEME, panel_var_args)
               end
             end
+
+            panel_coins = panel_args[:graphCoins]
+
+            # extract coin attributes for each panel
+            coin_attributes( panel_coins, attributes[:panels][panel_i] )
           end
         end
 
@@ -66,13 +71,13 @@ module DashboardComponent
 
       private
 
-      def coin_attributes( coins, dashboard_attributes )
+      def coin_attributes( coins, parent_attributes )
         if coins
-          dashboard_attributes[:coins] = {}
+          parent_attributes[:coins] = {}
 
           # extract each coin attributes
           coins.each_with_index do |coin_args, coin_i|
-            dashboard_attributes[:coins][coin_i] = extract_attributes( COIN_SCHEME, coin_args )
+            parent_attributes[:coins][coin_i] = extract_attributes( COIN_SCHEME, coin_args )
           end
         end
       end

@@ -13,15 +13,20 @@ DashboardComponent::Types::PanelType = GraphQL::ObjectType.define do
 	field :updatedAt do
 		type MiscComponent::Types::DateTimeType
 		resolve ->(panel, _args, _ctx) { panel.updated_at }
-	  end
+  end
 
-	  field :createdAt do
+  field :createdAt do
 		type MiscComponent::Types::DateTimeType
 		resolve ->(panel, _args, _ctx) { panel.created_at }
-	  end
-	
-	  field :panelVars do
+  end
+
+  field :panelVars do
 		type types[DashboardComponent::Types::VarType]
 		resolve ->(panel, _args, _ctx) { panel.vars }
-	  end
+  end
+
+  field :graphCoins do
+  	type types[DashboardComponent::Types::CoinType]
+  	resolve ->(panel, _args, _ctx) { panel.coins }
+  end
 end
