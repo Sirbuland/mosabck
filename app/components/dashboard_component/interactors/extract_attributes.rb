@@ -25,14 +25,21 @@ module DashboardComponent
         value: :value
       }.freeze
 
+      COIN_SCHEME = {
+        text: :text,
+        value: :value,
+        selected: :selected
+      }
+
       def call
         args = context.args
 
         # extract dashboard attributes
         attributes        = extract_attributes(DASHBOARD_SCHEME, args)
         attributes[:user] = context.ctx[:current_user]
-
         panels = args[:panels]
+        coins = attributes[:coins]
+
         if panels
           attributes[:panels] = {}
 
@@ -52,10 +59,23 @@ module DashboardComponent
           end
         end
 
+        coin_attributes( args[:dashboardCoins], attributes)
+
         context.attributes = attributes
       end
 
       private
+
+      def coin_attributes( coins, dashboard_attributes )
+        if coins
+          dashboard_attributes[:coins] = {}
+
+          # extract each coin attributes
+          coins.each_with_index do |coin_args, coin_i|
+            dashboard_attributes[:coins][coin_i] = extract_attributes( COIN_SCHEME, coin_args )
+          end
+        end
+      end
 
       def extract_attributes(scheme, args)
         MiscComponent::Interactors::ExtractAttributes.call(

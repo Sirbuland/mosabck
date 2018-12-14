@@ -6,6 +6,8 @@ class User < ApplicationRecord
   include EmailConfirmable
   # user will act as voter for votables
   acts_as_voter
+  # user profile avatar
+  has_one_attached :avatar
 
   has_one_attached :avatar
   attribute :avatar_url
