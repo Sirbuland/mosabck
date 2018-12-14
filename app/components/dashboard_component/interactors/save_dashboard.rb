@@ -21,6 +21,8 @@ module DashboardComponent
           panels.each do |panel_i, panel_attributes|
             # get panel_vars attributes
             panel_vars = panel_attributes.delete(:panel_vars)
+            # get panel_coin attributes
+            panel_coins = panel_attributes.delete(:coins)
 
             # set panel dashboard
             panel_attributes[:dashboard] = dashboard
@@ -41,6 +43,9 @@ module DashboardComponent
                 panel_var = PanelVar.new(panel: panel, var: var).save!
               end
             end
+
+            # create coins for panels
+            create_panel_coins( panel_coins, panel ) if panel_coins
           end
         end
 
@@ -62,6 +67,15 @@ module DashboardComponent
           coin.save!
         end
       end
+
+      def create_panel_coins( coins, panel )
+        coins.each do |coin_i, coin_attributes|
+          coin_attributes[:panel] = panel
+          coin = Coin.new( coin_attributes )
+          coin.save!
+        end
+      end
+
     end
   end
 end
