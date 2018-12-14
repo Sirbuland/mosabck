@@ -6,6 +6,9 @@ UserComponent::Types::UserType = GraphQL::ObjectType.define do
   field :id, !types.ID
   field :bio, types.String
   field :displayName, types.String, property: :username
+  field :profession, types.String
+  field :description, types.String
+  field :username, types.String
   field :firstName, types.String, property: :first_name
   field :lastName, types.String, property: :last_name
   field :email, types.String

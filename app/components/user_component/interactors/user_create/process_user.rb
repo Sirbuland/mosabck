@@ -18,7 +18,10 @@ module UserComponent
             subscribed_to_newsletter: input[:subscribedToNewsLetter],
             birthdate: input[:birthdate],
             backgound_img_url: input[:backgroundImageUrl] || '',
-            sex: input[:sex]
+            sex: input[:sex],
+            description: input[:description],
+            username: input[:username],
+            profession: input[:profession]
           )
           Right(input)
         end
