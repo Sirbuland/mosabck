@@ -6,6 +6,7 @@ module DashboardComponent
       def call
         # get panels attributes
         panels = context.attributes.delete(:panels)
+        coins = context.attributes.delete(:coins)
 
         # create dashboard
         dashboard = context.dashboard || Dashboard.new
@@ -43,7 +44,23 @@ module DashboardComponent
           end
         end
 
+        # create dashboard associated coins
+        create_coins( coins, dashboard ) if coins
+
         context.dashboard = dashboard
+      end
+
+      private 
+
+      def create_coins( coins, dashboard )
+        # delete existing coins
+        dashboard.coins.destroy_all if dashboard.coins.present?
+
+        coins.each do |coin_i, coin_attributes|
+          coin_attributes[:dashboard] = dashboard
+          coin = Coin.new(coin_attributes)
+          coin.save!
+        end
       end
     end
   end

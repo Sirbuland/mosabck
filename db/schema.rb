@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_13_144931) do
+ActiveRecord::Schema.define(version: 2018_12_13_191341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,16 @@ ActiveRecord::Schema.define(version: 2018_12_13_144931) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "coins", force: :cascade do |t|
+    t.string "text"
+    t.string "value"
+    t.boolean "selected"
+    t.bigint "dashboard_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dashboard_id"], name: "index_coins_on_dashboard_id"
   end
 
   create_table "contact_methods", force: :cascade do |t|
@@ -464,6 +474,7 @@ ActiveRecord::Schema.define(version: 2018_12_13_144931) do
   add_foreign_key "asset_mappings", "wallets"
   add_foreign_key "auth_identities", "users"
   add_foreign_key "author_researches", "researches"
+  add_foreign_key "coins", "dashboards"
   add_foreign_key "contact_methods", "users"
   add_foreign_key "dashboards", "users"
   add_foreign_key "events", "users"
