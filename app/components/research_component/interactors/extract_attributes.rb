@@ -15,6 +15,7 @@ module ResearchComponent
       }.freeze
 
       AUTHOR_SCHEME = {
+        id: :id,
         name: :name,
         description: :description,
         profession: :profession,
