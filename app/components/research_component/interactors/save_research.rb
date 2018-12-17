@@ -14,8 +14,8 @@ module ResearchComponent
         research.assign_attributes(context.attributes)
         research.save!
 
-        # create associated authors for research
-        create_authors( authors, research ) if authors
+        # create or update associated authors for research
+        create_or_update_authors( authors, research ) if authors
         # create associated keywords for research
         create_keywords( keywords, research ) if keywords
         # create associated secndary crypto_assets for research
@@ -28,10 +28,11 @@ module ResearchComponent
 
       private
 
-      def create_authors authors, research
+      def create_or_update_authors authors, research
         authors.each do |author_i, author_attributes|
+          author = Author.find_by id: author_attributes[:id]
           author_attributes[:researches] = [research]
-          author = Author.new(author_attributes)
+          author.assign_attributes(author_attributes)
           author.save!
         end
       end
