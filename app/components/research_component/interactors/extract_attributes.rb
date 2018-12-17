@@ -16,7 +16,9 @@ module ResearchComponent
 
       AUTHOR_SCHEME = {
         name: :name,
-        description: :description
+        description: :description,
+        profession: :profession,
+        username: :username
       }.freeze
 
       KEYWORD_SCHEME = {
