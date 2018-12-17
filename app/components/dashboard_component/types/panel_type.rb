@@ -25,7 +25,7 @@ DashboardComponent::Types::PanelType = GraphQL::ObjectType.define do
 		resolve ->(panel, _args, _ctx) { panel.vars }
   end
 
-  field :graphCoins do
+  field :grafCoins do
   	type types[DashboardComponent::Types::CoinType]
   	resolve ->(panel, _args, _ctx) { panel.coins }
   end

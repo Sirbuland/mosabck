@@ -10,6 +10,6 @@ DashboardComponent::Types::Inputs::PanelInputType =
     argument :graf_panel_id, types.Int
     argument :graf_dash_uri, types.String
     argument :panelVars,     types[DashboardComponent::Types::Inputs::VarInputType]
-    argument :graphCoins,    types[DashboardComponent::Types::Inputs::CoinInputType]
+    argument :grafCoins,    types[DashboardComponent::Types::Inputs::CoinInputType]
 
   end

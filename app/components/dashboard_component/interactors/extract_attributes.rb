@@ -57,7 +57,7 @@ module DashboardComponent
               end
             end
 
-            panel_coins = panel_args[:graphCoins]
+            panel_coins = panel_args[:grafCoins]
 
             # extract coin attributes for each panel
             coin_attributes( panel_coins, attributes[:panels][panel_i] )
