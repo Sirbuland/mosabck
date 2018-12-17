@@ -17,6 +17,8 @@ gem 'pg'
 gem 'dotenv'
 gem 'graphiql-rails', '1.4.5'
 gem 'graphql', '1.7.4'
+# for handling file upload requests
+gem 'apollo_upload_server', '2.0.0.beta.1'
 
 # Graphiql Dependencies
 gem 'coffee-rails'
