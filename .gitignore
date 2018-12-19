@@ -50,3 +50,6 @@ config/sunspot.yml
 /config/master.key
 
 /storage/*
+/uploads/*
+/public/*
+
