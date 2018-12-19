@@ -34,8 +34,8 @@ gem 'activerecord-postgis-adapter'
 # Admin panel
 gem 'administrate', '~> 0.10.0'
 gem 'administrate-field-json', github: 'eddietejeda/administrate-field-json'
-# Extension of administrate gem to support rails 5.2 active_storage
-gem 'administrate-field-active_storage'
+# Extension of carrierwave gem to support administrate gem
+gem 'administrate-field-carrierwave', '~> 0.3.4'
 
 gem 'hamlit'
 
@@ -82,6 +82,11 @@ gem "aws-sdk-s3", require: false
 
 # handle ratings and vote casting logic
 gem 'acts_as_votable'
+
+# File uploading gem
+gem 'carrierwave', '~> 1.0'
+# File uploading to s3
+gem "fog-aws"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

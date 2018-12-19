@@ -13,6 +13,7 @@ ResearchComponent::Mutations::UpdateResearch =
 	  input_field :reference, types.String
 	  input_field :rating, types.Int
 	  input_field :filePath, types.String
+  	input_field :attachment, ApolloUploadServer::Upload
 	  input_field :authors,
 	    types[ResearchComponent::Types::Inputs::AuthorInputType]
 	  input_field :keywords,

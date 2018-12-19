@@ -11,7 +11,8 @@ module ResearchComponent
         dateAuthored: :date_authored,
         reference: :reference,
         filePath: :file_path,
-        rating: :rating
+        rating: :rating,
+        attachment: :attachment
       }.freeze
 
       AUTHOR_SCHEME = {

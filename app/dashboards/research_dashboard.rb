@@ -19,15 +19,11 @@ class ResearchDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     user: Field::BelongsTo,
-    attachment: Field::ActiveStorage,
+    attachment: Field::Carrierwave,
     secondary_crypto_assets: Field::HasMany.with_options(
       source: :crypto_asset,
       class_name: "CryptoAsset"
     ),
-    # primary_crypto_asset: Field::BelongsTo.with_options(
-    #   class_name: "CryptoAsset",
-    #   foreign_key: :crypto_asset_id
-    # ),
     keywords: Field::HasMany,
     authors: Field::HasMany
   }.freeze
