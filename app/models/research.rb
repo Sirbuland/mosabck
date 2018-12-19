@@ -1,5 +1,10 @@
 class Research < ApplicationRecord
+  extend FriendlyId
   include AssetMappingLinkage
+
+  # create friendly id for research using title
+  friendly_id :create_slug, use: :slugged
+
   # include votable functionality
   acts_as_votable
 
@@ -21,4 +26,11 @@ class Research < ApplicationRecord
     attachment.url if attachment.present?
   end
 
+  def create_slug
+    "#{title}"
+  end
+
+  def normalize_friendly_id(string)
+    super[0..30]
+  end
 end

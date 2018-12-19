@@ -5,6 +5,7 @@ ResearchComponent::Types::ResearchType = GraphQL::ObjectType.define do
   field :researchType, types.String, property: :research_type
   field :sourceUrl, types.String, property: :source_url
   field :title, types.String
+  field :slug, types.String
   field :description, types.String
   field :dateAuthored, MiscComponent::Types::DateTimeType, property: :date_authored
   field :reference, types.String

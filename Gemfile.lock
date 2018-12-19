@@ -224,6 +224,8 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
+    friendly_id (5.2.4)
+      activerecord (>= 4.0.0)
     fugit (1.1.6)
       et-orbi (~> 1.1, >= 1.1.6)
       raabro (~> 1.1)
@@ -539,6 +541,7 @@ DEPENDENCIES
   faker
   fasterer
   fog-aws
+  friendly_id (~> 5.2.4)
   graphiql-rails (= 1.4.5)
   graphql (= 1.7.4)
   hamlit
