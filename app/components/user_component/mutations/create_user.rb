@@ -25,7 +25,7 @@ UserComponent::Mutations::CreateUser = GraphQL::Relay::Mutation.define do
   input_field :firstName, types.String
   input_field :lastName, types.String
   input_field :bio, types.String
-  input_field :avatarUrl, types.String
+  input_field :avatar, ApolloUploadServer::Upload
   input_field :geoMeta, GeoComponent::Types::Inputs::AddGeoMetaInputType
   input_field :subscribedToNewsLetter, types.Boolean
   input_field :birthdate, MiscComponent::Types::DateTimeType
