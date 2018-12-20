@@ -174,6 +174,15 @@ QueryType = GraphQL::ObjectType.define do
       resolve ResearchComponent::Resolvers::GetResearchesResolver.new
     end
 
+  field :getResearch do
+    type ResearchComponent::Types::ResearchType
+    description 'returns Researh by given column'
+    argument :findBy, types.String
+    argument :findValue, types.String
+
+    resolve ResearchComponent::Resolvers::FindResearchResolver.new
+  end
+
   field :allKeywords do
     type types[KeywordComponent::Types::KeywordType]
     resolve -> (_obj, _args, _ctx) do 

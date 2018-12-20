@@ -23,8 +23,11 @@ module GraphqlHelper
                      first_name: 'firstName',
                      last_name: 'lastName' }.freeze
   RESEARCH_SEARCH_BY = {
-                     date_authored: 'date_authored',
-                     research_type: 'research_type' }.freeze
+                        date_authored: 'date_authored',
+                        research_type: 'research_type' }.freeze
+  RESEARCH_FIND_BY = {
+                        slug: 'slug'
+                     }.freeze
   USER_SEARCH_BY_TRANSLATIONS = { displayName: :username,
                                   email: :email }.freeze
   GEO_TAGGED_TYPES_FILTER = {
