@@ -7,9 +7,8 @@ class User < ApplicationRecord
   # user will act as voter for votables
   acts_as_voter
   # user profile avatar
-  has_one_attached :avatar
+  mount_uploader :avatar, AvatarUploader
 
-  has_one_attached :avatar
   attribute :avatar_url
 
   has_many :auth_identities, dependent: :destroy
@@ -111,6 +110,6 @@ class User < ApplicationRecord
   end
 
   def avatar_url
-    avatar.service_url if avatar.attached?
+    avatar.url if avatar.present?
   end
 end

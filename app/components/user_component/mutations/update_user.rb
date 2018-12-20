@@ -15,7 +15,7 @@ UserComponent::Mutations::UpdateUser = GraphQL::Relay::Mutation.define do
   input_field :fbAccessToken, types.String
   input_field :expirationDate, types.String
   input_field :phoneNumber, types.String
-  input_field :avatarUrl, types.String
+  input_field :avatar, ApolloUploadServer::Upload
   input_field :backgroundImageUrl, types.String
   input_field :geoMeta, GeoComponent::Types::Inputs::AddGeoMetaInputType
   input_field :birthdate, MiscComponent::Types::DateTimeType
