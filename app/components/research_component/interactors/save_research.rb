@@ -32,7 +32,6 @@ module ResearchComponent
         authors.each do |author_i, author_attributes|
           author = Author.find_or_initialize_by username: author_attributes[:username]
           author_attributes[:researches] = [research]
-          author_attributes.delete(:id)
           author.assign_attributes(author_attributes)
           author.save!
         end
