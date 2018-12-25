@@ -15,8 +15,6 @@ UserComponent::Mutations::CreateUser = GraphQL::Relay::Mutation.define do
   input_field :google, MiscComponent::Types::Inputs::AddOauthInputType
   input_field :twitter, MiscComponent::Types::Inputs::AddOauthInputType
 
-  input_field :phoneNumber, types.String
-
   input_field :deviceId, !types.String
   input_field :username, types.String
   input_field :profession, types.String
@@ -25,6 +23,7 @@ UserComponent::Mutations::CreateUser = GraphQL::Relay::Mutation.define do
   input_field :firstName, types.String
   input_field :lastName, types.String
   input_field :bio, types.String
+  input_field :phoneNumber, types.String
   input_field :avatar, ApolloUploadServer::Upload
   input_field :geoMeta, GeoComponent::Types::Inputs::AddGeoMetaInputType
   input_field :subscribedToNewsLetter, types.Boolean

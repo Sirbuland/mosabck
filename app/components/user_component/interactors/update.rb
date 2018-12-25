@@ -7,6 +7,7 @@ module UserComponent
         firstName: :first_name,
         lastName: :last_name,
         avatar: :avatar,
+        phoneNumber: :phone_number,
         backgroundImageUrl: :backgound_img_url,
         birthdate: :birthdate,
         sex: :sex

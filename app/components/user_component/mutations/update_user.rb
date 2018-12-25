@@ -17,6 +17,7 @@ UserComponent::Mutations::UpdateUser = GraphQL::Relay::Mutation.define do
   input_field :phoneNumber, types.String
   input_field :avatar, ApolloUploadServer::Upload
   input_field :backgroundImageUrl, types.String
+  input_field :profession, types.String
   input_field :geoMeta, GeoComponent::Types::Inputs::AddGeoMetaInputType
   input_field :birthdate, MiscComponent::Types::DateTimeType
   input_field :sex, MiscComponent::Types::SexEnumType

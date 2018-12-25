@@ -1,0 +1,2 @@
+class Phone < ContactMethod
+end

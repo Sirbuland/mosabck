@@ -56,6 +56,16 @@ class User < ApplicationRecord
     @email ||= (auth_identities.classic&.first&.payload || {})['email']
   end
 
+  def phone_number
+    @phone_number ||= contact_methods.phone.first.value if contact_methods.phone.present?
+  end
+
+  def phone_number=(phone_number)
+    phone = Phone.create(value: phone_number)
+    contact_methods << phone
+    phone
+  end
+
   # TODO: WE HAVE TWO DIFFERENT EMAIL IN CLASSICIDENTITY AND IN CONTACTMETHODS
   def email=(email)
     # update_classic_identity_email(email)
