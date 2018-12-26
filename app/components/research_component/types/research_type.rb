@@ -38,6 +38,11 @@ ResearchComponent::Types::ResearchType = GraphQL::ObjectType.define do
     resolve ->(research, _args, _ctx) { research.keywords }
   end
 
+  field :attachments do
+    type types[MiscComponent::Types::AttachmentType]
+    resolve ->(research, _args, _ctx) { research.attachments }
+  end
+
   field :votesFor do
     type types[MiscComponent::Types::VoteType]
     resolve ->(research, _args, _ctx) { research.votes_for }

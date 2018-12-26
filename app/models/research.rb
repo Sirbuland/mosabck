@@ -18,6 +18,9 @@ class Research < ApplicationRecord
   has_many :author_researches, dependent: :destroy
   has_many :authors, through: :author_researches
 
+  # files will be attached to research using attachments model
+  has_many :attachments, as: :attachable
+
   def self.order_researches(field, direction = "DESC")
   	order("#{field} #{direction}")
   end

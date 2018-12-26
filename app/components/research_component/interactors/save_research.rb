@@ -6,8 +6,9 @@ module ResearchComponent
       def call
         authors = context.attributes.delete(:authors)
         keywords = context.attributes.delete(:keywords)
-        crypto_assets = context.attributes.delete(:crypto_assets)
+        crypto_assets = context.attributes.delete(:secondary_crypto_assets)
         votes_for = context.attributes.delete(:votes_for)
+        attachments = context.attributes.delete(:attachments)
 
         # find or initialize research
         research = context.research || Research.new
@@ -20,6 +21,8 @@ module ResearchComponent
         create_keywords( keywords, research ) if keywords
         # create associated secndary crypto_assets for research
         create_crypto_assets( crypto_assets, research ) if crypto_assets
+        # attach multiple files to research
+        create_attachments( attachments, research ) if attachments
         # cast vote for research
         cast_votes_on_research( votes_for, research ) if votes_for
 
@@ -50,6 +53,13 @@ module ResearchComponent
           crypto_asset_attributes[:researches] = [research]
           crypto_asset = CryptoAsset.new(crypto_asset_attributes)
           crypto_asset.save!
+        end
+      end
+
+      def create_attachments attachments, research
+        attachments.each do | attachment_i, attachment_attributes |
+          attachment = research.attachments.new(attachment_attributes)
+          attachment.save!
         end
       end
 
