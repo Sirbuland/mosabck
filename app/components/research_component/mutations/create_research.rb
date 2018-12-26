@@ -12,9 +12,12 @@ ResearchComponent::Mutations::CreateResearch = GraphQL::Relay::Mutation.define d
   input_field :reference, types.String
   input_field :rating, types.Int
   input_field :filePath, types.String
-  input_field :attachment, ApolloUploadServer::Upload
+  input_field :attachments,
+    types[ResearchComponent::Types::Inputs::AttachmentInputType]
+
   input_field :authors,
     types[ResearchComponent::Types::Inputs::AuthorInputType]
+
   input_field :keywords,
     types[ResearchComponent::Types::Inputs::KeywordInputType]
 
