@@ -27,7 +27,7 @@ module ResearchComponent
           votableId: :votable_id,
           voterType: :voter_type
         }, 
-        :attachments {
+        attachments: {
           id: :id,
           name: :name,
           attached_file: :attached_file,
