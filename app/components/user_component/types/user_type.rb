@@ -13,6 +13,7 @@ UserComponent::Types::UserType = GraphQL::ObjectType.define do
   field :lastName, types.String, property: :last_name
   field :email, types.String
   field :password, types.String
+  field :phoneNumber, types.String, property: :phone_number
   field :avatarUrl, types.String, property: :avatar_url
   field :backgroundImageUrl, types.String, property: :backgound_img_url
   field :subscribedToNewsLetter, types.Boolean,
