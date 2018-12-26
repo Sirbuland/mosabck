@@ -7,7 +7,8 @@ module EventComponent
         eventType: :event_type,
         timestamp: :timestamp,
         description: :description,
-        importance: :importance
+        importance: :importance,
+        longevity: :longevity
       }.freeze
 
 
