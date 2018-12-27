@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_115255) do
+ActiveRecord::Schema.define(version: 2018_12_27_122235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 2018_12_26_115255) do
     t.bigint "attachable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", unique: true
   end
 
   create_table "auth_identities", force: :cascade do |t|
@@ -170,6 +169,7 @@ ActiveRecord::Schema.define(version: 2018_12_26_115255) do
     t.datetime "updated_at", null: false
     t.datetime "event_date"
     t.string "event_title"
+    t.string "logevity"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
