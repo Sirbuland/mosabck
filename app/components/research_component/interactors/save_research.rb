@@ -32,6 +32,9 @@ module ResearchComponent
       private
 
       def create_or_update_authors authors, research
+        # remove all authors from research if empty array is supplied
+        research.authors.destroy_all unless authors.present?
+        # create new authors from supplied array
         authors.each do |author_i, author_attributes|
           author = Author.find_or_initialize_by username: author_attributes[:username]
           author_attributes[:researches] = [research]
@@ -41,6 +44,9 @@ module ResearchComponent
       end
 
       def create_keywords keywords, research
+        # remove all keywords from research if empty array is supplied
+        research.keywords.destroy_all unless keywords.present?
+        # create new keywords from supplied array
         keywords.each do |keyword_i, keyword_attributes|
           keyword_attributes[:researches] = [research]
           keyword = Keyword.new(keyword_attributes)
@@ -49,6 +55,9 @@ module ResearchComponent
       end
 
       def create_crypto_assets crypto_assets, research
+        # remove all secondary_crypto_assets from research if empty array is supplied
+        research.secondary_crypto_assets.destroy_all unless crypto_assets.present?
+        # create new secondary_crypto_assets from supplied array
         crypto_assets.each do |crypto_asset_i, crypto_asset_attributes|
           crypto_asset_attributes[:researches] = [research]
           crypto_asset = CryptoAsset.new(crypto_asset_attributes)
