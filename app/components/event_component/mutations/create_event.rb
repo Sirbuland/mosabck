@@ -9,6 +9,7 @@ EventComponent::Mutations::CreateEvent = GraphQL::Relay::Mutation.define do
 	input_field :eventTitle, types.String
 	input_field :description, types.String
 	input_field :importance, types.String
+	input_field :longevity, types.String
 
 	resolve EventComponent::Resolvers::CreateEventResolver.new
 end
