@@ -10,7 +10,6 @@ class Research < ApplicationRecord
 
   belongs_to :user
 
-  mount_uploader :attachment, FileUploader
   # belongs_to :primary_crypto_asset, class_name: "CryptoAsset"
   has_many :secondary_crypto_assets, through: :asset_mappings, source: :crypto_asset
 	has_many :keyword_research_videos, dependent: :destroy
@@ -23,10 +22,6 @@ class Research < ApplicationRecord
 
   def self.order_researches(field, direction = "DESC")
   	order("#{field} #{direction}")
-  end
-
-  def attachment_url
-    attachment.url if attachment.present?
   end
 
   def create_slug
