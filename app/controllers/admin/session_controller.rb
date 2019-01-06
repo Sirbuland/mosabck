@@ -3,6 +3,8 @@ require 'json_web_token'
 module Admin
   class SessionController < ActionController::Base
     skip_before_action :verify_authenticity_token
+
+    include LogoutHelper
     include Pundit
 
     def login
@@ -23,8 +25,8 @@ module Admin
     end
 
     def logout
-      session.delete(:token)
-      redirect_to admin_session_login_path
+      reset_session
+      redirect_to logout_url.to_s
     end
 
     private
