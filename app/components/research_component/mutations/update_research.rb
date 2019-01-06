@@ -13,9 +13,9 @@ ResearchComponent::Mutations::UpdateResearch =
 	  input_field :reference, types.String
 	  input_field :rating, types.Int
 	  input_field :filePath, types.String
-  	input_field :attachment, ApolloUploadServer::Upload
 	  input_field :authors,
 	    types[ResearchComponent::Types::Inputs::AuthorInputType]
+	    
 	  input_field :keywords,
 	    types[ResearchComponent::Types::Inputs::KeywordInputType]
 
@@ -24,6 +24,9 @@ ResearchComponent::Mutations::UpdateResearch =
 
 	  input_field :votesFor,
     	types[ResearchComponent::Types::Inputs::VoteForInputType]
+
+    input_field :attachments,
+    	types[ResearchComponent::Types::Inputs::AttachmentInputType]
 
     resolve ResearchComponent::Resolvers::UpdateResearchResolver.new
 end
