@@ -37,9 +37,9 @@ module ResearchComponent
         # create new authors from supplied array
         authors.each do |author_i, author_attributes|
           author = Author.find_or_initialize_by username: author_attributes[:username]
-          author_attributes[:researches] = [research]
           author.assign_attributes(author_attributes)
           author.save!
+          author.researches << research
         end
       end
 
@@ -48,9 +48,9 @@ module ResearchComponent
         research.keywords.destroy_all unless keywords.present?
         # create new keywords from supplied array
         keywords.each do |keyword_i, keyword_attributes|
-          keyword_attributes[:researches] = [research]
           keyword = Keyword.new(keyword_attributes)
           keyword.save!
+          keyword.researches << research
         end
       end
 
