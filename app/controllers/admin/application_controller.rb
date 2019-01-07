@@ -12,18 +12,9 @@ require 'routes_filter'
 module Admin
   class ApplicationController < Administrate::ApplicationController
     skip_before_action :verify_authenticity_token
-    before_action :authenticate_admin
 
-    def authenticate_admin
-      token = session[:token]
-      if token.present?
-        user_id = JsonWebToken.secret_key_decode(token).first.fetch('user_id')
-        user = User.find_by_id(user_id)
-        redirect_to_login unless user.present?
-      else
-        redirect_to_login
-      end
-    end
+    # Auth0 concern for authentication of user
+    include Secured
 
     def destroy
       if requested_resource.respond_to?(:hidden)
@@ -40,12 +31,6 @@ module Admin
     def redirect_to_login
       redirect_to(admin_session_login_path)
     end
-
-    # Override this value to specify the number
-    # of elements to display at a time
-    # on index pages. Defaults to 20.
-    # def records_per_page
-    #   params[:per_page] || 20
-    # end
+    
   end
 end

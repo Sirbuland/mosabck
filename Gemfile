@@ -89,6 +89,9 @@ gem 'carrierwave', '~> 1.0'
 gem "fog-aws"
 # handle url slugs and create seo friendly urls
 gem 'friendly_id', '~> 5.2.4'
+# handle auth0 authentication for admin users
+gem 'omniauth', '~> 1.6.1'
+gem 'omniauth-auth0', '~> 2.0.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
