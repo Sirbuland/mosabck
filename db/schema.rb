@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_27_122235) do
+ActiveRecord::Schema.define(version: 2019_01_10_105522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,8 @@ ActiveRecord::Schema.define(version: 2018_12_27_122235) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_dashboards_on_deleted_at"
     t.index ["user_id"], name: "index_dashboards_on_user_id"
   end
 
@@ -258,6 +260,15 @@ ActiveRecord::Schema.define(version: 2018_12_27_122235) do
     t.index ["user_id"], name: "index_merchants_on_user_id"
   end
 
+  create_table "news_filters", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_news_filters_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "message"
     t.string "status"
@@ -336,7 +347,9 @@ ActiveRecord::Schema.define(version: 2018_12_27_122235) do
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
     t.string "slug"
+    t.datetime "deleted_at"
     t.index ["crypto_asset_id"], name: "index_researches_on_crypto_asset_id"
+    t.index ["deleted_at"], name: "index_researches_on_deleted_at"
     t.index ["slug"], name: "index_researches_on_slug", unique: true
     t.index ["user_id"], name: "index_researches_on_user_id"
   end
@@ -376,6 +389,8 @@ ActiveRecord::Schema.define(version: 2018_12_27_122235) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_screeners_on_deleted_at"
     t.index ["user_id"], name: "index_screeners_on_user_id"
   end
 
@@ -513,6 +528,7 @@ ActiveRecord::Schema.define(version: 2018_12_27_122235) do
   add_foreign_key "keyword_research_videos", "researches"
   add_foreign_key "keyword_research_videos", "videos"
   add_foreign_key "merchants", "users"
+  add_foreign_key "news_filters", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "panel_vars", "panels"
   add_foreign_key "panel_vars", "vars"

@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :contact_methods, dependent: :destroy
   has_many :installations, dependent: :destroy
   has_many :pin_codes, dependent: :destroy
+  has_many :news_filters, dependent: :destroy
 
   has_many :referrals, foreign_key: :owner_id
   has_many :referral_users, through: :referrals, source: 'user',
