@@ -10,6 +10,7 @@ module UserComponent
         phoneNumber: :phone_number,
         backgroundImageUrl: :backgound_img_url,
         birthdate: :birthdate,
+        profession: :profession,
         sex: :sex
       }.freeze
 
