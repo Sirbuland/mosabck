@@ -47,4 +47,7 @@ MutationType = GraphQL::ObjectType.define do
   field :createResource, field: ResourceComponent::Mutations::CreateResource.field
   field :createAuthor, field: AuthorComponent::Mutations::CreateAuthor.field
   field :createKeyword, field: KeywordComponent::Mutations::CreateKeyword.field
+  
+  field :createNewsFilter, field: NewsFilterComponent::Mutations::CreateNewsFilter.field
+  field :deleteNewsFilter, field: NewsFilterComponent::Mutations::DeleteNewsFilter.field
 end

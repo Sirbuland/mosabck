@@ -183,6 +183,14 @@ QueryType = GraphQL::ObjectType.define do
     resolve ResearchComponent::Resolvers::FindResearchResolver.new
   end
 
+  connection :getNewsFilters,
+    NewsFilterComponent::Types::NewsFilterType.connection_type do
+      description 'returns User NewsFilter'
+      argument :searchBy, types[NewsFilterComponent::Types::NewsFilterSearchByType]
+      
+      resolve NewsFilterComponent::Resolvers::GetNewsFiltersResolver.new
+    end
+
   field :allKeywords do
     type types[KeywordComponent::Types::KeywordType]
     resolve -> (_obj, _args, _ctx) do 
