@@ -17,13 +17,19 @@ module UserComponent
       }.freeze
 
       include Interactor
-
+     
       def call
         user = context.user
         args = context.args
         user.auth_identities.each do |identity|
           params = ALLOWED_PARAMS[identity.type.to_sym]
           update_attr_in_identity(identity, params, args) if params.present?
+        end
+        unless user.auth_identities.present?
+          classic_payload = UserService.payload_for_classic_identity(args)
+          classic_identity =
+           AuthIdentities::ClassicIdentity.new(payload: classic_payload)
+          user.auth_identities << classic_identity
         end
       end
 

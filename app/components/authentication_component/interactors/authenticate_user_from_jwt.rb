@@ -13,9 +13,12 @@ module AuthenticationComponent
           user = user.first if user.is_a? Array
           user_device = user.user_devices.first
         else
+          payload = UserService.payload_for_classic_identity(
+            email: payload_info['email'], password: payload_info['password'])
+          identity = AuthIdentities::ClassicIdentity.create(payload: payload)
           user = User.create(username: username)
           user.user_devices << UserDevice.create(device_id: 123)
-
+          user.auth_identities << identity
           user_device = user.user_devices.first
         end
 
