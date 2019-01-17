@@ -80,6 +80,9 @@ gem 'bootsnap', require: false
 # aws sdk specifically for s3 services
 gem "aws-sdk-s3", require: false
 
+#Pagination gem
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+
 # handle ratings and vote casting logic
 gem 'acts_as_votable'
 

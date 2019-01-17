@@ -5,6 +5,8 @@ module ResearchComponent
         search_term = args[:searchTerm]
         search_by = args[:searchBy].presence || ['researchType']
         order_by = args[:orderBy].gsub('_DESC', '').gsub('_ASC', '') if args[:orderBy]
+        page = args[:page] 
+        per_page = args[:perPage] 
 
         research_query = Research.all
         if search_term.present? && search_by.present?
@@ -16,8 +18,7 @@ module ResearchComponent
           end
         end
         research_query = research_query.order_researches(order_by.underscore) if order_by.present?
-
-        research_query
+        research_query.paginate(page: page,per_page: per_page)
       end
     end
   end

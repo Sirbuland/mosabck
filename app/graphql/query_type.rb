@@ -161,6 +161,9 @@ QueryType = GraphQL::ObjectType.define do
     argument :searchTerm, types.String
     argument :searchBy, types[ResearchComponent::Types::ResearchSearchByType]
     argument :orderBy, types.String
+    argument :page, types.String
+    argument :perPage, types.String
+
 
     resolve ResearchComponent::Resolvers::SearchResearchesResolver.new
   end
