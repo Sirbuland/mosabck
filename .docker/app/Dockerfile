@@ -5,7 +5,8 @@ RUN mkdir /app \
     && apt-get update \
     && apt-get install -y default-jre nodejs \
     && rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update && apt-get install -y imagemagick
+RUN apt-get update && apt-get -y install ghostscript && apt-get clean
 COPY Gemfile /app
 COPY Gemfile.lock /app
 

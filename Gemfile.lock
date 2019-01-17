@@ -157,6 +157,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.3)
     docile (1.3.1)
+    docsplit (0.7.6)
     dotenv (2.5.0)
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
@@ -396,6 +397,7 @@ GEM
     rgeo-activerecord (6.1.0)
       activerecord (~> 5.0)
       rgeo (>= 1.0.0)
+    rmagick (2.16.0)
     rocketchat (0.1.16)
     rsolr (2.2.1)
       builder (>= 2.1.2)
@@ -548,6 +550,7 @@ DEPENDENCIES
   chat_service_connectors!
   coffee-rails
   database_cleaner
+  docsplit (~> 0.7.6)
   dotenv
   dotenv-rails
   dry-transaction
@@ -579,6 +582,7 @@ DEPENDENCIES
   rails (~> 5.2.1)
   rails_best_practices
   reek
+  rmagick (~> 2.16)
   rspec-rails (~> 3.5)
   rspec-sidekiq
   rubocop (~> 0.49.1)
