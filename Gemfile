@@ -85,6 +85,9 @@ gem 'acts_as_votable'
 
 # File uploading gem
 gem 'carrierwave', '~> 1.0'
+# Gem for image handling. Used here
+# to create thumbnail images
+gem 'rmagick', '~> 2.16'
 # File uploading to s3
 gem "fog-aws"
 # handle url slugs and create seo friendly urls
