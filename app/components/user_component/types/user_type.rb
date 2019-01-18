@@ -20,6 +20,11 @@ UserComponent::Types::UserType = GraphQL::ObjectType.define do
     property: :subscribed_to_newsletter
   field :birthdate, MiscComponent::Types::DateTimeType
 
+  field :deletedAt do
+    type MiscComponent::Types::DateTimeType
+    resolve ->(research, _args, _ctx) { author.deleted_at }
+  end
+  
   field :updatedAt do
     type MiscComponent::Types::DateTimeType
     resolve ->(user, _args, _ctx) { user.updated_at }

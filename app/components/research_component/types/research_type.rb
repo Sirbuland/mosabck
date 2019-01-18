@@ -17,6 +17,11 @@ ResearchComponent::Types::ResearchType = GraphQL::ObjectType.define do
     resolve ->(research, _args, _ctx) { research.updated_at }
   end
 
+  field :deletedAt do
+    type MiscComponent::Types::DateTimeType
+    resolve ->(research, _args, _ctx) { research.deleted_at }
+  end
+
   field :createdAt do
     type MiscComponent::Types::DateTimeType
     resolve ->(research, _args, _ctx) { research.created_at }

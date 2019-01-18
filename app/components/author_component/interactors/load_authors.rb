@@ -5,7 +5,7 @@ module AuthorComponent
 
       def call
         args = context.args
-        authors_query = Author.all
+        authors_query = Author.with_deleted
 
         current_user = context.ctx[:current_user]
         if current_user.present?

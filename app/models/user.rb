@@ -8,7 +8,8 @@ class User < ApplicationRecord
   acts_as_voter
   # user profile avatar
   mount_uploader :avatar, AvatarUploader
-
+  acts_as_paranoid
+  
   attribute :avatar_url
 
   has_many :auth_identities, dependent: :destroy
