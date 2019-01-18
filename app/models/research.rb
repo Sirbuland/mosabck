@@ -26,10 +26,12 @@ class Research < ApplicationRecord
   end
 
   def create_slug
-    "#{title}"
+    new_title = title.at(0..29)
+    if title.length >= 30 && title[29] != ' '
+      new_array = title.from(30).split(' ')
+      new_title += new_array[0]
+    end
+    new_title
   end
 
-  def normalize_friendly_id(string)
-    super[0..30]
-  end
 end
