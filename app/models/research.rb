@@ -26,12 +26,14 @@ class Research < ApplicationRecord
   end
 
   def create_slug
-    new_title = title.at(0..29)
-    if title.length >= 30 && title[29] != ' '
-      new_array = title.from(30).split(' ')
-      new_title += new_array[0]
+    if title != nil
+      new_title = title.at(0..29)
+      if title.length >= 30 && title[29] != ' '
+        new_array = title.from(30).split(' ')
+        new_title += new_array[0]
+      end
+      new_title
     end
-    new_title
   end
 
 end
