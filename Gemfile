@@ -11,6 +11,7 @@ gem 'rails', '~> 5.2.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 
+
 # Use postgres as the database for Active Record
 gem 'pg'
 
@@ -98,6 +99,8 @@ gem 'friendly_id', '~> 5.2.4'
 # handle auth0 authentication for admin users
 gem 'omniauth', '~> 1.6.1'
 gem 'omniauth-auth0', '~> 2.0.0'
+#For Soft Delete
+gem "paranoia", "~> 2.2"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

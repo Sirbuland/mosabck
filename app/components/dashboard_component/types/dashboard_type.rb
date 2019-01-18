@@ -10,6 +10,11 @@ DashboardComponent::Types::DashboardType = GraphQL::ObjectType.define do
     type MiscComponent::Types::DateTimeType
     resolve ->(dashboard, _args, _ctx) { dashboard.updated_at }
   end
+  
+  field :deletedAt do
+    type MiscComponent::Types::DateTimeType
+    resolve ->(dashboard, _args, _ctx) { dashboard.deleted_at }
+  end
 
   field :createdAt do
     type MiscComponent::Types::DateTimeType

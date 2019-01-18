@@ -6,7 +6,12 @@ AuthorComponent::Types::AuthorType = GraphQL::ObjectType.define do
   field :avatarUrl, types.String, property: :avatar_url
   field :profession, types.String
   field :username, types.String
-
+  
+  field :deletedAt do
+    type MiscComponent::Types::DateTimeType
+    resolve ->(research, _args, _ctx) { author.deleted_at }
+  end
+  
 	field :updatedAt do
     type MiscComponent::Types::DateTimeType
     resolve ->(author, _args, _ctx) { author.updated_at }

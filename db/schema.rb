@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_023332) do
+ActiveRecord::Schema.define(version: 2019_01_17_130859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 2019_01_17_023332) do
     t.bigint "attachable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_attachments_on_deleted_at"
   end
 
   create_table "auth_identities", force: :cascade do |t|
@@ -106,7 +108,9 @@ ActiveRecord::Schema.define(version: 2019_01_17_023332) do
     t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["author_id"], name: "index_author_researches_on_author_id"
+    t.index ["deleted_at"], name: "index_author_researches_on_deleted_at"
     t.index ["research_id"], name: "index_author_researches_on_research_id"
   end
 
@@ -220,6 +224,8 @@ ActiveRecord::Schema.define(version: 2019_01_17_023332) do
     t.bigint "video_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_keyword_research_videos_on_deleted_at"
     t.index ["keyword_id"], name: "index_keyword_research_videos_on_keyword_id"
     t.index ["research_id"], name: "index_keyword_research_videos_on_research_id"
     t.index ["video_id"], name: "index_keyword_research_videos_on_video_id"
@@ -230,6 +236,8 @@ ActiveRecord::Schema.define(version: 2019_01_17_023332) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_keywords_on_deleted_at"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -454,7 +462,9 @@ ActiveRecord::Schema.define(version: 2019_01_17_023332) do
     t.string "profession"
     t.string "description"
     t.string "avatar"
+    t.datetime "deleted_at"
     t.index ["auth_identity_id"], name: "index_users_on_auth_identity_id"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"
   end
