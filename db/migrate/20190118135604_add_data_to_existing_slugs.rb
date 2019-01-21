@@ -1,6 +1,6 @@
 class AddDataToExistingSlugs < ActiveRecord::Migration[5.2]
   def change
-    Research.update_all(slug: nil)
+    Research.with_deleted.update_all(slug: nil)
     Research.find_each(&:save)
   end
 end
