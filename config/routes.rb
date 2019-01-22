@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :dashboards
     resources :events
     resources :exchanges
+    resources :attachments
     resources :keywords
     resources :merchants
     resources :panels
