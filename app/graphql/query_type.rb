@@ -168,6 +168,14 @@ QueryType = GraphQL::ObjectType.define do
     resolve ResearchComponent::Resolvers::SearchResearchesResolver.new
   end
 
+  connection :getKeywordResearches, ResearchComponent::Types::ResearchType.connection_type do
+    description 'All keywords associated to research'
+    argument :ids, types[!types.ID]
+    argument :perPage, types.String
+    
+    resolve ResearchComponent::Resolvers::KeywordResearchesResolver.new
+  end
+
   connection :getResearches,
     ResearchComponent::Types::ResearchType.connection_type do
       description 'returns User Research'
