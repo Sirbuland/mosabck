@@ -170,7 +170,7 @@ QueryType = GraphQL::ObjectType.define do
 
   connection :getKeywordResearches, ResearchComponent::Types::ResearchType.connection_type do
     description 'All keywords associated to research'
-    argument :ids, types[!types.ID]
+    argument :id, types.String
     argument :perPage, types.String
     
     resolve ResearchComponent::Resolvers::KeywordResearchesResolver.new
