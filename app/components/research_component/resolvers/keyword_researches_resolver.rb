@@ -3,7 +3,7 @@ module ResearchComponent
     class KeywordResearchesResolver
       def call(_obj, args, _ctx)
         
-        id = args[:ids] 
+        id = args[:id] 
         per_page = args[:perPage] 
         
         if per_page == ""
@@ -20,6 +20,8 @@ module ResearchComponent
             
           if keyword.present?
            researches = Research.joins(:keywords).where("keywords.name IN (?)", keyword.pluck(:name)).where.not(id: research.id).order('COUNT(keywords.id) DESC').group(:id)
+            puts "researches \n"*8
+            puts researches.inspect
           else 
             researches = Research.where('title LIKE ?', "%#{research.title}%").where.not(id: research.id)
         
