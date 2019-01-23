@@ -20,17 +20,17 @@ module ResearchComponent
             
           if keyword.present?
            researches = Research.joins(:keywords).where("keywords.name IN (?)", keyword.pluck(:name)).where.not(id: research.id).order('COUNT(keywords.id) DESC').group(:id)
-            puts "researches \n"*8
-            puts researches.inspect
           else 
-            researches = Research.where('title LIKE ?', "%#{research.title}%").where.not(id: research.id)
+            researches = Research.where('title LIKE ?', "%#{research.title}%")
+                          .where.not(id: research.id)
         
             if (!researches.present?)
-             researches = Research.where(research_type: research.research_type).where.not(id: research.id)
+             researches = Research.where(research_type: research.research_type)
+                            .where.not(id: research.id)
             end 
           end
           if per_page.present?
-            researches.limit(per_page)
+            researches = researches.limit(per_page)
           end
         end
         researches
