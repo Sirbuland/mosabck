@@ -11,6 +11,7 @@ module ResearchComponent
         end
         
         research = Research.find_by_id(id)
+        researches = []
         
         if research.present?
 
@@ -22,19 +23,15 @@ module ResearchComponent
           else 
             researches = Research.where('title LIKE ?', "%#{research.title}%").where.not(id: research.id)
         
-          if (!researches.present?)
-           researches = Research.where(research_type: research.research_type).where.not(id: research.id)
-          end 
+            if (!researches.present?)
+             researches = Research.where(research_type: research.research_type).where.not(id: research.id)
+            end 
+          end
+          if per_page.present?
+            researches.limit(per_page)
+          end
         end
-        else
-          msg = I18n.t('errors.messages.not_found', entity: 'Research')
-          context.fail!(message: msg)
-        end
-        if per_page.present?
-          researches.limit(per_page)
-        else
-         researches
-        end
+        researches
       end
     end
   end   
