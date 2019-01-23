@@ -9,6 +9,7 @@ class ResearchDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
+    slug: Field::String,
     research_type: Field::String,
     source_url: Field::String,
     title: Field::String,
@@ -19,7 +20,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     user: Field::BelongsTo,
-    attachment: Field::Carrierwave,
+    attachments: Field::HasMany,
     secondary_crypto_assets: Field::HasMany.with_options(
       source: :crypto_asset,
       class_name: "CryptoAsset"
@@ -45,6 +46,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :user,
+    :attachments,
     :secondary_crypto_assets,
     :authors,
     :keywords
@@ -61,7 +63,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :reference,
     :file_path,
     :description,
-    :attachment,
+    :attachments,
     :created_at,
     :updated_at,
     :user,
@@ -81,7 +83,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :reference,
     :file_path,
     :description,
-    :attachment,
+    :attachments,
     :user,
     :secondary_crypto_assets,
     :authors,
@@ -94,5 +96,4 @@ class ResearchDashboard < Administrate::BaseDashboard
   def display_resource(research)
     "##{research.id} #{research.title}"
   end
-
 end
