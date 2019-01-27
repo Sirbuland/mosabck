@@ -26,7 +26,8 @@ module GraphqlHelper
                         date_authored: 'date_authored',
                         research_type: 'research_type' }.freeze
   NEWS_FILTER_SEARCH_BY = {
-                            name: 'name'
+                            name: 'name',
+                            filter_type: 'filterType'
                           }.freeze
   RESEARCH_FIND_BY = {
                         slug: 'slug'
