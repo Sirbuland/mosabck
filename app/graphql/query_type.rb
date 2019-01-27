@@ -198,6 +198,7 @@ QueryType = GraphQL::ObjectType.define do
     NewsFilterComponent::Types::NewsFilterType.connection_type do
       description 'returns User NewsFilter'
       argument :searchBy, types[NewsFilterComponent::Types::NewsFilterSearchByType]
+      argument :searchTerm, types.String
       
       resolve NewsFilterComponent::Resolvers::GetNewsFiltersResolver.new
     end
