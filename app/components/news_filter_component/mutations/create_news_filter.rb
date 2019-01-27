@@ -6,6 +6,8 @@ NewsFilterComponent::Mutations::CreateNewsFilter = GraphQL::Relay::Mutation.defi
 
 	input_field :name, types.String
   input_field :description, types.String
+  input_field :selected, types.Boolean
+  input_field :filterType, types.String
  
 	resolve NewsFilterComponent::Resolvers::CreateNewsFilterResolver.new
 end

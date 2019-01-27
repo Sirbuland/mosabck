@@ -5,7 +5,9 @@ module NewsFilterComponent
 
       NEWS_FILTER_SCHEME = {
         name: :name,
-        description: :description
+        description: :description,
+        selected: :selected,
+        filterType: :filter_type
       }.freeze
 
       def call
