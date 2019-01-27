@@ -5,15 +5,15 @@ module NewsFilterComponent
 
       def call
         args = context.args
-        news_filters_query = NewsFilter.all
+        news_filters = []
 
         current_user = context.ctx[:current_user]
-        if current_user.present?
-          news_filters_query = news_filters_query.where(user_id: current_user.id)
-        end
 
-        ids = args[:ids]
-        news_filters_query = news_filters_query.where(id: ids) if ids.present?
+        if current_user.present?
+          news_filters_query = current_user.news_filters
+        else
+          news_filters_query = NewsFilter.all
+        end
 
         context.news_filters = news_filters_query
       end
