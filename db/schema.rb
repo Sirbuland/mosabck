@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_135604) do
+ActiveRecord::Schema.define(version: 2019_01_27_055517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -274,6 +274,8 @@ ActiveRecord::Schema.define(version: 2019_01_18_135604) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "selected", default: false
+    t.string "filter_type"
     t.index ["user_id"], name: "index_news_filters_on_user_id"
   end
 
@@ -430,6 +432,15 @@ ActiveRecord::Schema.define(version: 2019_01_18_135604) do
     t.index ["user_id"], name: "index_user_devices_on_user_id"
   end
 
+  create_table "user_news_filters", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "news_filter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["news_filter_id"], name: "index_user_news_filters_on_news_filter_id"
+    t.index ["user_id"], name: "index_user_news_filters_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -552,6 +563,8 @@ ActiveRecord::Schema.define(version: 2019_01_18_135604) do
   add_foreign_key "screeners", "users"
   add_foreign_key "tokens", "installations"
   add_foreign_key "user_devices", "users"
+  add_foreign_key "user_news_filters", "news_filters"
+  add_foreign_key "user_news_filters", "users"
   add_foreign_key "videos", "users"
   add_foreign_key "wallets", "users"
 end

@@ -17,7 +17,9 @@ class User < ApplicationRecord
   has_many :contact_methods, dependent: :destroy
   has_many :installations, dependent: :destroy
   has_many :pin_codes, dependent: :destroy
-  has_many :news_filters, dependent: :destroy
+  
+  has_many :user_news_filters, dependent: :destroy
+  has_many :news_filters, through: :user_news_filters
 
   has_many :referrals, foreign_key: :owner_id
   has_many :referral_users, through: :referrals, source: 'user',
@@ -41,8 +43,9 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :auth_identities
 
   validates :username, uniqueness: true, allow_blank: true
-  # validates :avatar_url, url: { allow_blank: true }
-  # searchkick word_middle: [:username, :email]
+  
+  # model callbacks
+  after_create :create_news_filters
 
   def self.find_by_email(email)
     AuthIdentities::ClassicIdentity.by_email(email).first.user
@@ -124,4 +127,11 @@ class User < ApplicationRecord
   def avatar_url
     avatar.url if avatar.present?
   end
+
+  private
+
+  def create_news_filters
+    
+  end
+
 end
