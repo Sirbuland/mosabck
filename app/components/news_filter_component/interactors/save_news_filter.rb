@@ -18,7 +18,7 @@ module NewsFilterComponent
 
       # assign news_filter to creator (user)
       def assign_to_creator( user, news_filter )
-        user.news_filters << news_filter
+        user.news_filters << news_filter unless user.news_filters.exists? id: news_filter.id
       end
     end
   end

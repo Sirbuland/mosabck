@@ -52,11 +52,6 @@ news_filters = [
     name: "partnership",
     description: "desc",
     filter_type: "topic"
-  },
-  {
-    name: "listing",
-    description: "desc",
-    filter_type: "topic"
   }
 ]
 
