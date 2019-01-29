@@ -26,7 +26,7 @@ module NewsFilterComponent
           end
         end
 
-        context.news_filters = news_filters_query
+        context.news_filters = news_filters_query.order("created_at DESC")
       end
     end
   end

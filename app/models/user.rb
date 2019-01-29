@@ -4,6 +4,7 @@ class User < ApplicationRecord
   #  TODO: Re-enable when Notifications are there
   # include SmsVerifiable
   include EmailConfirmable
+  include NewsFilterCreation
   # user will act as voter for votables
   acts_as_voter
   # user profile avatar
@@ -43,9 +44,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :auth_identities
 
   validates :username, uniqueness: true, allow_blank: true
-  
-  # model callbacks
-  after_create :create_news_filters
 
   def self.find_by_email(email)
     AuthIdentities::ClassicIdentity.by_email(email).first.user
@@ -126,12 +124,6 @@ class User < ApplicationRecord
 
   def avatar_url
     avatar.url if avatar.present?
-  end
-
-  private
-
-  def create_news_filters
-    
   end
 
 end
