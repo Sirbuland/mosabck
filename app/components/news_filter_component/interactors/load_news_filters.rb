@@ -26,7 +26,7 @@ module NewsFilterComponent
           end
         end
 
-        context.news_filters = news_filters_query.order("created_at ASC")
+        context.news_filters = news_filters_query.where("priority != 0").order("priority ASC")
       end
     end
   end
