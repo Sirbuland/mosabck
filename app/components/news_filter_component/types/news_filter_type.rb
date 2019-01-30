@@ -6,6 +6,7 @@ NewsFilterComponent::Types::NewsFilterType = GraphQL::ObjectType.define do
   field :description, types.String
   field :selected, types.Boolean
   field :filterType, types.String, property: :filter_type
+  field :priority, types.Int
 
 
 	field :updatedAt do

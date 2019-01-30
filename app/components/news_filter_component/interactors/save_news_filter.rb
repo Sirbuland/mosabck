@@ -16,6 +16,11 @@ module NewsFilterComponent
 
       private
 
+      # def largest_priority
+      #   user.news_filters.where("filter_type = ?", news_filter.filter_type)
+      #                           .order("priority DESC").first.priority
+      # end
+
       # assign news_filter to creator (user)
       def assign_to_creator( user, news_filter )
         user.news_filters << news_filter unless user.news_filters.exists? id: news_filter.id
