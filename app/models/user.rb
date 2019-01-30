@@ -45,6 +45,8 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true, allow_blank: true
 
+  after_create :create_news_filters
+
   def self.find_by_email(email)
     AuthIdentities::ClassicIdentity.by_email(email).first.user
   end
