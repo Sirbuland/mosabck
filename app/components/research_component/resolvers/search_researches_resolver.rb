@@ -8,7 +8,7 @@ module ResearchComponent
         page = args[:page] 
         per_page = args[:perPage] 
 
-        research_query = Research.all
+        research_query = Research.published
         if search_term.present? && search_by.present?
           fields_hash = GraphqlHelper::RESEARCH_SEARCH_BY.invert
           search_by.each do |searh_by_field|

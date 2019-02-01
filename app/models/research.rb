@@ -21,6 +21,8 @@ class Research < ApplicationRecord
   # files will be attached to research using attachments model
   has_many :attachments, as: :attachable
 
+  scope :published, -> { where(published: true) }
+
   def self.order_researches(field, direction = "DESC")
   	order("#{field} #{direction}")
   end

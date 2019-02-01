@@ -19,6 +19,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     file_path: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    published: Field::Boolean,
     user: Field::BelongsTo,
     attachments: Field::HasMany,
     secondary_crypto_assets: Field::HasMany.with_options(
@@ -63,6 +64,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :reference,
     :file_path,
     :description,
+    :published,
     :attachments,
     :created_at,
     :updated_at,
@@ -83,6 +85,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :reference,
     :file_path,
     :description,
+    :published,
     :attachments,
     :user,
     :secondary_crypto_assets,

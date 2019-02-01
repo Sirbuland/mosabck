@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_30_100131) do
+ActiveRecord::Schema.define(version: 2019_02_01_060731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -359,6 +359,7 @@ ActiveRecord::Schema.define(version: 2019_01_30_100131) do
     t.float "cached_weighted_average", default: 0.0
     t.string "slug"
     t.datetime "deleted_at"
+    t.boolean "published", default: true
     t.index ["crypto_asset_id"], name: "index_researches_on_crypto_asset_id"
     t.index ["deleted_at"], name: "index_researches_on_deleted_at"
     t.index ["slug"], name: "index_researches_on_slug", unique: true
