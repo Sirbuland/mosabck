@@ -16,8 +16,8 @@ class PanelDashboard < Administrate::BaseDashboard
     slug: Field::String,
     graf_panel_id: Field::Number,
     graf_dash_uri: Field::String,
-    start_date: Field::Number,
-    end_date: Field::Number,
+    start_date: Field::DateTime,
+    end_date: Field::DateTime,
     dashboard: Field::BelongsTo,
   }.freeze
 

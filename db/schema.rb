@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_060731) do
+ActiveRecord::Schema.define(version: 2019_02_01_171003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -360,6 +360,7 @@ ActiveRecord::Schema.define(version: 2019_02_01_060731) do
     t.string "slug"
     t.datetime "deleted_at"
     t.boolean "published", default: true
+    t.datetime "order_timestamp", default: "2019-02-01 17:16:10"
     t.index ["crypto_asset_id"], name: "index_researches_on_crypto_asset_id"
     t.index ["deleted_at"], name: "index_researches_on_deleted_at"
     t.index ["slug"], name: "index_researches_on_slug", unique: true

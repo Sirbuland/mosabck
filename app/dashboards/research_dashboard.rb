@@ -20,6 +20,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     published: Field::Boolean,
+    order_timestamp: Field::DateTime,
     user: Field::BelongsTo,
     attachments: Field::HasMany,
     secondary_crypto_assets: Field::HasMany.with_options(
@@ -41,6 +42,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :title,
     :date_authored,
     :published,
+    :order_timestamp,
     :description,
     :user,
     :attachments,
@@ -60,6 +62,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :file_path,
     :description,
     :published,
+    :order_timestamp,
     :attachments,
     :created_at,
     :updated_at,
@@ -81,6 +84,7 @@ class ResearchDashboard < Administrate::BaseDashboard
     :file_path,
     :description,
     :published,
+    :order_timestamp,
     :attachments,
     :user,
     :secondary_crypto_assets,
@@ -92,6 +96,6 @@ class ResearchDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(research)
-    "##{research.id} #{research.title}"
+    "##{research.id} #{research.title[0..10]}"
   end
 end
