@@ -38,17 +38,12 @@ class ResearchDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :research_type,
-    :source_url,
     :title,
     :date_authored,
-    :reference,
-    :file_path,
+    :published,
     :description,
-    :created_at,
-    :updated_at,
     :user,
     :attachments,
-    :secondary_crypto_assets,
     :authors,
     :keywords
   ].freeze
