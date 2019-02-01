@@ -18,7 +18,8 @@ module ResearchComponent
           end
         end
         research_query = research_query.order_researches(order_by.underscore) if order_by.present?
-        research_query.paginate(page: page,per_page: per_page)
+        research_query = research_query.paginate(page: page,per_page: per_page) if page and per_page
+        research_query
       end
     end
   end
