@@ -11,6 +11,7 @@ ResearchComponent::Types::ResearchType = GraphQL::ObjectType.define do
   field :reference, types.String
   field :filePath, types.String, property: :file_path
   field :cachedVotesTotal, types.String, property: :cached_votes_total
+  field :published, types.Boolean
 
   field :updatedAt do
     type MiscComponent::Types::DateTimeType
