@@ -16,6 +16,8 @@ module Admin
     # Auth0 concern for authentication of user
     include Secured
 
+    before_action :verify_authorized_users
+
     def destroy
       if requested_resource.respond_to?(:hidden)
         requested_resource.update(hidden: true)
