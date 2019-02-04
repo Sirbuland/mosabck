@@ -480,7 +480,7 @@ ActiveRecord::Schema.define(version: 2019_02_01_171003) do
     t.index ["auth_identity_id"], name: "index_users_on_auth_identity_id"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["username"], name: "index_users_on_username"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "vars", force: :cascade do |t|
