@@ -1,6 +1,7 @@
 class Research < ApplicationRecord
   extend FriendlyId
   include AssetMappingLinkage
+  include CreateSlug
   acts_as_paranoid
 
   # create friendly id for research using title
@@ -25,17 +26,6 @@ class Research < ApplicationRecord
 
   def self.order_researches(field, direction = "DESC")
   	order("#{field} #{direction}")
-  end
-
-  def create_slug
-    if title != nil
-      new_title = title.at(0..29)
-      if title.length >= 30 && title[29] != ' '
-        new_array = title.from(30).split(' ')
-        new_title += new_array[0]
-      end
-      new_title
-    end
   end
 
 end
