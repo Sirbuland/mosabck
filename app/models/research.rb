@@ -11,6 +11,7 @@ class Research < ApplicationRecord
   acts_as_votable
 
   belongs_to :user
+  before_create :assign_order_timestamp
 
   # belongs_to :primary_crypto_asset, class_name: "CryptoAsset"
   has_many :secondary_crypto_assets, through: :asset_mappings, source: :crypto_asset
@@ -26,6 +27,12 @@ class Research < ApplicationRecord
 
   def self.order_researches(field, direction = "DESC")
   	order("#{field} #{direction}")
+  end
+
+  private
+  
+  def assign_order_timestamp
+    self.order_timestamp = Time.now
   end
 
 end
