@@ -19,8 +19,9 @@ module CreateSlug
             break
           end
         end
-        array.join(" ")
+        title = array.join(" ")
       end
+      title
     end
 
   end
