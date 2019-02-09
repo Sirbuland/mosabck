@@ -12,6 +12,7 @@ class Research < ApplicationRecord
 
   belongs_to :user
   before_create :assign_order_timestamp
+  validates_length_of :title, minimum: 2, maximum: 95, allow_blank: true
 
   # belongs_to :primary_crypto_asset, class_name: "CryptoAsset"
   has_many :secondary_crypto_assets, through: :asset_mappings, source: :crypto_asset
