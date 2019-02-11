@@ -12,6 +12,7 @@ news_filters = [
     name: "bitcoin",
     description: "desc",
     filter_type: "coin",
+    search_term: "bitcoin",
     selected: true,
     priority: 1
   },
@@ -19,6 +20,7 @@ news_filters = [
     name: "ethereum",
     description: "desc",
     filter_type: "coin",
+    search_term: "ethereum",
     selected: false,
     priority: 2
   },
@@ -26,6 +28,7 @@ news_filters = [
     name: "xrp",
     description: "desc",
     filter_type: "coin",
+    search_term: "ripple",
     selected: false,
     priority: 3
   },
@@ -33,6 +36,7 @@ news_filters = [
     name: "eos",
     description: "desc",
     filter_type: "coin",
+    search_term: "eoscoin",
     selected: false,
     priority: 4
   },
@@ -40,6 +44,7 @@ news_filters = [
     name: "bitcoin cash",
     description: "desc",
     filter_type: "coin",
+    search_term: "bitcoin cash",
     selected: false,
     priority: 5
   },
@@ -47,6 +52,7 @@ news_filters = [
     name: "china",
     description: "desc",
     filter_type: "topic",
+    search_term: "china",
     selected: false,
     priority: 6
   },
@@ -54,6 +60,7 @@ news_filters = [
     name: "venture capital",
     description: "desc",
     filter_type: "topic",
+    search_term: "venture capital",
     selected: false,
     priority: 7
   },
@@ -61,6 +68,7 @@ news_filters = [
     name: "ico",
     description: "desc",
     filter_type: "topic",
+    search_term: "initial coin offering",
     selected: false,
     priority: 8
   },
@@ -68,6 +76,7 @@ news_filters = [
     name: "partnership",
     description: "desc",
     filter_type: "topic",
+    search_term: "partnership",
     selected: false,
     priority: 9
   }
@@ -79,6 +88,7 @@ news_filters.each do |filter|
 	news_filter.assign_attributes({ 
     description: filter[:description], 
     filter_type: filter[:filter_type], 
+    search_term: filter[:search_term],
     selected: filter[:selected],
     priority: filter[:priority]
   })
