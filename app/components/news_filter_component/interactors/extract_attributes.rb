@@ -7,6 +7,7 @@ module NewsFilterComponent
         name: :name,
         description: :description,
         selected: :selected,
+        searchTerm: :search_term,
         filterType: :filter_type
       }.freeze
 

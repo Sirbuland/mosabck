@@ -4,6 +4,7 @@ NewsFilterComponent::Types::NewsFilterType = GraphQL::ObjectType.define do
   field :id, !types.ID
   field :name, types.String
   field :description, types.String
+  field :searchTerm, types.String, property: :search_term
   field :selected, types.Boolean
   field :filterType, types.String, property: :filter_type
   field :priority, types.Int

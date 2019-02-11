@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_135605) do
+ActiveRecord::Schema.define(version: 2019_02_18_135606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_135605) do
     t.boolean "selected", default: false
     t.string "filter_type"
     t.integer "priority", default: 0
+    t.string "search_term"
     t.index ["user_id"], name: "index_news_filters_on_user_id"
   end
 

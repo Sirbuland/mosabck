@@ -6,6 +6,7 @@ NewsFilterComponent::Mutations::UpdateNewsFilter = GraphQL::Relay::Mutation.defi
 
 	input_field :id, !types.ID
 	input_field :name, types.String
+	input_field :searchTerm, types.String
   input_field :description, types.String
   input_field :selected, types.Boolean
   input_field :filterType, types.String
