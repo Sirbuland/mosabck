@@ -17,18 +17,13 @@ module ResearchComponent
 
           keyword = research.keywords
           array = []
-            
+
           if keyword.present?
-           researches = Research.joins(:keywords).where("keywords.name IN (?)", keyword.pluck(:name)).where.not(id: research.id).order('COUNT(keywords.id) DESC').group(:id)
-          else 
-            researches = Research.where('title LIKE ?', "%#{research.title}%")
-                          .where.not(id: research.id)
-        
-            if (!researches.present?)
-             researches = Research.where(research_type: research.research_type)
-                            .where.not(id: research.id)
-            end 
+            researches = Research.joins(:keywords).where("keywords.name IN (?)", keyword.pluck(:name)).where.not(id: research.id).order('COUNT(keywords.id) DESC').group(:id)
           end
+
+          researches = Research.order("order_timestamp DESC") if researches.blank?
+         
           if per_page.present?
             researches = researches.limit(per_page)
           end
