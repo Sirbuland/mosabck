@@ -9,7 +9,6 @@ NewsFilterComponent::Types::NewsFilterType = GraphQL::ObjectType.define do
   field :filterType, types.String, property: :filter_type
   field :priority, types.Int
 
-
 	field :updatedAt do
     type MiscComponent::Types::DateTimeType
     resolve ->(news_filter, _args, _ctx) { news_filter.updated_at }
