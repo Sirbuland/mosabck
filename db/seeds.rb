@@ -10,13 +10,15 @@ Research.all.map(&:save)
 User.all.each do |user|
 	NewsFilter::DEFAULT_FILTERS.each do |filter|
     news_filter = user.news_filters.find_or_initialize_by name: filter[:name]
-    news_filter.assign_attributes({ 
-      description: filter[:description], 
-      filter_type: filter[:filter_type], 
-      search_term: filter[:search_term],
-      selected: filter[:selected],
-      priority: filter[:priority]
-    })
+    news_filter.assign_attributes(
+      filter.slice(
+        :description, 
+        :filter_type, 
+        :search_term,
+        :selected,
+        :priority
+      )
+    )
     news_filter.save!
 	end
 end
