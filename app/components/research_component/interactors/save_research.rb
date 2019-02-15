@@ -75,7 +75,11 @@ module ResearchComponent
       def cast_votes_on_research votes_for, research
         votes_for.each do |votes_for_i, votes_for_attributes|
           voter = User.find_by id: votes_for_attributes[:voter_id]
-          research.vote_by voter: voter
+          if voter.voted_up_on? research
+            research.unvote_by voter
+          else
+            research.upvote_from voter
+          end
         end
       end
     end
